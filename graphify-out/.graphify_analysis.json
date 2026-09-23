@@ -1,0 +1,218 @@
+{
+  "communities": {
+    "0": [
+      "apps_web_tsconfig_app",
+      "apps_web_tsconfig_app_compileroptions",
+      "apps_web_tsconfig_app_compileroptions_allowarbitraryextensions",
+      "apps_web_tsconfig_app_compileroptions_allowimportingtsextensions",
+      "apps_web_tsconfig_app_compileroptions_erasablesyntaxonly",
+      "apps_web_tsconfig_app_compileroptions_jsx",
+      "apps_web_tsconfig_app_compileroptions_lib",
+      "apps_web_tsconfig_app_compileroptions_module",
+      "apps_web_tsconfig_app_compileroptions_moduledetection",
+      "apps_web_tsconfig_app_compileroptions_moduleresolution",
+      "apps_web_tsconfig_app_compileroptions_noemit",
+      "apps_web_tsconfig_app_compileroptions_nofallthroughcasesinswitch",
+      "apps_web_tsconfig_app_compileroptions_nounusedlocals",
+      "apps_web_tsconfig_app_compileroptions_nounusedparameters",
+      "apps_web_tsconfig_app_compileroptions_skiplibcheck",
+      "apps_web_tsconfig_app_compileroptions_target",
+      "apps_web_tsconfig_app_compileroptions_tsbuildinfofile",
+      "apps_web_tsconfig_app_compileroptions_types",
+      "apps_web_tsconfig_app_compileroptions_verbatimmodulesyntax",
+      "apps_web_tsconfig_app_include"
+    ],
+    "1": [
+      "apps_web_tsconfig_node",
+      "apps_web_tsconfig_node_compileroptions",
+      "apps_web_tsconfig_node_compileroptions_allowimportingtsextensions",
+      "apps_web_tsconfig_node_compileroptions_erasablesyntaxonly",
+      "apps_web_tsconfig_node_compileroptions_lib",
+      "apps_web_tsconfig_node_compileroptions_module",
+      "apps_web_tsconfig_node_compileroptions_moduledetection",
+      "apps_web_tsconfig_node_compileroptions_noemit",
+      "apps_web_tsconfig_node_compileroptions_nofallthroughcasesinswitch",
+      "apps_web_tsconfig_node_compileroptions_nounusedlocals",
+      "apps_web_tsconfig_node_compileroptions_nounusedparameters",
+      "apps_web_tsconfig_node_compileroptions_skiplibcheck",
+      "apps_web_tsconfig_node_compileroptions_target",
+      "apps_web_tsconfig_node_compileroptions_tsbuildinfofile",
+      "apps_web_tsconfig_node_compileroptions_types",
+      "apps_web_tsconfig_node_compileroptions_verbatimmodulesyntax",
+      "apps_web_tsconfig_node_include"
+    ],
+    "2": [
+      "apps_web_package",
+      "apps_web_package_name",
+      "apps_web_package_private",
+      "apps_web_package_type",
+      "apps_web_package_version",
+      "apps_web_vite_config",
+      "apps_web_vite_config_monoreporoot",
+      "ref_node_path",
+      "ref_node_url",
+      "ref_oxlint",
+      "ref_types_node",
+      "ref_types_react",
+      "ref_types_react_dom",
+      "ref_typescript",
+      "ref_vite",
+      "ref_vitejs_plugin_react"
+    ],
+    "3": [
+      "package",
+      "package_description",
+      "package_engines",
+      "package_engines_node",
+      "package_engines_pnpm",
+      "package_name",
+      "package_packagemanager",
+      "package_private",
+      "package_version"
+    ],
+    "4": [
+      "apps_web_package_devdependencies",
+      "apps_web_package_devdependencies_oxlint",
+      "apps_web_package_devdependencies_types_node",
+      "apps_web_package_devdependencies_types_react",
+      "apps_web_package_devdependencies_types_react_dom",
+      "apps_web_package_devdependencies_typescript",
+      "apps_web_package_devdependencies_vite",
+      "apps_web_package_devdependencies_vitejs_plugin_react"
+    ],
+    "5": [
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_lint",
+      "package_scripts_preview",
+      "package_scripts_supabase_start",
+      "package_scripts_supabase_status",
+      "package_scripts_supabase_stop"
+    ],
+    "6": [
+      "apps_web_oxlintrc",
+      "apps_web_oxlintrc_plugins",
+      "apps_web_oxlintrc_rules",
+      "apps_web_oxlintrc_rules_react_only_export_components",
+      "apps_web_oxlintrc_rules_react_rules_of_hooks",
+      "apps_web_oxlintrc_schema"
+    ],
+    "7": [
+      "apps_web_src_app",
+      "apps_web_src_app_app",
+      "apps_web_src_index",
+      "apps_web_src_main",
+      "ref_react",
+      "ref_react_dom"
+    ],
+    "8": [
+      "apps_web_src_lib_database_types",
+      "apps_web_src_lib_database_types_database",
+      "apps_web_src_lib_database_types_json",
+      "apps_web_src_lib_supabase",
+      "apps_web_src_lib_supabase_supabase",
+      "ref_supabase_supabase_js"
+    ],
+    "9": [
+      "apps_web_package_scripts",
+      "apps_web_package_scripts_build",
+      "apps_web_package_scripts_dev",
+      "apps_web_package_scripts_lint",
+      "apps_web_package_scripts_preview"
+    ],
+    "10": [
+      "apps_web_package_dependencies",
+      "apps_web_package_dependencies_react",
+      "apps_web_package_dependencies_react_dom",
+      "apps_web_package_dependencies_supabase_supabase_js"
+    ],
+    "11": [
+      "apps_web_src_vite_env_d",
+      "apps_web_src_vite_env_d_importmeta",
+      "apps_web_src_vite_env_d_importmetaenv"
+    ],
+    "12": [
+      "apps_web_tsconfig",
+      "apps_web_tsconfig_files",
+      "apps_web_tsconfig_references"
+    ],
+    "13": [
+      "cursor_mcp",
+      "cursor_mcp_mcp_server_supabase"
+    ]
+  },
+  "cohesion": {
+    "0": 0.1,
+    "1": 0.11764705882352941,
+    "2": 0.13333333333333333,
+    "3": 0.2222222222222222,
+    "4": 0.25,
+    "5": 0.25,
+    "6": 0.3333333333333333,
+    "7": 0.4666666666666667,
+    "8": 0.4,
+    "9": 0.4,
+    "10": 0.5,
+    "11": 0.6666666666666666,
+    "12": 0.6666666666666666,
+    "13": 1.0
+  },
+  "gods": [
+    {
+      "id": "apps_web_tsconfig_app_compileroptions",
+      "label": "compilerOptions",
+      "degree": 18
+    },
+    {
+      "id": "apps_web_tsconfig_node_compileroptions",
+      "label": "compilerOptions",
+      "degree": 15
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 8
+    },
+    {
+      "id": "apps_web_package_scripts",
+      "label": "scripts",
+      "degree": 5
+    },
+    {
+      "id": "apps_web_oxlintrc_rules",
+      "label": "rules",
+      "degree": 3
+    },
+    {
+      "id": "ref_react",
+      "label": "react",
+      "degree": 3
+    },
+    {
+      "id": "package_engines",
+      "label": "engines",
+      "degree": 3
+    },
+    {
+      "id": "ref_supabase_supabase_js",
+      "label": "@supabase/supabase-js",
+      "degree": 2
+    },
+    {
+      "id": "ref_react_dom",
+      "label": "react-dom",
+      "degree": 2
+    },
+    {
+      "id": "ref_vitejs_plugin_react",
+      "label": "@vitejs/plugin-react",
+      "degree": 2
+    }
+  ],
+  "surprises": [],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
