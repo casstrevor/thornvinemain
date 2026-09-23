@@ -1,0 +1,20 @@
+{
+  "name": "thornvine",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Thornvine monorepo \u2014 React web app + Supabase",
+  "scripts": {
+    "dev": "pnpm --filter @thornvine/web dev",
+    "build": "pnpm --filter @thornvine/web build",
+    "lint": "pnpm --filter @thornvine/web lint",
+    "preview": "pnpm --filter @thornvine/web preview",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@12.5.1"
+}
