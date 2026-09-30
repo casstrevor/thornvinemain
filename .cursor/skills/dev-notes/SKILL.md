@@ -18,6 +18,7 @@ Add a Dev note to every push. add it to a skill so every update has documentatio
 4. Never push without a matching Dev note for that change set.
 5. Do not put secrets (keys, passwords, tokens) in Dev notes.
 6. **Also** update the GitHub Project per `.cursor/skills/github-project/SKILL.md` — each project item description must be thoroughly explained.
+7. **Also** update the Notion roadmap after each prompt per `.cursor/skills/notion-roadmap/SKILL.md`. Create the roadmap if it does not exist.
 
 ## Dev note template
 
