@@ -35,6 +35,21 @@ cp .env.example apps/web/.env.local
 | `pnpm supabase:start` | Start local Supabase (requires Docker + CLI) |
 | `pnpm supabase:stop` | Stop local Supabase |
 
+## GitHub Pages
+
+Pushes to `main` build the web app and deploy it to:
+
+https://casstrevor.github.io/thornvinemain/
+
+The workflow is `.github/workflows/deploy.yml`. It sets `VITE_BASE_PATH=/thornvinemain/` so asset and router URLs match the project site. Local `pnpm dev` stays at `/`.
+
+One-time setup (repo admin):
+
+1. GitHub → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Add Actions secrets `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (same values as local `.env`). They are inlined into the client bundle at build time. Do not commit them.
+
+GitHub Pages on a private repository needs GitHub Pro (or make the repository public). The published site is public.
+
 ## Supabase
 
 Project config lives in `supabase/`. After linking a project:
