@@ -37,16 +37,31 @@ cp .env.example apps/web/.env.local
 
 ## GitHub Pages
 
-Pushes to `main` build the web app and deploy it to:
+Pushes to `main` build the web app and deploy it to **https://www.thornvine.com**.
 
-https://casstrevor.github.io/thornvinemain/
+The workflow is `.github/workflows/deploy.yml`. It sets `VITE_BASE_PATH=/` because the custom domain is served from the site root. Local `pnpm dev` stays at `/`.
 
-The workflow is `.github/workflows/deploy.yml`. It sets `VITE_BASE_PATH=/thornvinemain/` so asset and router URLs match the project site. Local `pnpm dev` stays at `/`.
+DNS is at GoDaddy. Add the custom domain in GitHub **before** changing GoDaddy, so the name cannot be claimed by another Pages site. A repo admin does this:
 
-One-time setup (repo admin):
+1. Settings → Pages → Build and deployment → Source: **GitHub Actions**.
+2. Custom domain: `www.thornvine.com`, then Save. Enforce HTTPS once GitHub offers it.
+3. Add Actions secrets `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (same values as local `.env`). They are inlined into the client bundle at build time. Do not commit them.
 
-1. GitHub → **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-2. Add Actions secrets `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (same values as local `.env`). They are inlined into the client bundle at build time. Do not commit them.
+Then in GoDaddy DNS, remove the parking A record and any domain forwarding. Add:
+
+| Type | Name | Value |
+|------|------|--------|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| AAAA | `@` | `2606:50c0:8000::153` |
+| AAAA | `@` | `2606:50c0:8001::153` |
+| AAAA | `@` | `2606:50c0:8002::153` |
+| AAAA | `@` | `2606:50c0:8003::153` |
+| CNAME | `www` | `casstrevor.github.io` |
+
+The CNAME target is `casstrevor.github.io`, not the repository name. `thornvine.com` then redirects to `www.thornvine.com`. Do not point `www` at the apex with a CNAME; that blocks HTTPS.
 
 GitHub Pages on a private repository needs GitHub Pro (or make the repository public). The published site is public.
 
