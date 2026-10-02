@@ -2,11 +2,11 @@
 
 - **App section:** planning
 - **Notion:** https://app.notion.com/p/3eb9d506006881c388c3d5c7d4433656
-- **Synced:** 2026-10-02
+- **Synced:** 2026-10-02 (repo copy updated after publish; Notion not yet updated)
 
 ## Current focus
 
-**Next: HTTPS, then merge `authentication` to `main`.** Pages custom domain is saved as `thornvine.com` and HTTPS is off because two GoDaddy A records remain. Landing and portal are on `authentication` at `91b5813`, not on `main`. See the Roadmap.
+**Site is live at https://www.thornvine.com (`main` `f609433`) with HTTPS. Next: a working contact path, then the apex DNS cleanup.** The only CTA mails `hello@thornvine.com`, which bounces (no MX). The apex `thornvine.com` returns 404 until two GoDaddy A records are deleted. See the [roadmap](roadmap.md).
 
 Task owners below indicate a working role, not a Notion person assignment.
 
@@ -24,7 +24,7 @@ Status: In progress. Priority: P0. Owner: Cursor. Dependencies: repo access.
 
 Acceptance: engineering page populated from inspected files; repo/branch/commit recorded; existing relevant safe checks run with results or reasons not run; scaffold and working features distinguished; smallest next implementation slice proposed.
 
-Evidence so far: repo `casstrevor/thornvinemain`. `main` `8620c02`. `authentication` `91b5813`. Not complete.
+Evidence so far: repo `casstrevor/thornvinemain`. 2026-10-02: baseline filled on the [engineering page](../platform/engineering.md) from `main` `f609433` — workspace map, toolchain, scripts, lint/build/deploy results, scaffold vs working, next slices. Remaining for acceptance: no tests exist to run; accessibility and performance checks not yet run.
 
 App area: platform.
 
@@ -50,7 +50,7 @@ Status: In progress. Priority: P1. Owner: Cursor. Dependencies: TV-002 working c
 
 Acceptance: six responsive sections, shared components, consistent brief CTA, keyboard navigation; incomplete assets clearly tracked and not misrepresented as final.
 
-Evidence so far: landing is on `authentication` `91b5813`. Not verified against acceptance. Not on `main`.
+Evidence so far: landing v2 is live on `main` `f609433` at https://www.thornvine.com. Four of six sections exist; "Meet the humans" and "How it happens" are missing; CTAs end at a bouncing `mailto:`; keyboard navigation not checked. Gap list: [site as built](../site/implementation.md). Not complete.
 
 App area: site.
 
@@ -84,6 +84,8 @@ Status: Not started. Priority: P1. Owner: Cursor + founder release decision (Luk
 
 Acceptance: launch checklist evidence, outstanding risks, production configuration, rollback plan, named founder approval, release URL and commit, post-deployment intake smoke check recorded. Break into 1–2 day child tasks after baseline.
 
+Evidence so far (2026-10-02): production configuration and rollback plan documented in [hosting](../platform/hosting.md); release URL https://www.thornvine.com at `f609433`. Still open: apex domain, intake smoke check (no intake), founder approval. Being reachable is not launch.
+
 App area: platform and site.
 
 ## Task rules
@@ -107,3 +109,18 @@ Cursor created the Roadmap and recorded GitHub Pages status. Implemented: `.gith
 ### 2026-10-02 — Roadmap refreshed
 
 GitHub Project Thornvine already exists. Cursor cannot edit it with the current token. Notion stays the working board. `authentication` `91b5813` is pushed with the landing, portal, and base path `/`. Pages custom domain is `thornvine.com`. HTTPS is blocked by leftover GoDaddy A records. TV-001 and TV-004 are in progress, not complete. TV-006 and TV-008 stay blocked.
+
+### 2026-10-02 — Published to production (Cursor, on Trevor's instruction)
+
+Tasks: TV-001, TV-004, TV-008. Decisions: TV-D007, TV-D008.
+
+- Verified locally on `a778682`: `pnpm install --frozen-lockfile`, `pnpm lint` (0 errors, 1 warning), `VITE_BASE_PATH=/ pnpm build`.
+- Added Actions secrets `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`.
+- Pages custom domain changed `thornvine.com` → `www.thornvine.com` (TV-D006). Certificate approved for www; Enforce HTTPS on.
+- [PR #10](https://github.com/casstrevor/thornvinemain/pull/10) merged `authentication` → `main` as `f609433`. Deploy run 36960290404 succeeded (first successful deploy).
+- Smoke test: `/` and `/login` render on https://www.thornvine.com; bundle contains the Supabase URL.
+- Granted `thornvine_admin` to `casstrevor@gmail.com` in hosted Supabase.
+- Found: apex 404 (GoDaddy A records), no MX for `thornvine.com` (CTA bounces), 5 Supabase security warnings, 3.8 MB images, 492 KB JS.
+- Docs: `document/` declared central knowledge base; roadmap, hosting, engineering baseline, portal, decisions rewritten; new `platform/supabase.md` and `site/implementation.md`.
+- Not done: Notion pages (MCP needs sign-in), GoDaddy changes (no access), email setup (needs a decision).
+- Next: TV-Q008 email/contact, apex DNS, then TV-006 intake.

@@ -2,7 +2,7 @@
 
 - **App section:** planning
 - **Notion:** https://app.notion.com/p/3eb9d50600688137ba3df67969ed4ef1
-- **Synced:** 2026-10-02
+- **Synced:** 2026-10-02 (repo copy updated after publish; TV-D007, TV-Q006–Q008 not yet in Notion)
 
 ## Recorded direction
 
@@ -36,6 +36,8 @@ Deliver the agency landing page and intake. No client portal, billing, CMS, CRM,
 
 App area: site and portal. See [portal scope](../portal/scope.md).
 
+Implementation note, 2026-10-02: the portal shipped to production anyway when `authentication` was merged (PR #10). That is an implementation fact, not a decision. See TV-Q006.
+
 ### TV-D005 — Shared founders and ownership
 
 Status: Decided. Source: Luke's clarification, 2026-09-29.
@@ -50,6 +52,24 @@ Host the site at www.thornvine.com. DNS registrar is GoDaddy. Deployment stays G
 
 App area: platform. See [hosting](../platform/hosting.md).
 
+Implementation, 2026-10-02: Pages custom domain set to `www.thornvine.com`, certificate issued, HTTPS enforced, site live from `main` `f609433`. Apex redirect blocked by two leftover GoDaddy A records.
+
+### TV-D007 — Repo `document/` is the central knowledge base
+
+Status: Decided. Source: Trevor, 2026-10-02 ("this is the central project knowledge base"; "it is okay to drift, update documentation as we go; document as much detail as possible").
+
+`document/` holds the current product, engineering, and operations facts. Notion remains a coordination space and may lag; reconcile when they differ, newest dated entry wins. Every behavior, hosting, schema, or scope change updates the matching `document/` file alongside its dev note.
+
+App area: all.
+
+### TV-D008 — Publish `authentication` to production
+
+Status: Decided. Source: Trevor, 2026-10-02 ("publish merge and get our product to where Notion states").
+
+Merge `authentication` into `main` and deploy to www.thornvine.com, including the portal code. Done via PR #10 (`f609433`), deploy run 36960290404. Does not by itself decide portal scope (TV-Q006) or constitute launch (TV-008).
+
+App area: site, portal, platform.
+
 ## Open questions
 
 - TV-Q001 — Deadline anchor: confirm 90 days from 2026-09-29; provisional target 2026-12-28. Owner: Luke and Trevor. Needed for calendar commitment.
@@ -57,6 +77,9 @@ App area: platform. See [hosting](../platform/hosting.md).
 - TV-Q003 — Email and booking destination? Domain and host are decided in TV-D006. Owner: Luke and Trevor. Blocks launch/contact completion. App area: site.
 - TV-Q004 — Founder identities/bios/photos, approved experience wording, portfolio roles/URLs, logo and visual assets? Owner: Luke and Trevor. Blocks final public content. App area: site.
 - TV-Q005 — Scene implementation and asset/performance budget? Owner: Cursor recommendation after baseline, Luke and Trevor visual review. App area: site.
+- TV-Q006 — The client portal is live in production (2026-10-02). Is it in launch scope, and if so what is its acceptance (admin UI, file uploads, password reset)? If not, should `/login` stay public? Owner: Luke and Trevor. App area: portal.
+- TV-Q007 — Typography and hero copy: the built site uses Sora + DM Sans and the eyebrow "Human ideas. Digital possibilities."; the brief says Poppins and "Creative product agency". Which is intended? Owner: Luke and Trevor. App area: site.
+- TV-Q008 — Urgent: `hello@thornvine.com` is the live site's only contact, and the domain has no MX records, so mail bounces. Which email provider, and until then should the CTA point somewhere that works? Owner: Luke and Trevor. Part of TV-Q003. App area: site, platform.
 
 ## Risks and responses
 
@@ -66,6 +89,8 @@ App area: platform. See [hosting](../platform/hosting.md).
 - Portfolio or copy overstates experience: confirm actual contributions and label concepts.
 - Scope expands into agency operations software: record additions explicitly with impact on delivery.
 - Missing content stalls release: track inputs early; separate implementation readiness from content approval.
+- Live site loses leads (realized 2026-10-02): the public CTA mails a domain with no MX. Response: TV-Q008, then TV-006.
+- Portal is public before it is scoped: invite-only auth and RLS limit exposure; Supabase advisor warnings and leaked-password protection tracked in [Supabase](../platform/supabase.md).
 
 ## Decision record format
 

@@ -2,6 +2,8 @@
 
 Monorepo for the Thornvine React web app and Supabase backend.
 
+Live site: https://www.thornvine.com (deployed from `main`). Project knowledge base: [`document/`](document/README.md) — product, hosting, Supabase, status, and decisions.
+
 ## Structure
 
 ```
