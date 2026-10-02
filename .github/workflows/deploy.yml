@@ -1,5 +1,7 @@
 # Build the Vite app and publish it to GitHub Pages.
-# Site: https://casstrevor.github.io/thornvinemain/
+# Public host: https://www.thornvine.com
+# DNS is at GoDaddy. www is a CNAME to casstrevor.github.io.
+# Apex thornvine.com uses GitHub Pages A/AAAA records and redirects to www.
 name: Deploy static content to Pages
 
 on:
@@ -41,7 +43,7 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          VITE_BASE_PATH: /thornvinemain/
+          VITE_BASE_PATH: /
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 

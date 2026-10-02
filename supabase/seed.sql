@@ -1,1 +1,8 @@
--- Seed data for local development
+-- Seed data for local development.
+-- Portal users are invite-only via Supabase Auth.
+-- After creating a user in the Auth dashboard, link them with:
+--   insert into public.profiles (id, email, full_name) values (...); -- usually auto via trigger
+--   insert into public.clients (name, slug) values ('Example Co', 'example-co');
+--   insert into public.client_memberships (client_id, user_id, role)
+--     values ('<client-uuid>', '<user-uuid>', 'client_owner');
+-- For staff: role = 'thornvine_admin' (can attach to any client row or a Thornvine client).

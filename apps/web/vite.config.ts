@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 
 const monorepoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
-/** Project Pages site is served from /thornvinemain/. Local dev stays at /. */
+/** www.thornvine.com is served from /. Set VITE_BASE_PATH only for a subpath host. */
 function pagesBase(): string {
   const fromEnv = process.env.VITE_BASE_PATH?.trim()
   if (!fromEnv) return '/'
