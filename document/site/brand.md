@@ -4,6 +4,8 @@
 - **Notion:** https://app.notion.com/p/3eb9d5060068813a94e2e361a44a73f2
 - **Synced:** 2026-10-02
 
+This is the intended direction. What is actually live differs in places (hero eyebrow, fonts, missing sections); see [site as built](implementation.md) and TV-Q007.
+
 ## Purpose and positioning
 
 Thornvine is a human-centered creative product agency that makes ambitious ideas approachable and achievable. Full-stack product development leads; AI, automation, design, and production support that promise.

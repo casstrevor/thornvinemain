@@ -4,7 +4,7 @@
 - **Notion:** https://app.notion.com/p/3eb9d506006880bcaf86d4c2f8eb7c60
 - **Synced:** 2026-10-02
 
-The hub text below is from 2026-09-30. Current status is on [the roadmap](roadmap.md).
+The "Current status" and "Immediate priorities" sections were updated 2026-10-02 after the production publish. The rest of the hub text is from 2026-09-30. Detailed status is on [the roadmap](roadmap.md). Per TV-D007, this repo folder is the central knowledge base; Notion may lag.
 
 ## Thornvine — project source of truth
 
@@ -14,11 +14,11 @@ This hub owns the agency website's product direction, delivery plan, decisions, 
 
 ## Current status
 
-**Phase: Foundation in progress. Public site not live.**
+**Phase: Site live, not launched (2026-10-02).**
 
-Repository evidence is on the Roadmap. The GitHub Pages build succeeded in Actions. The site is not public until a repo admin enables Pages.
+https://www.thornvine.com serves landing page v2 and the invite-only client portal from `main` `f609433`, with HTTPS. It is not launched: the contact CTA bounces (no email on the domain), the apex `thornvine.com` returns 404, two brief sections are missing, and there is no project brief intake or founder release approval.
 
-**Next action:** a repo admin enables GitHub Pages, then Cursor re-runs the deploy. TV-001 is still only partly recorded.
+**Next action:** Luke and Trevor choose an email provider / contact destination (TV-Q008) and delete the two leftover GoDaddy A records. Then Cursor builds the brief intake (TV-006) once its destination is decided.
 
 **Business goal:** publish the complete landing page and receive at least one genuine prospective client's project brief within 90 days. Provisional deadline: 2026-12-28, assuming a 2026-09-29 start; confirm with Luke or Trevor.
 
@@ -49,6 +49,7 @@ A build passing is not proof that the site, lead delivery, or launch is verified
 
 ## Immediate priorities
 
-- Repo admin: enable GitHub Pages (Actions source) and re-run the failed deploy. Cursor: finish TV-001 on the engineering page.
-- Luke and Trevor: supply or confirm founder/portfolio assets, email/booking links, and brief destination.
+- Luke and Trevor: set up email for `@thornvine.com` or pick a working contact (TV-Q008); delete GoDaddy A records `76.223.105.230` and `13.248.243.5`; decide portal scope (TV-Q006).
+- Luke and Trevor: supply or confirm founder/portfolio assets, booking link, and brief destination.
+- Cursor: Supabase hardening, image/bundle size, missing sections once content exists.
 - Next PM review: reconcile baseline, resolve architecture-dependent questions, and select the first implementation slice.

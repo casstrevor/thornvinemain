@@ -2,7 +2,7 @@
 
 - **App section:** site (public landing page and lead intake)
 - **Notion:** https://app.notion.com/p/3eb9d506006881eb8736ca5c3071ced7
-- **Synced:** 2026-10-02
+- **Synced:** 2026-10-02 (status section added in repo after publish)
 
 ## Objective
 
@@ -39,6 +39,21 @@ Client accounts, client portal, billing, CMS, CRM, blog, and bespoke AI agent fu
 - [ ] Build and existing relevant quality gates pass, or an explicit release decision records accepted exceptions.
 - [ ] Domain/HTTPS, production links, metadata, error behavior, and rollback procedure are verified.
 - [ ] Founder launch approval is recorded with the decision maker named (Luke and/or Trevor according to their agreed process); deployment evidence is recorded.
+
+### Status against acceptance (2026-10-02, `main` `f609433`)
+
+Boxes above stay unchecked until verified with evidence. Current state:
+
+- Offering clarity: hero and services are live; founder review pending.
+- Six sections: 4 of 6 live (missing "Meet the humans", "How it happens").
+- CTAs → brief: **No.** All CTAs open `mailto:hello@thornvine.com`; the domain has no MX, so mail bounces.
+- Submission behavior, end-to-end test, server-side validation: not started (no intake).
+- Accessibility, no-WebGL/reduced-motion, performance: not checked. Images 3.8 MB; JS 492 KB.
+- Build and quality gates: lint (0 errors) and build pass; no tests exist.
+- Domain/HTTPS: www live with enforced HTTPS; **apex broken**; rollback procedure documented in [hosting](../platform/hosting.md); social metadata missing.
+- Founder launch approval: not recorded.
+
+See [site as built](implementation.md) for the full gap list.
 
 ## Success measurement
 
