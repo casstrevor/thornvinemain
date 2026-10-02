@@ -1,8 +1,14 @@
+import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import App from './App'
-import { RequireAuth } from './lib/auth'
+import { RequireAuth, RequireRole } from './lib/auth'
+import { DESIGN_SYSTEM_ROLES } from './lib/roles'
 import { LoginPage } from './pages/LoginPage'
 import { ClientPortalPage } from './pages/ClientPortalPage'
+
+const DesignSystemPage = lazy(() =>
+  import('./pages/design-system/DesignSystemPage').then((m) => ({ default: m.DesignSystemPage })),
+)
 
 export function AppRoutes() {
   return (
@@ -14,6 +20,18 @@ export function AppRoutes() {
         element={
           <RequireAuth>
             <ClientPortalPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/design-system/:entryId?"
+        element={
+          <RequireAuth>
+            <RequireRole roles={DESIGN_SYSTEM_ROLES}>
+              <Suspense fallback={null}>
+                <DesignSystemPage />
+              </Suspense>
+            </RequireRole>
           </RequireAuth>
         }
       />

@@ -1,0 +1,130 @@
+.tv-btn {
+  --tv-btn-height: 2.85rem;
+  --tv-btn-padding: var(--tv-space-5);
+  --tv-btn-font: var(--tv-text-sm);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tv-space-2);
+  min-height: var(--tv-btn-height);
+  padding: 0 var(--tv-btn-padding);
+  border: 1px solid transparent;
+  border-radius: var(--tv-radius-pill);
+  font-family: var(--tv-font-body);
+  font-size: var(--tv-btn-font);
+  font-weight: var(--tv-weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform var(--tv-duration-fast) var(--tv-ease-standard),
+    background-color var(--tv-duration-fast) var(--tv-ease-standard),
+    border-color var(--tv-duration-fast) var(--tv-ease-standard),
+    box-shadow var(--tv-duration-fast) var(--tv-ease-standard),
+    color var(--tv-duration-fast) var(--tv-ease-standard);
+}
+
+.tv-btn:focus-visible {
+  outline: 2px solid var(--tv-color-focus);
+  outline-offset: 3px;
+}
+
+.tv-btn:disabled,
+.tv-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+  transform: none;
+}
+
+.tv-btn--sm {
+  --tv-btn-height: 2.25rem;
+  --tv-btn-padding: var(--tv-space-4);
+  --tv-btn-font: var(--tv-text-xs);
+}
+
+.tv-btn--lg {
+  --tv-btn-height: 3.35rem;
+  --tv-btn-padding: var(--tv-space-6);
+  --tv-btn-font: var(--tv-text-md);
+}
+
+.tv-btn--full {
+  width: 100%;
+}
+
+/* Primary — the single most important action in a view. */
+.tv-btn--primary {
+  color: var(--tv-color-text-inverse);
+  background: var(--tv-color-action-primary);
+  box-shadow: var(--tv-shadow-primary);
+}
+
+.tv-btn--primary:hover:not(:disabled) {
+  background: var(--tv-color-action-primary-hover);
+  transform: translateY(-1px);
+}
+
+.tv-btn--primary:active:not(:disabled) {
+  background: var(--tv-color-action-primary-active);
+  transform: translateY(0);
+}
+
+/* Secondary — supporting actions beside a primary. */
+.tv-btn--secondary {
+  color: var(--tv-color-action-secondary);
+  background: transparent;
+  border-color: var(--tv-color-border-strong);
+}
+
+.tv-btn--secondary:hover:not(:disabled) {
+  background: var(--tv-color-action-secondary-hover);
+  border-color: var(--tv-color-action-secondary);
+}
+
+.tv-btn--secondary:active:not(:disabled) {
+  background: rgba(26, 46, 38, 0.12);
+}
+
+.tv-btn--secondary.tv-btn--inverse {
+  color: var(--tv-color-text-inverse);
+  border-color: var(--tv-color-border-inverse);
+}
+
+.tv-btn--secondary.tv-btn--inverse:hover:not(:disabled) {
+  background: rgba(248, 246, 241, 0.1);
+  border-color: var(--tv-color-text-inverse);
+}
+
+/* Tertiary — low-emphasis, text-style actions. */
+.tv-btn--tertiary {
+  --tv-btn-padding: var(--tv-space-2);
+
+  color: var(--tv-color-action-secondary);
+  background: transparent;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
+.tv-btn--tertiary:hover:not(:disabled) {
+  text-decoration-color: transparent;
+  background: var(--tv-color-action-secondary-hover);
+}
+
+.tv-btn--tertiary.tv-btn--inverse {
+  color: var(--tv-color-text-inverse);
+}
+
+.tv-btn--tertiary.tv-btn--inverse:hover:not(:disabled) {
+  background: rgba(248, 246, 241, 0.1);
+}
+
+/* Icon-only buttons are square pills. */
+.tv-btn--icon {
+  width: var(--tv-btn-height);
+  padding: 0;
+}
