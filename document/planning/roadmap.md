@@ -36,7 +36,9 @@ Repository [casstrevor/thornvinemain](https://github.com/casstrevor/thornvinemai
   - Actions run [36960290404](https://github.com/casstrevor/thornvinemain/actions/runs/36960290404) built and deployed `f609433` (first successful deploy).
   - `curl` on `http://` and `https://www.thornvine.com/` returned 200 with the v2 title. The deployed bundle contains the Supabase project URL, so the Actions secrets were picked up.
   - The browser rendered `https://www.thornvine.com/login` with the sign-in form.
-  - Pages API: `cname: www.thornvine.com`, certificate `approved` for `www.thornvine.com` (expires 2026-12-30, auto-renews), `https_enforced: true`.
+  - Pages API: `cname: www.thornvine.com`, certificate `approved` for `www.thornvine.com` (expires 2026-12-30, auto-renews), `https_enforced: true`. `http://www.thornvine.com/` returns 301 to HTTPS.
+  - Docs deploy run 36960867938 (`77193ae`, PR #12) succeeded.
+  - GitHub Project board updated from Cursor: #6, #8, #9, #11 Done; #7 In Progress.
 - **Blocked:**
   - **Apex `thornvine.com`** returns GitHub "Site not found" (404) over HTTP and fails TLS over HTTPS. Cause: GoDaddy A records `76.223.105.230` and `13.248.243.5` still sit next to GitHub's four. GitHub will not configure the apex → www redirect or include the apex in the certificate until only GitHub's records remain. Resolver: Luke or Trevor in GoDaddy DNS.
   - **Contact email**: the only conversion on the site is `mailto:hello@thornvine.com`, and `thornvine.com` has no MX records, so those emails bounce. Resolver: decide an email provider (TV-Q003), or swap the CTA to a working destination.

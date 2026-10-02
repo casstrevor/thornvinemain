@@ -50,14 +50,14 @@ Docs (this commit):
 
 - The live CTA (`mailto:hello@thornvine.com`) bounces: no MX records. Leads are being lost until fixed (TV-Q008).
 - `thornvine.com` (apex) 404s until GoDaddy A records `76.223.105.230` and `13.248.243.5` are deleted.
-- `http://www.thornvine.com` still answered 200 shortly after enforcing HTTPS; re-check.
+- `http://www.thornvine.com` answered 200 for ~15 minutes after enforcing HTTPS; it now returns 301 to HTTPS (verified after PR #12 deployed, recorded in a follow-up commit).
 - Portal is public (invite-only) before its scope is decided (TV-Q006). Supabase advisors: 5 security WARN; leaked-password protection off.
 - Notion is now behind `document/`.
 - No secrets in this note or the docs.
 
 ## Follow-ups
 
-- Email provider + MX/SPF; GoDaddy A record cleanup; re-check HTTP→HTTPS redirect.
+- Email provider + MX/SPF; GoDaddy A record cleanup.
 - TV-006 project brief intake once the destination is decided.
 - Supabase hardening migration; enable leaked-password protection.
 - Compress images (3.8 MB) and code-split portal routes (492 KB JS).

@@ -44,7 +44,7 @@ Check with `gh api repos/casstrevor/thornvinemain/pages`.
 | URL | Result |
 |-----|--------|
 | `https://www.thornvine.com/` | 200, landing page v2 |
-| `http://www.thornvine.com/` | Still 200 over plain HTTP ~10 minutes after Enforce HTTPS was turned on; GitHub's redirect can take time to propagate. **Re-check** with `curl -sI http://www.thornvine.com/` (expect 301 to https) |
+| `http://www.thornvine.com/` | 301 → `https://www.thornvine.com/` (verified ~15 minutes after Enforce HTTPS was turned on; it served 200 over HTTP until then) |
 | `https://www.thornvine.com/login`, `/clientportal` | Page renders correctly, but the HTTP status is **404** because GitHub Pages serves `404.html` (the SPA fallback) for unknown paths. Browsers and users are unaffected; crawlers will not index these routes, which is fine for a portal. |
 | `http://thornvine.com/` | GitHub "Site not found" 404 |
 | `https://thornvine.com/` | TLS failure (apex is not on the certificate) |
