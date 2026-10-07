@@ -2,7 +2,7 @@
 
 - **App section:** portal (`/login`, `/clientportal`)
 - **Notion:** TV-D004 on https://app.notion.com/p/3eb9d50600688137ba3df67969ed4ef1
-- **Updated:** 2026-10-02
+- **Updated:** 2026-10-06
 
 ## Product boundary
 
@@ -11,6 +11,8 @@ TV-D004 is a PM proposal, not a founder decision: deliver the agency landing pag
 **Reality on 2026-10-02:** the portal was merged to `main` (PR #10, `f609433`) and is **live in production** at https://www.thornvine.com/login, backed by the hosted Supabase project. It shipped as part of publishing the branch on Trevor's instruction. Whether the portal is now in launch scope is open question **TV-Q006** on the [decisions page](../planning/decisions.md). Until that is answered, treat it as live but unsupported: invite-only, no client data, admins only.
 
 Public lead intake (TV-006) is a different surface. Do not describe the portal as the launch intake form.
+
+A separate workstream, [new client system v1](new-client-system-v1.md), is on branch `new-client-system-v1`. That code is not on `main`, so this live portal is unchanged. The unlisted Stage 1 introduction is [Stage 1](../intake/stage-1.md).
 
 ## What exists
 
@@ -38,7 +40,7 @@ Data model, roles, and RLS: see [Supabase backend](../platform/supabase.md).
 
 ## Not built
 
-- Admin UI (creating clients, projects, updates, inviting users) — all done in SQL today.
+- Admin UI for creating clients, projects, and updates is started on branch `new-client-system-v1` (see [new client system v1](new-client-system-v1.md)). It is not on `main` and not in production. Inviting users is still SQL plus the Supabase dashboard.
 - File uploads (`project_files` has no Storage bucket).
 - Password reset / magic link / account settings.
 - Email notifications for new updates.

@@ -16,6 +16,8 @@ Founders: **Luke and Trevor**, presented as equal co-founders and collaborators.
 
 Voice: confident, playful, capable, honest, welcoming, collaborative, hopeful. Explain services plainly. Demonstrate humanity through real people, transparent process, and visible craftsmanship.
 
+Working rules for product UI live in `apps/web/src/design-system/voice.md` (Trevor, 2026-10-07). Eyebrow, title, and support share one shape. Paired questions match: "Who it's for" / "What it's for", and "Who's this for?" / "What's this for?" The unsure choice is "Not sure yet." Clients do not see "Stage 2."
+
 ## Hero copy — working draft
 
 - Eyebrow: Creative product agency

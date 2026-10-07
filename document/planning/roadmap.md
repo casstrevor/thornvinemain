@@ -2,7 +2,7 @@
 
 - **App section:** planning
 - **Notion:** https://app.notion.com/p/3eb9d5060068816c95fade2a67b6454c
-- **Synced:** 2026-10-02 (repo copy updated after the production publish; Notion not yet updated)
+- **Synced:** 2026-10-07 (Stage 1 audit; earlier production facts below are unchanged)
 
 This is the status view. Task IDs and acceptance stay on the [delivery plan](delivery-plan.md). Do not treat a git commit or a live URL as launch; launch is TV-008 with founder approval.
 
@@ -19,6 +19,17 @@ This is the status view. Task IDs and acceptance stay on the [delivery plan](del
 - **Live:** deployed and reachable at a public URL. Not the same as launched.
 - **Verified:** a named check passed. A build does not verify HTTPS, intake, or launch.
 - **Blocked:** a concrete cause is named.
+
+## As of 2026-10-07
+
+- **Implemented:** Stage 1 conversation at `/newclient` and staff review at `/newclient/review` on branch `new-client-system-v1`. Not on `main` and not live. See [Stage 1](../intake/stage-1.md).
+- **Verified:** orchestrator and question-copy tests, `tsc -b`, and `oxlint` passed. A fresh headless Edge profile saved turns from the idea through “What's this for?”, then Back, Next, and a second Back. `supabase db push --linked` applied `20261007143000_new_client_stage1.sql` and `20261007163000_intake_remove_reference.sql` to Thornvine `dzywymkjvfxsbimyxmhu`. The intake tables have row level security on, and bucket `intake-references` is private. This is not a public launch check.
+
+## As of 2026-10-06
+
+- **Implemented—unverified:** client system v1 first slice on branch `new-client-system-v1`. Admins can create a client, project, and update in `/clientportal`. See [new client system v1](../portal/new-client-system-v1.md). Direction TV-D009. `oxlint` and `tsc -b` passed. Signed-in save was not run. Not on `main`.
+- **Verified:** none for this slice.
+- **Unchanged:** the live portal on `main` and the 2026-10-02 production facts below.
 
 ## As of 2026-10-02, 22:40 America/Chicago
 

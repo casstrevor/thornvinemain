@@ -2,7 +2,7 @@
 
 - **App section:** planning
 - **Notion:** https://app.notion.com/p/3eb9d50600688137ba3df67969ed4ef1
-- **Synced:** 2026-10-02 (repo copy updated after publish; TV-D007, TV-Q006–Q008 not yet in Notion)
+- **Synced:** 2026-10-07 (TV-D009 recorded in the repo; Notion may lag)
 
 ## Recorded direction
 
@@ -70,6 +70,22 @@ Merge `authentication` into `main` and deploy to www.thornvine.com, including th
 
 App area: site, portal, platform.
 
+### TV-D010 — Stage 1 new-client conversation
+
+Status: Direction for branch `new-client-system-v1`. Source: Trevor, 2026-10-07.
+
+`/newclient` is an unlisted link, not a public button. Stage 1 gathers enough context for a human to invite deeper discovery. It does not accept a build. Staff review is `/newclient/review`. See [Stage 1](../intake/stage-1.md).
+
+App area: intake.
+
+### TV-D009 — Client system v1 extends the live portal
+
+Status: Direction for branch `new-client-system-v1`. Source: Trevor, 2026-10-07 ("lets now start the project").
+
+Keep `/login` and `/clientportal`, the existing roles, and the existing tables. The first slice is an admin-only form to create a client, a project, and a project update. Invites, files, password reset, email, billing, and public intake stay out. This does not close TV-Q006 and does not deploy.
+
+App area: portal. See [new client system v1](../portal/new-client-system-v1.md).
+
 ## Open questions
 
 - TV-Q001 — Deadline anchor: confirm 90 days from 2026-09-29; provisional target 2026-12-28. Owner: Luke and Trevor. Needed for calendar commitment.
@@ -80,6 +96,7 @@ App area: site, portal, platform.
 - TV-Q006 — The client portal is live in production (2026-10-02). Is it in launch scope, and if so what is its acceptance (admin UI, file uploads, password reset)? If not, should `/login` stay public? Owner: Luke and Trevor. App area: portal.
 - TV-Q007 — Typography and hero copy: the built site uses Sora + DM Sans and the eyebrow "Human ideas. Digital possibilities."; the brief says Poppins and "Creative product agency". Which is intended? Owner: Luke and Trevor. App area: site.
 - TV-Q008 — Urgent: `hello@thornvine.com` is the live site's only contact, and the domain has no MX records, so mail bounces. Which email provider, and until then should the CTA point somewhere that works? Owner: Luke and Trevor. Part of TV-Q003. App area: site, platform.
+- TV-Q009 — What is the new client system v1, and does it replace, extend, or sit beside the live portal? Working answer on this branch: extend (TV-D009, Trevor, 2026-10-07). Luke has not separately confirmed. Does not answer TV-Q006. App area: portal.
 
 ## Risks and responses
 

@@ -243,6 +243,40 @@ export type Database = {
       can_access_project: { Args: { p_project_id: string }; Returns: boolean }
       is_client_member: { Args: { p_client_id: string }; Returns: boolean }
       is_thornvine_admin: { Args: never; Returns: boolean }
+      intake_start: { Args: never; Returns: Json }
+      intake_state: { Args: { p_intake_id: string }; Returns: Json }
+      intake_apply_turn: {
+        Args: { p_intake_id: string; p_turn_key: string; p_body: string; p_proposal: Json }
+        Returns: Json
+      }
+      intake_submit: { Args: { p_intake_id: string }; Returns: Json }
+      intake_review: {
+        Args: {
+          p_intake_id: string
+          p_decision: string
+          p_internal_notes: string
+          p_client_message: string
+          p_stage2_direction: string
+        }
+        Returns: Json
+      }
+      intake_list: { Args: never; Returns: Json }
+      intake_add_reference: {
+        Args: {
+          p_intake_id: string
+          p_kind: string
+          p_label: string
+          p_url: string
+          p_storage_path: string
+        }
+        Returns: Json
+      }
+      intake_remove_reference: {
+        Args: {
+          p_reference_id: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       client_status: "active" | "inactive"

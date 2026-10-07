@@ -16,6 +16,7 @@ Commit-by-commit history stays in `docs/dev-notes/`. This folder describes the p
 | Contact CTA | **Broken** — `mailto:hello@thornvine.com`, but the domain has no MX records, so mail bounces |
 | Client portal | **Live** at `/login` and `/clientportal`, invite-only, backed by hosted Supabase |
 | Project brief intake (TV-006) | Not built; blocked on destination decision |
+| Stage 1 introduction | On branch `new-client-system-v1` at `/newclient`. Not on `main` and not linked from the public site |
 
 Details: [roadmap](planning/roadmap.md), [hosting](platform/hosting.md), [site as built](site/implementation.md).
 
@@ -45,6 +46,8 @@ Signed-in client area. It is live in production. The launch brief still lists a 
 | Doc | Notion |
 |-----|--------|
 | [Portal scope and operations](portal/scope.md) | Decision TV-D004 on the decisions page |
+| [New client system v1](portal/new-client-system-v1.md) | Planned on branch `new-client-system-v1`; not a scope decision |
+| [Stage 1 new-client conversation](intake/stage-1.md) | `/newclient` — not linked from the public site |
 
 Code: `apps/web/src/routes.tsx`, `apps/web/src/lib/auth.tsx`, `apps/web/src/pages/`.
 

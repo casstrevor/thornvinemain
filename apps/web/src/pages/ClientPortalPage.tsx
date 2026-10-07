@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
 import { supabase } from '../lib/supabase'
 import type { Database } from '../lib/database.types'
+import { AdminWorkspace } from './AdminWorkspace'
 import './portal.css'
 
+type ClientRow = Database['public']['Tables']['clients']['Row']
 type Project = Database['public']['Tables']['projects']['Row']
 type ProjectUpdate = Database['public']['Tables']['project_updates']['Row'] & {
   project?: Pick<Project, 'id' | 'name'> | null
@@ -18,7 +20,8 @@ const statusLabel: Record<Project['status'], string> = {
 }
 
 export function ClientPortalPage() {
-  const { profile, memberships, isAdmin, signOut } = useAuth()
+  const { user, profile, memberships, isAdmin, signOut } = useAuth()
+  const [clients, setClients] = useState<ClientRow[]>([])
   const [projects, setProjects] = useState<Project[]>([])
   const [updates, setUpdates] = useState<ProjectUpdate[]>([])
   const [loadingData, setLoadingData] = useState(true)
@@ -34,44 +37,52 @@ export function ClientPortalPage() {
     profile?.email?.split('@')[0] ||
     'there'
 
-  useEffect(() => {
-    let mounted = true
+  const loadRequest = useRef(0)
 
-    async function load() {
-      setLoadingData(true)
-      setError(null)
+  const loadPortal = useCallback(async () => {
+    const requestId = ++loadRequest.current
 
-      const [{ data: projectRows, error: projectError }, { data: updateRows, error: updateError }] =
-        await Promise.all([
-          supabase
-            .from('projects')
-            .select('*')
-            .order('updated_at', { ascending: false }),
-          supabase
-            .from('project_updates')
-            .select('*, project:projects(id, name)')
-            .order('published_at', { ascending: false })
-            .limit(8),
-        ])
+    const clientQuery = isAdmin
+      ? supabase.from('clients').select('*').order('name', { ascending: true })
+      : Promise.resolve({ data: [] as ClientRow[], error: null })
 
-      if (!mounted) return
+    const [projectResult, updateResult, clientResult] = await Promise.all([
+      supabase.from('projects').select('*').order('updated_at', { ascending: false }),
+      supabase
+        .from('project_updates')
+        .select('*, project:projects(id, name)')
+        .order('published_at', { ascending: false })
+        .limit(8),
+      clientQuery,
+    ])
 
-      if (projectError || updateError) {
-        setError(projectError?.message || updateError?.message || 'Failed to load portal')
-        setLoadingData(false)
-        return
-      }
+    if (requestId !== loadRequest.current) return
 
-      setProjects(projectRows ?? [])
-      setUpdates((updateRows ?? []) as ProjectUpdate[])
+    setError(null)
+
+    if (projectResult.error || updateResult.error || clientResult.error) {
+      setError(
+        projectResult.error?.message ||
+          updateResult.error?.message ||
+          clientResult.error?.message ||
+          'Failed to load portal',
+      )
       setLoadingData(false)
+      return
     }
 
-    void load()
+    setProjects(projectResult.data ?? [])
+    setUpdates((updateResult.data ?? []) as ProjectUpdate[])
+    setClients(clientResult.data ?? [])
+    setLoadingData(false)
+  }, [isAdmin])
+
+  useEffect(() => {
+    void loadPortal()
     return () => {
-      mounted = false
+      loadRequest.current += 1
     }
-  }, [])
+  }, [loadPortal])
 
   return (
     <div className="portal">
@@ -109,6 +120,15 @@ export function ClientPortalPage() {
           </p>
         ) : null}
 
+        {isAdmin && user ? (
+          <AdminWorkspace
+            userId={user.id}
+            clients={clients}
+            projects={projects}
+            onSaved={loadPortal}
+          />
+        ) : null}
+
         <section className="portal-section" aria-labelledby="projects-heading">
           <div className="portal-section-head">
             <h2 id="projects-heading">Projects</h2>
@@ -119,8 +139,9 @@ export function ClientPortalPage() {
             <div className="portal-empty">
               <h3>No projects yet</h3>
               <p>
-                When work kicks off, your active projects and status will show up
-                here.
+                {isAdmin
+                  ? 'Create a client and a project in Workspace setup. They will show up here.'
+                  : 'When work kicks off, your active projects and status will show up here.'}
               </p>
             </div>
           ) : (
@@ -131,6 +152,11 @@ export function ClientPortalPage() {
                     {statusLabel[project.status]}
                   </span>
                   <h3>{project.name}</h3>
+                  {isAdmin ? (
+                    <p className="project-client">
+                      {clients.find((client) => client.id === project.client_id)?.name ?? 'Client'}
+                    </p>
+                  ) : null}
                   <p>{project.summary || 'No summary yet.'}</p>
                 </li>
               ))}
