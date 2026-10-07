@@ -1,0 +1,23 @@
+.tv-icon {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tv-icon--sm {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.tv-icon--md {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.tv-icon--lg {
+  width: 1.5rem;
+  height: 1.5rem;
+}

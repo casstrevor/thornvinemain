@@ -6,3 +6,4 @@
 --   insert into public.client_memberships (client_id, user_id, role)
 --     values ('<client-uuid>', '<user-uuid>', 'client_owner');
 -- For staff: role = 'thornvine_admin' (can attach to any client row or a Thornvine client).
+-- For designers: role = 'thornvine_designer' (attach to the Thornvine client); unlocks /design-system.

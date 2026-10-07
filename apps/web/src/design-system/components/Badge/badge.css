@@ -1,0 +1,55 @@
+.tv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tv-space-1);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--tv-radius-pill);
+  font-family: var(--tv-font-body);
+  font-size: 0.7rem;
+  font-weight: var(--tv-weight-bold);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tv-badge__dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.tv-badge__dot--live {
+  animation: tv-pulse 1.6s var(--tv-ease-organic) infinite;
+}
+
+.tv-badge--neutral {
+  color: var(--tv-color-action-secondary);
+  background: rgba(26, 46, 38, 0.08);
+}
+
+.tv-badge--success {
+  color: var(--tv-color-success);
+  background: var(--tv-color-success-soft);
+}
+
+.tv-badge--warning {
+  color: var(--tv-color-warning);
+  background: var(--tv-color-warning-soft);
+}
+
+.tv-badge--danger {
+  color: var(--tv-color-danger);
+  background: var(--tv-color-danger-soft);
+}
+
+.tv-badge--info {
+  color: var(--tv-color-info);
+  background: var(--tv-color-info-soft);
+}
+
+.tv-badge--accent {
+  color: var(--tv-forest-800);
+  background: var(--tv-color-accent);
+}

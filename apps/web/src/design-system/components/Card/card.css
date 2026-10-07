@@ -1,0 +1,97 @@
+.tv-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--tv-color-border);
+  border-radius: var(--tv-radius-lg);
+  color: var(--tv-color-text);
+  background: var(--tv-color-surface);
+  box-shadow: var(--tv-shadow-md);
+  font-family: var(--tv-font-body);
+}
+
+.tv-card--muted {
+  background: var(--tv-color-surface-muted);
+  box-shadow: none;
+}
+
+.tv-card--inverse {
+  border-color: transparent;
+  color: var(--tv-color-text-inverse);
+  background: var(--tv-color-surface-inverse);
+}
+
+.tv-card--interactive {
+  cursor: pointer;
+  transition:
+    transform var(--tv-duration-base) var(--tv-ease-emphasized),
+    box-shadow var(--tv-duration-base) var(--tv-ease-emphasized);
+}
+
+.tv-card--interactive:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--tv-shadow-lg);
+}
+
+.tv-card__media {
+  overflow: hidden;
+}
+
+.tv-card__body {
+  display: grid;
+  gap: var(--tv-space-2);
+  padding: var(--tv-space-5);
+}
+
+.tv-card__eyebrow {
+  margin: 0;
+  color: var(--tv-color-text-muted);
+  font-size: var(--tv-text-xs);
+  font-weight: var(--tv-weight-bold);
+  letter-spacing: var(--tv-tracking-wide);
+  text-transform: uppercase;
+}
+
+.tv-card--inverse .tv-card__eyebrow {
+  color: var(--tv-gold-300);
+}
+
+.tv-card__title {
+  margin: 0;
+  font-family: var(--tv-font-display);
+  font-size: var(--tv-text-lg);
+  font-weight: var(--tv-weight-bold);
+  letter-spacing: -0.02em;
+  line-height: var(--tv-leading-snug);
+}
+
+.tv-card__content {
+  color: var(--tv-color-text-muted);
+  font-size: var(--tv-text-sm);
+  line-height: var(--tv-leading-normal);
+}
+
+.tv-card--inverse .tv-card__content {
+  color: rgba(248, 246, 241, 0.78);
+}
+
+.tv-card__content > :first-child {
+  margin-top: 0;
+}
+
+.tv-card__content > :last-child {
+  margin-bottom: 0;
+}
+
+.tv-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--tv-space-3);
+  margin-top: auto;
+  padding: var(--tv-space-4) var(--tv-space-5);
+  border-top: 1px solid var(--tv-color-border);
+}
+
+.tv-card--inverse .tv-card__footer {
+  border-top-color: var(--tv-color-border-inverse);
+}
