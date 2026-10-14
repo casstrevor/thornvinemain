@@ -86,6 +86,14 @@ Keep `/login` and `/clientportal`, the existing roles, and the existing tables. 
 
 App area: portal. See [new client system v1](../portal/new-client-system-v1.md).
 
+### TV-D011 — Left sidebar on every page, links gated by role
+
+Status: Direction for branch `new-client-system-v1`. Source: Trevor, 2026-10-13 ("Add a sidebar menu on the lefthand side"; chose every page, role-gated links).
+
+Every route renders inside an app shell with a left sidebar. Everyone sees Client portal and a Sign in or Sign out control. Admins also see New-client review and Design system. Below 56rem the sidebar becomes a drawer behind a menu button. Open follow-ups: whether the public landing page and `/newclient` should keep the sidebar for launch, and whether page-level headers that repeat the brand and Sign out should be trimmed. `/design-system` is not on this branch yet, so that link falls back to `/` until the design-system branch merges.
+
+App area: site, portal, intake.
+
 ## Open questions
 
 - TV-Q001 — Deadline anchor: confirm 90 days from 2026-09-29; provisional target 2026-12-28. Owner: Luke and Trevor. Needed for calendar commitment.

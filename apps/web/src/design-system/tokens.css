@@ -50,6 +50,7 @@
   --tv-color-surface-muted: var(--tv-sage-100);
   --tv-color-surface-raised: var(--tv-cream-50);
   --tv-color-surface-inverse: var(--tv-forest-800);
+  --tv-color-scrim: rgba(20, 35, 29, 0.42);
 
   --tv-color-text: var(--tv-forest-900);
   --tv-color-text-muted: var(--tv-slate-600);
@@ -135,6 +136,9 @@
   --tv-radius-lg: 1rem;
   --tv-radius-xl: 1.5rem;
   --tv-radius-pill: 999px;
+
+  /* —— Layout —— */
+  --tv-layout-sidebar-width: 16rem;
 
   /* —— Elevation —— */
   --tv-shadow-sm: 0 2px 6px rgba(20, 35, 29, 0.06);

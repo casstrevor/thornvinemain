@@ -87,6 +87,7 @@ export const semanticColors: TokenGroup[] = [
       { token: '--tv-color-surface-muted', label: 'Surface muted', usage: 'Section bands, wells' },
       { token: '--tv-color-surface-raised', label: 'Surface raised', usage: 'Popovers, sidebars' },
       { token: '--tv-color-surface-inverse', label: 'Surface inverse', usage: 'Dark woodland sections' },
+      { token: '--tv-color-scrim', label: 'Scrim', usage: 'Backdrop behind drawers and dialogs' },
     ],
   },
   {
@@ -166,6 +167,10 @@ export const radiusScale: TokenSpec[] = [
   { token: '--tv-radius-lg', label: 'Large', usage: 'Cards, tiles' },
   { token: '--tv-radius-xl', label: 'Extra large', usage: 'Media, dialogs' },
   { token: '--tv-radius-pill', label: 'Pill', usage: 'Buttons, badges' },
+]
+
+export const layoutScale: TokenSpec[] = [
+  { token: '--tv-layout-sidebar-width', label: 'Sidebar width', usage: 'App shell navigation column' },
 ]
 
 export const shadowScale: TokenSpec[] = [

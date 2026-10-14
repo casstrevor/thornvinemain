@@ -20,6 +20,9 @@ Observed 2026-10-02 by Cursor on `casstrevor/thornvinemain` `main` `f609433` (cl
 apps/web/            Vite + React 19 + TypeScript app (@thornvine/web)
   src/main.tsx       Entry: BrowserRouter (basename from Vite base) → AuthProvider → AppRoutes
   src/routes.tsx     /, /login, /clientportal (RequireAuth), /portal → /clientportal, * → /
+                     (on new-client-system-v1, every route is nested in the AppShell layout route)
+  src/layout/        AppShell (layout route + drawer state) and sidebar/ (Sidebar, SidebarNav,
+                     SidebarAccount, navItems.ts with role-gated entries); TV-D011
   src/App.tsx/.css   Landing page
   src/pages/         LoginPage, ClientPortalPage (+ auth.css, portal.css)
   src/lib/           supabase.ts (client), auth.tsx (session/roles), database.types.ts, publicUrl.ts
@@ -102,6 +105,7 @@ After each meaningful task, update the relevant task and this baseline where arc
 - **2026-09-30, Cursor:** `main` at `8620c02`. pnpm monorepo, Vite + React in `apps/web`, Supabase config in `supabase/`. Pages workflow implemented; run 36671163359 built but deploy failed (Pages source not set). Working tree had uncommitted landing and portal edits.
 - **2026-10-01:** landing v2 and portal pushed on `authentication` `91b5813`.
 - **2026-10-02:** `authentication` merged to `main` via PR #10 (`f609433`) and deployed to www.thornvine.com.
+- **2026-10-13, Cursor:** on `new-client-system-v1` (uncommitted, base `b9c55c3`), added the left sidebar app shell (TV-D011). New tokens `--tv-color-scrim` and `--tv-layout-sidebar-width`; new icons `grid`, `clipboard`, `swatch`, `sign-in`, `sign-out`. Status: Implemented, unverified. Checks: `pnpm --filter @thornvine/web build` passed; `lint` reported 0 errors and 2 existing warnings (`ClientPortalPage.tsx`, `auth.tsx`). Local browser check at 1141px and an emulated 390px width as an admin: sidebar, role-gated links, active state, drawer open and close, and the landing header offset all rendered. Not run: signed-out and non-admin passes, keyboard and screen-reader audit, real devices.
 
 ## Monitoring boundary
 
