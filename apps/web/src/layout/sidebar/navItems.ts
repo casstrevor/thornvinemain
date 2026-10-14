@@ -1,20 +1,23 @@
 import type { IconName } from '../../design-system'
-
-export type NavAccess = 'everyone' | 'admin'
+import { DESIGN_SYSTEM_ROLES, type PortalRole } from '../../lib/roles'
 
 export type NavItem = {
   to: string
   label: string
   icon: IconName
-  access: NavAccess
+  /** Roles that see the link. Omit to show it to everyone. */
+  roles?: PortalRole[]
 }
 
 export const navItems: NavItem[] = [
-  { to: '/clientportal', label: 'Client portal', icon: 'grid', access: 'everyone' },
-  { to: '/newclient/review', label: 'New-client review', icon: 'clipboard', access: 'admin' },
-  { to: '/design-system', label: 'Design system', icon: 'swatch', access: 'admin' },
+  { to: '/clientportal', label: 'Client portal', icon: 'grid' },
+  { to: '/newclient/review', label: 'New-client review', icon: 'clipboard', roles: ['thornvine_admin'] },
+  { to: '/design-system', label: 'Design system', icon: 'swatch', roles: DESIGN_SYSTEM_ROLES },
 ]
 
-export function visibleNavItems(items: NavItem[], { isAdmin }: { isAdmin: boolean }): NavItem[] {
-  return items.filter((item) => item.access === 'everyone' || isAdmin)
+export function visibleNavItems(
+  items: NavItem[],
+  hasRole: (...roles: PortalRole[]) => boolean,
+): NavItem[] {
+  return items.filter((item) => !item.roles || hasRole(...item.roles))
 }

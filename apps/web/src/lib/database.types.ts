@@ -242,6 +242,7 @@ export type Database = {
     Functions: {
       can_access_project: { Args: { p_project_id: string }; Returns: boolean }
       is_client_member: { Args: { p_client_id: string }; Returns: boolean }
+      is_design_system_viewer: { Args: never; Returns: boolean }
       is_thornvine_admin: { Args: never; Returns: boolean }
       intake_start: { Args: never; Returns: Json }
       intake_state: { Args: { p_intake_id: string }; Returns: Json }
@@ -280,7 +281,11 @@ export type Database = {
     }
     Enums: {
       client_status: "active" | "inactive"
-      portal_role: "thornvine_admin" | "client_owner" | "client_member"
+      portal_role:
+        | "thornvine_admin"
+        | "client_owner"
+        | "client_member"
+        | "thornvine_designer"
       project_status: "discovery" | "active" | "paused" | "complete"
     }
     CompositeTypes: {
@@ -410,7 +415,12 @@ export const Constants = {
   public: {
     Enums: {
       client_status: ["active", "inactive"],
-      portal_role: ["thornvine_admin", "client_owner", "client_member"],
+      portal_role: [
+        "thornvine_admin",
+        "client_owner",
+        "client_member",
+        "thornvine_designer",
+      ],
       project_status: ["discovery", "active", "paused", "complete"],
     },
   },

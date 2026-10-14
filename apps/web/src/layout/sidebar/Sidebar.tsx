@@ -13,14 +13,14 @@ type SidebarProps = {
 }
 
 export function Sidebar({ id, open, onNavigate }: SidebarProps) {
-  const { isAdmin } = useAuth()
+  const { hasRole } = useAuth()
 
   return (
     <aside id={id} className={['app-sidebar', open && 'app-sidebar--open'].filter(Boolean).join(' ')}>
       <Link to="/" className="app-sidebar__brand" onClick={onNavigate}>
         thornvine
       </Link>
-      <SidebarNav items={visibleNavItems(navItems, { isAdmin })} onNavigate={onNavigate} />
+      <SidebarNav items={visibleNavItems(navItems, hasRole)} onNavigate={onNavigate} />
       <SidebarAccount onNavigate={onNavigate} />
     </aside>
   )

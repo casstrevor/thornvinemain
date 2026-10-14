@@ -50,6 +50,20 @@
   text-transform: uppercase;
 }
 
+.portal-admin-link {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(26, 46, 38, 0.25);
+  border-radius: 999px;
+  color: var(--forest, #1a2e26);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: background 180ms ease;
+}
+
+.portal-admin-link:hover {
+  background: rgba(26, 46, 38, 0.06);
+}
+
 .portal-signout {
   border: 0;
   background: transparent;

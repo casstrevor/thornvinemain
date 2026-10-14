@@ -7,12 +7,14 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { Navigate, useLocation } from 'react-router-dom'
+import { Link, Navigate, useLocation } from 'react-router-dom'
 import type { Session, User } from '@supabase/supabase-js'
 import { supabase } from './supabase'
 import type { Database } from './database.types'
 
-export type PortalRole = Database['public']['Enums']['portal_role']
+import type { PortalRole } from './roles'
+
+export type { PortalRole }
 export type Profile = Database['public']['Tables']['profiles']['Row']
 export type Client = Database['public']['Tables']['clients']['Row']
 export type ClientMembership =
@@ -25,7 +27,9 @@ type AuthContextValue = {
   user: User | null
   profile: Profile | null
   memberships: ClientMembership[]
+  roles: PortalRole[]
   isAdmin: boolean
+  hasRole: (...roles: PortalRole[]) => boolean
   hasPortalAccess: boolean
   loading: boolean
   signIn: (email: string, password: string) => Promise<{ error: string | null }>
@@ -49,12 +53,10 @@ async function loadPortalState(userId: string) {
   }
 
   const rows = (memberships ?? []) as ClientMembership[]
-  const isAdmin = rows.some((m) => m.role === 'thornvine_admin')
 
   return {
     profile: profile ?? null,
     memberships: rows,
-    isAdmin,
   }
 }
 
@@ -62,7 +64,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
   const [memberships, setMemberships] = useState<ClientMembership[]>([])
-  const [isAdmin, setIsAdmin] = useState(false)
   const [loading, setLoading] = useState(true)
 
   const refreshPortal = useCallback(async () => {
@@ -73,14 +74,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!current?.user) {
       setProfile(null)
       setMemberships([])
-      setIsAdmin(false)
       return
     }
 
     const portal = await loadPortalState(current.user.id)
     setProfile(portal.profile)
     setMemberships(portal.memberships)
-    setIsAdmin(portal.isAdmin)
   }, [])
 
   useEffect(() => {
@@ -94,7 +93,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (!mounted) return
         setProfile(portal.profile)
         setMemberships(portal.memberships)
-        setIsAdmin(portal.isAdmin)
       }
       setLoading(false)
     })
@@ -106,7 +104,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (!nextSession?.user) {
         setProfile(null)
         setMemberships([])
-        setIsAdmin(false)
         setLoading(false)
         return
       }
@@ -116,7 +113,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (!mounted) return
         setProfile(portal.profile)
         setMemberships(portal.memberships)
-        setIsAdmin(portal.isAdmin)
         setLoading(false)
       })
     })
@@ -136,13 +132,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut()
   }, [])
 
+  const roles = useMemo(
+    () => Array.from(new Set(memberships.map((m) => m.role))),
+    [memberships],
+  )
+  const isAdmin = roles.includes('thornvine_admin')
+  const hasRole = useCallback(
+    (...wanted: PortalRole[]) => wanted.some((role) => roles.includes(role)),
+    [roles],
+  )
+
   const value = useMemo<AuthContextValue>(
     () => ({
       session,
       user: session?.user ?? null,
       profile,
       memberships,
+      roles,
       isAdmin,
+      hasRole,
       hasPortalAccess: isAdmin || memberships.length > 0,
       loading,
       signIn,
@@ -153,7 +161,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       session,
       profile,
       memberships,
+      roles,
       isAdmin,
+      hasRole,
       loading,
       signIn,
       signOut,
@@ -199,6 +209,27 @@ export function RequireAuth({ children }: { children: ReactNode }) {
             workspace yet. Ask your Thornvine contact to finish the invite.
           </p>
           <SignOutButton />
+        </div>
+      </div>
+    )
+  }
+
+  return children
+}
+
+/** Must be nested inside RequireAuth, which handles loading and signed-out states. */
+export function RequireRole({ roles, children }: { roles: PortalRole[]; children: ReactNode }) {
+  const { hasRole } = useAuth()
+
+  if (!hasRole(...roles)) {
+    return (
+      <div className="auth-screen">
+        <div className="auth-card">
+          <h1>Not available</h1>
+          <p>This area is limited to Thornvine staff with the right role.</p>
+          <Link to="/clientportal" className="btn btn--primary">
+            Back to portal
+          </Link>
         </div>
       </div>
     )

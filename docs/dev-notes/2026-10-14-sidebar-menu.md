@@ -34,7 +34,12 @@ Trevor asked for a left-hand sidebar menu with modular code. He chose every page
 - On this branch, `/design-system` falls back to `/` until `main` (with the design system) is merged in.
 - Checked only as an admin at 1141px and an emulated 390px width. Not checked signed out or as a client, and no keyboard or screen-reader audit.
 
+## Update: main merged in (2026-10-14)
+
+`main` (`f8e1722`, with the design system and the Stage 1 intake) is merged into `sidebar-menu`. Only `routes.tsx` conflicted. `/design-system/:entryId?` now sits inside `AppShell`, still behind `RequireAuth` and `RequireRole`. Each nav item can now carry a `roles` list, checked with `hasRole`. The Design system link reuses `DESIGN_SYSTEM_ROLES`, so designers see it too. Build passed; lint showed 0 errors and 2 existing warnings. In the browser, the sidebar rendered on `/design-system` beside the design-system docs navigation.
+
 ## Follow-ups
 
-- Merge `main` into `sidebar-menu`, then open a pull request.
+- Open a pull request from `sidebar-menu` into `main`.
+- The design-system page repeats the brand, Client portal, and Sign out in its own top bar. Decide whether to trim them now that the sidebar has those links.
 - Decide whether to keep the sidebar on the public landing page and intake for launch.

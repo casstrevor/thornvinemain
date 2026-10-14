@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../lib/auth'
+import { DESIGN_SYSTEM_ROLES } from '../lib/roles'
 import { supabase } from '../lib/supabase'
 import type { Database } from '../lib/database.types'
 import { AdminWorkspace } from './AdminWorkspace'
@@ -20,7 +21,7 @@ const statusLabel: Record<Project['status'], string> = {
 }
 
 export function ClientPortalPage() {
-  const { user, profile, memberships, isAdmin, signOut } = useAuth()
+  const { user, profile, memberships, isAdmin, hasRole, signOut } = useAuth()
   const [clients, setClients] = useState<ClientRow[]>([])
   const [projects, setProjects] = useState<Project[]>([])
   const [updates, setUpdates] = useState<ProjectUpdate[]>([])
@@ -91,6 +92,11 @@ export function ClientPortalPage() {
           thornvine
         </Link>
         <div className="portal-top-actions">
+          {hasRole(...DESIGN_SYSTEM_ROLES) ? (
+            <Link to="/design-system" className="portal-admin-link">
+              Design system
+            </Link>
+          ) : null}
           <span className="portal-user">
             {profile?.email}
             {isAdmin ? <em>Admin</em> : null}
