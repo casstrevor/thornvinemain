@@ -2,11 +2,29 @@
 
 - **App section:** planning
 - **Notion:** https://app.notion.com/p/3eb9d506006881c388c3d5c7d4433656
-- **Synced:** 2026-10-02 (repo copy updated after publish; Notion not yet updated)
+- **Synced:** 2026-10-07
+
+## Handoff 2026-10-07 audit
+
+Stage 1 is on branch `new-client-system-v1` with `/newclient` and `/newclient/review`. Both intake migrations were applied to hosted Thornvine earlier that day. Orchestrator tests, question-copy tests, `tsc -b`, and `oxlint` passed. A fresh headless profile exercised Next and Back. No TV task status changed. Not merged to `main`.
+
+## Handoff 2026-10-07 later
+
+Stage 1 new-client conversation was in the working tree on `new-client-system-v1`: `/newclient` and `/newclient/review`. The “migration not applied” line in this handoff was superseded the same day by `supabase db push --linked`. No TV task status changed.
+
+## Handoff 2026-10-07
+
+Client system v1 started on local branch `new-client-system-v1`. First slice is the admin Workspace setup panel (`apps/web/src/pages/AdminWorkspace.tsx`). No TV task status changed. TV-D009 is branch direction from Trevor. Signed-in create flow is not verified. Working tree only; no commit.
+
+## Handoff 2026-10-06
+
+Branch `new-client-system-v1` was cut from `main` `e2a0be3`. Foundational documentation is in [new client system v1](../portal/new-client-system-v1.md). No TV task status changed. TV-Q009 is open. Implementation has not started. Working tree only; no commit.
 
 ## Current focus
 
 **Site is live at https://www.thornvine.com (`main` `f609433`) with HTTPS. Next: a working contact path, then the apex DNS cleanup.** The only CTA mails `hello@thornvine.com`, which bounces (no MX). The apex `thornvine.com` returns 404 until two GoDaddy A records are deleted. See the [roadmap](roadmap.md).
+
+Separate from that launch path: client system v1 and Stage 1 are on branch `new-client-system-v1`. They are not on `main` and not a delivery-plan task yet.
 
 Task owners below indicate a working role, not a Notion person assignment.
 

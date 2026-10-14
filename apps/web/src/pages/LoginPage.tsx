@@ -15,11 +15,13 @@ export function LoginPage() {
 
   const next = params.get('next') || '/clientportal'
 
-  if (!loading && session && hasPortalAccess) {
+  const anonymous = Boolean(session?.user.is_anonymous)
+
+  if (!loading && session && hasPortalAccess && !anonymous) {
     return <Navigate to={next} replace />
   }
 
-  if (!loading && session && !hasPortalAccess) {
+  if (!loading && session && !hasPortalAccess && !anonymous) {
     return <Navigate to="/clientportal" replace />
   }
 

@@ -44,6 +44,7 @@ export const iconPaths = {
     </>
   ),
   menu: <path d="M3 6h14M3 10h14M3 14h14" />,
+  paperclip: <path d="M8.2 10.4l3.8-3.8a2.1 2.1 0 0 1 3 3l-5.7 5.7a3 3 0 0 1-4.2-4.2l5.2-5.2" />,
 } as const
 
 export type IconName = keyof typeof iconPaths

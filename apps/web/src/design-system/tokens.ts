@@ -20,6 +20,7 @@ export const colorPrimitives: TokenGroup[] = [
     description: 'Brand anchor. Text, dark surfaces, and secondary actions.',
     tokens: [
       { token: '--tv-forest-900', label: 'Forest 900' },
+      { token: '--tv-forest-ink', label: 'Forest ink', usage: 'Introduction question ink' },
       { token: '--tv-forest-800', label: 'Forest 800' },
       { token: '--tv-forest-700', label: 'Forest 700' },
       { token: '--tv-forest-500', label: 'Moss 500' },
@@ -30,10 +31,13 @@ export const colorPrimitives: TokenGroup[] = [
     title: 'Cream & sage',
     description: 'Warm, calm backgrounds that set the Thornvine tone.',
     tokens: [
+      { token: '--tv-ivory-50', label: 'Ivory 50', usage: 'Introduction canvas' },
       { token: '--tv-cream-50', label: 'Cream 50' },
       { token: '--tv-cream-100', label: 'Cream 100' },
       { token: '--tv-sage-100', label: 'Sage 100' },
+      { token: '--tv-sage-150', label: 'Sage 150', usage: 'Composer and selected answers' },
       { token: '--tv-sage-200', label: 'Sage 200' },
+      { token: '--tv-line-200', label: 'Line 200', usage: 'Quiet borders' },
       { token: '--tv-white', label: 'White' },
     ],
   },
@@ -43,6 +47,8 @@ export const colorPrimitives: TokenGroup[] = [
     tokens: [
       { token: '--tv-burgundy-700', label: 'Burgundy 700' },
       { token: '--tv-burgundy-600', label: 'Burgundy 600' },
+      { token: '--tv-wine-700', label: 'Wine 700' },
+      { token: '--tv-wine-600', label: 'Wine 600', usage: 'Introduction primary action' },
       { token: '--tv-burgundy-500', label: 'Burgundy 500' },
       { token: '--tv-burgundy-100', label: 'Burgundy 100' },
     ],
@@ -64,6 +70,7 @@ export const colorPrimitives: TokenGroup[] = [
       { token: '--tv-leaf-400', label: 'Leaf 400' },
       { token: '--tv-leaf-100', label: 'Leaf 100' },
       { token: '--tv-slate-600', label: 'Slate 600' },
+      { token: '--tv-slate-500', label: 'Slate 500', usage: 'Introduction secondary text' },
       { token: '--tv-slate-400', label: 'Slate 400' },
       { token: '--tv-river-600', label: 'River 600' },
       { token: '--tv-river-100', label: 'River 100' },
@@ -114,10 +121,23 @@ export const semanticColors: TokenGroup[] = [
       { token: '--tv-color-info-soft', label: 'Info soft' },
     ],
   },
+  {
+    title: 'Introduction',
+    tokens: [
+      { token: '--tv-color-intro-bg', label: 'Introduction background' },
+      { token: '--tv-color-intro-text', label: 'Introduction text' },
+      { token: '--tv-color-intro-sage', label: 'Introduction sage' },
+      { token: '--tv-color-intro-action', label: 'Introduction action' },
+      { token: '--tv-color-intro-action-hover', label: 'Introduction action hover' },
+      { token: '--tv-color-intro-muted', label: 'Introduction muted' },
+      { token: '--tv-color-intro-border', label: 'Introduction border' },
+    ],
+  },
 ]
 
 export const typeScale: TokenSpec[] = [
   { token: '--tv-text-4xl', label: 'Display', usage: 'Hero headlines' },
+  { token: '--tv-text-question', label: 'Question', usage: 'Active introduction question' },
   { token: '--tv-text-3xl', label: 'Heading 1', usage: 'Page titles' },
   { token: '--tv-text-2xl', label: 'Heading 2', usage: 'Section titles' },
   { token: '--tv-text-xl', label: 'Heading 3', usage: 'Card and panel titles' },

@@ -5,6 +5,8 @@ import { RequireAuth, RequireRole } from './lib/auth'
 import { DESIGN_SYSTEM_ROLES } from './lib/roles'
 import { LoginPage } from './pages/LoginPage'
 import { ClientPortalPage } from './pages/ClientPortalPage'
+import { NewClientPage } from './features/new-client/NewClientPage'
+import { StaffReviewPage } from './features/new-client/StaffReviewPage'
 
 const DesignSystemPage = lazy(() =>
   import('./pages/design-system/DesignSystemPage').then((m) => ({ default: m.DesignSystemPage })),
@@ -36,6 +38,9 @@ export function AppRoutes() {
         }
       />
       <Route path="/portal" element={<Navigate to="/clientportal" replace />} />
+      <Route path="/newclient" element={<NewClientPage />} />
+      <Route path="/newclient/review" element={<StaffReviewPage />} />
+      <Route path="/newclient/review/:intakeId" element={<StaffReviewPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
