@@ -1,5 +1,6 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { LogoMark } from '../../brand/LogoMark'
 import { Badge, IconButton, Spinner, type BadgeTone } from '../../design-system'
 import { useAuth } from '../../lib/auth'
 import { PlannedDoc } from './docs/PlannedDoc'
@@ -54,8 +55,9 @@ export function DesignSystemPage() {
             aria-controls="ds-sidebar"
             onClick={() => setNavOpen((open) => !open)}
           />
-          <Link to="/" className="ds-topbar__logo">
-            thornvine
+          <Link to="/" className="ds-topbar__logo" aria-label="Thornvine home">
+            <LogoMark />
+            <span>thornvine</span>
           </Link>
           <span className="ds-topbar__divider" aria-hidden="true">
             /

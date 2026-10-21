@@ -14,21 +14,6 @@ const ArrowOut = () => (
   </svg>
 )
 
-const LogoMark = () => (
-  <svg aria-hidden="true" className="brand-mark" viewBox="0 0 32 32" fill="none">
-    <path
-      d="M16 28C16 28 7 20.5 6 12.5C5.2 6.2 10.5 3 16 2.2C21.5 3 26.8 6.2 26 12.5C25 20.5 16 28 16 28Z"
-      fill="currentColor"
-    />
-    <path
-      d="M16 26V6M16 14C12.5 12 10 9 9 6M16 18C19.5 16 22 13 23 9"
-      stroke="#f3efe6"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-    />
-  </svg>
-)
-
 const IconLeaves = () => (
   <svg aria-hidden="true" viewBox="0 0 48 48" className="service-icon">
     <path d="M18 38C18 38 10 30 9 22C8 15 13 11 18 10C23 11 28 15 27 22C26 30 18 38 18 38Z" />
@@ -91,11 +76,6 @@ function App() {
   return (
     <div className="site">
       <header className="site-header">
-        <Link className="brand" to="/" aria-label="Thornvine home">
-          <LogoMark />
-          <span>thornvine</span>
-        </Link>
-
         <nav className="site-nav" aria-label="Primary">
           <a href="#what-we-do">What we do</a>
           <a href="#work">Our work</a>
@@ -131,10 +111,10 @@ function App() {
               for people with ideas.
             </p>
             <div className="hero-actions">
-              <a className="btn btn--primary" href="#contact">
+              <Link className="btn btn--primary btn--glass" to="/newclient">
                 Tell us your idea
                 <ArrowRight />
-              </a>
+              </Link>
               <a className="text-link" href="#work">
                 Explore our work
                 <ArrowOut />
@@ -261,19 +241,15 @@ function App() {
           <div className="closing-copy">
             <h2 id="closing-heading">Good things grow together.</h2>
             <p>Curious minds. Thoughtful makers. Humans who care.</p>
-            <a className="btn btn--primary" href="mailto:hello@thornvine.com">
+            <Link className="btn btn--primary btn--glass" to="/newclient">
               Tell us your idea
               <ArrowRight />
-            </a>
+            </Link>
           </div>
           <div className="closing-bar">
             <p className="copyright">
               © {new Date().getFullYear()} Thornvine. All rights reserved.
             </p>
-            <Link className="portal-link" to="/clientportal">
-              Client portal
-              <span aria-hidden="true">→</span>
-            </Link>
           </div>
           <div id="people" hidden />
         </section>

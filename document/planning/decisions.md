@@ -2,7 +2,7 @@
 
 - **App section:** planning
 - **Notion:** https://app.notion.com/p/3eb9d50600688137ba3df67969ed4ef1
-- **Synced:** 2026-10-07 (TV-D009 recorded in the repo; Notion may lag)
+- **Synced:** 2026-10-20 (TV-D011 collapse note; Notion unsynced)
 
 ## Recorded direction
 
@@ -90,9 +90,49 @@ App area: portal. See [new client system v1](../portal/new-client-system-v1.md).
 
 Status: Direction for branch `new-client-system-v1`. Source: Trevor, 2026-10-13 ("Add a sidebar menu on the lefthand side"; chose every page, role-gated links).
 
-Every route renders inside an app shell with a left sidebar. Everyone sees Client portal and a Sign in or Sign out control. Admins also see New-client review and Design system. Below 56rem the sidebar becomes a drawer behind a menu button. Open follow-ups: whether the public landing page and `/newclient` should keep the sidebar for launch, and whether page-level headers that repeat the brand and Sign out should be trimmed. `/design-system` is not on this branch yet, so that link falls back to `/` until the design-system branch merges.
+Every route renders inside an app shell with a left sidebar. Everyone sees Client portal. Signed-out visitors see Sign in in the sidebar. Admins also see New-client review and Design system. Below 56rem the sidebar becomes a drawer behind a menu button.
+
+Implementation note, 2026-10-20 (Trevor: hide the sidebar when not selected; minimized state shows only the logo and name): on wide screens the menu starts collapsed to a brand chip. Click the chip to overlay the full menu; click outside, press Escape, or follow a link to hide it again. The `/design-system` route is on `sidebar-menu` after the main merge.
+
+Implementation note, 2026-10-20 (Trevor: remove the sidebar Sign out button): signed-in account in the sidebar is email and Admin badge only. Sign out remains on the portal and design-system headers.
+
+Implementation note, 2026-10-20 (Trevor: make email and Admin a container above the logo): signed-in identity sits in a boxed account strip at the top of the expanded sidebar, above the brand. It stays hidden when the sidebar is collapsed. Open follow-ups: whether the public landing page and `/newclient` should keep the sidebar for launch, and whether those page-level Sign out controls should stay.
+
+Implementation note, 2026-10-20 (Trevor: selecting the account strip should open our own account/profile): the strip is a link to `/account` (`RequireAuth`). That page shows name, email, role, and workspace, with Sign out. Password reset and editable profile settings are still not built.
+
+Implementation note, 2026-10-20 (Trevor: move Sign in to the bottom of the menu; remove Client portal from the sidebar and from the landing header): signed-out Sign in sits at the bottom of the expanded sidebar. The signed-in account strip stays above the logo. Client portal is not a sidebar link and not a header pill link. `/login` and `/clientportal` stay reachable by URL. The login heading is "Sign in", and the lede says "thornvine" in lowercase.
+
+Implementation note, 2026-10-20 (Trevor: "Tell us your idea" opens the new-client page): both landing buttons go to `/newclient`. Local check on http://localhost:5173/ opened that page. Not on `main`. Not live. Production still uses `#contact` on the hero and `mailto:hello@thornvine.com` on the closing button.
+
+Implementation note, 2026-10-20 (Trevor: glassmorphism on the selected Tell us your idea buttons): both landing primary buttons use a frosted burgundy fill, backdrop blur, and a light rim. Login, admin, and other `.btn--primary` controls stay solid. Local check on http://localhost:5173/: hero button shows the pale photo through the glass; closing button sits on the dark foliage and stays darker. Not on `main`. Not live.
+
+Implementation note, 2026-10-20 (Trevor: same glass on the brand chip and the full side menu): the collapsed brand chip and the expanded sidebar use a frosted cream surface, the same blur, and a light rim. Local check on http://localhost:5173/: collapsed chip is frosted over the hero; the open menu (account, New-client review, Design system) uses the same glass. Not on `main`. Not live.
+
+Implementation note, 2026-10-20 (Trevor: put the brand back on public pages the way it was): `/`, `/login`, and `/newclient` show the collapsed brand chip again. Authenticated pages still keep the mark in the navigation so it does not cover the page: a docked side column on wide screens, and the top bar on narrow screens. Not on `main`. Not live.
+
+Implementation note, 2026-10-20 (Trevor: center the hero copy with the top options): the eyebrow, heading, lede, both actions, and the consultation note are center-aligned on the same axis as What we do / Our work / Our people. Local check on http://localhost:5173/: those lines and the nav share one center. On a 390px-wide viewport the same lines stay centered and the actions stack. Not on `main`. Not live.
+
+Implementation note, 2026-10-20 (Trevor: separate background objects on the hero lines, like the top bar): the eyebrow, heading, lede, action row, and consultation note each sit on their own frosted bar. Local check on http://localhost:5173/: five separate bars, centered, with the headline still reading "Your / imagination. / Let's make it real." On a 390px-wide viewport the bars stay inside the screen and the actions stack inside one bar. Not on `main`. Not live.
 
 App area: site, portal, intake.
+
+### TV-D012 — Official logo is the thorny TV monogram
+
+Status: Decided. Source: Trevor, 2026-10-17 (supplied `thornvine-tv-logo-HD` and asked to use it as the main / official logo).
+
+The official brand mark is the thorny vine TV monogram. It replaces the previous leaf SVG mark. Assets live under `apps/web/public/images/logo.png` (and inverse). UI renders it through `LogoMark`. Favicon updated to match. Does not by itself close the rest of TV-Q004 (founder photos, portfolio assets).
+
+Updated 2026-10-20 (Trevor): replaced with the cleaner TV monogram from `thornvine_logo.png`. Same asset paths.
+
+App area: site, brand.
+
+### TV-D013 — Poppins is the site typeface
+
+Status: Decided. Source: Trevor, 2026-10-17 ("Update all font to be Poppins" with `Poppins.zip`).
+
+Display and body both use Poppins. Fonts are self-hosted from `apps/web/public/fonts/poppins/` under the SIL OFL. `--tv-font-display` and `--tv-font-body` point at Poppins; Google Fonts for Sora and DM Sans are removed. Resolves the typography half of TV-Q007; the hero eyebrow copy question remains open.
+
+App area: site, brand.
 
 ## Open questions
 
@@ -102,7 +142,7 @@ App area: site, portal, intake.
 - TV-Q004 — Founder identities/bios/photos, approved experience wording, portfolio roles/URLs, logo and visual assets? Owner: Luke and Trevor. Blocks final public content. App area: site.
 - TV-Q005 — Scene implementation and asset/performance budget? Owner: Cursor recommendation after baseline, Luke and Trevor visual review. App area: site.
 - TV-Q006 — The client portal is live in production (2026-10-02). Is it in launch scope, and if so what is its acceptance (admin UI, file uploads, password reset)? If not, should `/login` stay public? Owner: Luke and Trevor. App area: portal.
-- TV-Q007 — Typography and hero copy: the built site uses Sora + DM Sans and the eyebrow "Human ideas. Digital possibilities."; the brief says Poppins and "Creative product agency". Which is intended? Owner: Luke and Trevor. App area: site.
+- TV-Q007 — Hero copy only (typography decided in TV-D013 as Poppins): the built site eyebrow is "Human ideas. Digital possibilities."; the brief says "Creative product agency". Which is intended? Owner: Luke and Trevor. App area: site.
 - TV-Q008 — Urgent: `hello@thornvine.com` is the live site's only contact, and the domain has no MX records, so mail bounces. Which email provider, and until then should the CTA point somewhere that works? Owner: Luke and Trevor. Part of TV-Q003. App area: site, platform.
 - TV-Q009 — What is the new client system v1, and does it replace, extend, or sit beside the live portal? Working answer on this branch: extend (TV-D009, Trevor, 2026-10-07). Luke has not separately confirmed. Does not answer TV-Q006. App area: portal.
 

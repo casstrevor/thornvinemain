@@ -1,29 +1,78 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
+import { LogoMark } from '../brand/LogoMark'
 import { IconButton } from '../design-system'
 import { Sidebar } from './sidebar/Sidebar'
+import { useMediaQuery } from './useMediaQuery'
 import './app-shell.css'
 
 const sidebarId = 'app-sidebar'
+const narrowQuery = '(max-width: 56rem)'
+
+/** Signed-in app pages dock the brand in the navigation so it does not cover the page. */
+function isAuthenticatedAppPath(pathname: string) {
+  return (
+    pathname === '/account' ||
+    pathname === '/clientportal' ||
+    pathname.startsWith('/design-system') ||
+    pathname.startsWith('/newclient/review')
+  )
+}
 
 export function AppShell() {
   const { pathname } = useLocation()
-  // Keyed to the path so the drawer closes on its own after any navigation.
+  const narrow = useMediaQuery(narrowQuery)
+  const authenticated = isAuthenticatedAppPath(pathname)
+  const docked = authenticated && !narrow
+  // Keyed to the path so the mobile drawer closes on its own after any navigation.
   const [openOn, setOpenOn] = useState<string | null>(null)
+  const [expanded, setExpanded] = useState(false)
   const open = openOn === pathname
   const close = useCallback(() => setOpenOn(null), [])
+  const collapse = useCallback(() => setExpanded(false), [])
+  const expand = useCallback(() => setExpanded(true), [])
+  const onNavigate = useCallback(() => {
+    close()
+    collapse()
+  }, [close, collapse])
 
   useEffect(() => {
-    if (!open) return
+    if (!open && !expanded) return
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') close()
+      if (event.key === 'Escape') {
+        close()
+        collapse()
+      }
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [open, close])
+  }, [open, expanded, close, collapse])
+
+  useEffect(() => {
+    if (narrow || docked || !expanded) return
+    const onPointerDown = (event: PointerEvent) => {
+      const sidebar = document.getElementById(sidebarId)
+      if (!sidebar) return
+      const target = event.target
+      if (!(target instanceof Node)) return
+      if (sidebar.contains(target)) return
+      collapse()
+    }
+    const attach = window.setTimeout(() => {
+      document.addEventListener('pointerdown', onPointerDown)
+    }, 0)
+    return () => {
+      window.clearTimeout(attach)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [narrow, docked, expanded, collapse])
 
   return (
-    <div className="app-shell">
+    <div
+      className={['app-shell', docked && 'app-shell--docked', expanded && 'app-shell--sidebar-expanded']
+        .filter(Boolean)
+        .join(' ')}
+    >
       <div className="app-shell__bar">
         <IconButton
           icon={open ? 'close' : 'menu'}
@@ -33,11 +82,18 @@ export function AppShell() {
           aria-controls={sidebarId}
           onClick={() => setOpenOn(open ? null : pathname)}
         />
-        <Link to="/" className="app-shell__brand">
-          thornvine
+        <Link to="/" className="app-shell__brand" aria-label="Thornvine home">
+          <LogoMark />
+          <span>thornvine</span>
         </Link>
       </div>
-      <Sidebar id={sidebarId} open={open} onNavigate={close} />
+      <Sidebar
+        id={sidebarId}
+        open={open}
+        expanded={docked || narrow || expanded}
+        onExpand={expand}
+        onNavigate={onNavigate}
+      />
       {open ? <div className="app-shell__scrim" aria-hidden="true" onClick={close} /> : null}
       <div className="app-shell__content">
         <Outlet />

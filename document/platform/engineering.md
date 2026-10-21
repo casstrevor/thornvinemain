@@ -2,7 +2,7 @@
 
 - **App section:** platform (monorepo, app entry, Supabase)
 - **Notion:** https://app.notion.com/p/3eb9d506006881ae8499d0c6121b20d0
-- **Updated:** 2026-10-02 (TV-001 baseline filled from inspected files; Notion still has the 2026-09-30 text)
+- **Updated:** 2026-10-20 (`/account` on `sidebar-menu`; Notion unsynced)
 
 ## Current baseline (TV-001)
 
@@ -19,14 +19,15 @@ Observed 2026-10-02 by Cursor on `casstrevor/thornvinemain` `main` `f609433` (cl
 ```
 apps/web/            Vite + React 19 + TypeScript app (@thornvine/web)
   src/main.tsx       Entry: BrowserRouter (basename from Vite base) → AuthProvider → AppRoutes
-  src/routes.tsx     /, /login, /clientportal (RequireAuth), /portal → /clientportal, * → /
-                     (on new-client-system-v1, every route is nested in the AppShell layout route)
-  src/layout/        AppShell (layout route + drawer state) and sidebar/ (Sidebar, SidebarNav,
-                     SidebarAccount, navItems.ts with role-gated entries); TV-D011
+  src/routes.tsx     /, /login, /account (RequireAuth), /clientportal (RequireAuth),
+                     /portal → /clientportal, * → / (every route nested in AppShell)
+  src/layout/        AppShell (layout route, mobile drawer, desktop collapse-to-brand) and
+                     sidebar/ (Sidebar, SidebarNav, SidebarAccount, navItems.ts with role-gated
+                     entries); TV-D011
   src/App.tsx/.css   Landing page
-  src/pages/         LoginPage, ClientPortalPage (+ auth.css, portal.css)
+  src/pages/         LoginPage, AccountPage, ClientPortalPage (+ auth.css, account.css, portal.css)
   src/lib/           supabase.ts (client), auth.tsx (session/roles), database.types.ts, publicUrl.ts
-  public/            favicon.svg, icons.svg, images/ (13 files, 3.8 MB)
+  public/            favicon.png (TV monogram), icons.svg, images/ (13 files, 3.8 MB)
 packages/            Empty placeholder for shared packages
 supabase/            config.toml, migrations/ (portal_core), seed.sql (comments only)
 document/            Central knowledge base (this folder)
@@ -106,6 +107,7 @@ After each meaningful task, update the relevant task and this baseline where arc
 - **2026-10-01:** landing v2 and portal pushed on `authentication` `91b5813`.
 - **2026-10-02:** `authentication` merged to `main` via PR #10 (`f609433`) and deployed to www.thornvine.com.
 - **2026-10-13, Cursor:** on `new-client-system-v1` (uncommitted, base `b9c55c3`), added the left sidebar app shell (TV-D011). New tokens `--tv-color-scrim` and `--tv-layout-sidebar-width`; new icons `grid`, `clipboard`, `swatch`, `sign-in`, `sign-out`. Status: Implemented, unverified. Checks: `pnpm --filter @thornvine/web build` passed; `lint` reported 0 errors and 2 existing warnings (`ClientPortalPage.tsx`, `auth.tsx`). Local browser check at 1141px and an emulated 390px width as an admin: sidebar, role-gated links, active state, drawer open and close, and the landing header offset all rendered. Not run: signed-out and non-admin passes, keyboard and screen-reader audit, real devices.
+- **2026-10-20, Cursor:** on `sidebar-menu` (working tree, uncommitted), desktop sidebar stays collapsed to the TV mark + “thornvine” until opened. Full menu overlays the page; click outside, Escape, or a nav choice hides it. Mobile drawer unchanged. Sidebar Sign out control removed (Trevor); signed-in email and Admin sit in a boxed account strip above the logo and link to `/account`. Status: Implemented, unverified. Checks: `pnpm --filter @thornvine/web lint` 0 errors / 2 existing warnings; `VITE_BASE_PATH=/ pnpm --filter @thornvine/web build` passed. Local browser at 1280×800: collapsed chip, expand, click-outside collapse, Escape, `/design-system` after a nav click, `/account` from the identity strip with current highlight. Emulated 390px: hamburger opens the drawer. Sign out lives on `/account`, `/clientportal`, and design-system. Not run: signed-out pass, real devices, production.
 
 ## Monitoring boundary
 

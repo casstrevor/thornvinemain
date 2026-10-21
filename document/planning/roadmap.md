@@ -2,7 +2,7 @@
 
 - **App section:** planning
 - **Notion:** https://app.notion.com/p/3eb9d5060068816c95fade2a67b6454c
-- **Synced:** 2026-10-07 (Stage 1 audit; earlier production facts below are unchanged)
+- **Synced:** 2026-10-20 (`sidebar-menu` account page in the working tree; Notion unsynced)
 
 This is the status view. Task IDs and acceptance stay on the [delivery plan](delivery-plan.md). Do not treat a git commit or a live URL as launch; launch is TV-008 with founder approval.
 
@@ -19,6 +19,12 @@ This is the status view. Task IDs and acceptance stay on the [delivery plan](del
 - **Live:** deployed and reachable at a public URL. Not the same as launched.
 - **Verified:** a named check passed. A build does not verify HTTPS, intake, or launch.
 - **Blocked:** a concrete cause is named.
+
+## As of 2026-10-20
+
+- **Implemented—unverified:** on branch `sidebar-menu`, working tree (no commit). Wide-screen sidebar hides until selected: collapsed state shows only the TV mark and “thornvine”; click the chip to overlay the full menu; click outside, Escape, or a nav link hides it. Mobile drawer is unchanged. Landing header nav pill is plum `#7E6377` at 75% opacity (`--tv-color-surface-nav`) with white link text (`--tv-color-text-on-nav`). Sidebar Sign out button removed (Trevor); signed-in email and Admin sit in a boxed account strip above the logo and link to `/account`. That page is a signed-in profile (name, email, role, workspace) with Sign out. Authorized by Trevor. Not on `main`, not live.
+- **Verified (local only):** 1280×800 collapsed chip, expand, click-outside collapse, Escape, navigate to `/design-system` (menu closed after the link). Emulated 390px hamburger opens the drawer. Header nav computed background `#7E6377` at 75% alpha, text `rgb(255, 255, 255)`. Sidebar account strip sits above the logo (email + Admin, no Sign out) and opens `/account` for `casstrevor@gmail.com` (Admin, workspace Thornvine, current strip highlight). Collapsed chip still shows only brand. `oxlint` 0 errors / 2 existing warnings; `VITE_BASE_PATH=/` production build passed.
+- **Unchanged:** production on `main`; Notion roadmap not updated (MCP needs auth).
 
 ## As of 2026-10-07
 

@@ -8,6 +8,8 @@ type SidebarNavProps = {
 }
 
 export function SidebarNav({ items, onNavigate }: SidebarNavProps) {
+  if (items.length === 0) return null
+
   return (
     <nav className="app-sidebar__nav" aria-label="Main">
       <ul className="app-sidebar__list">

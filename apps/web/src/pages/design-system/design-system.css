@@ -33,10 +33,16 @@
 }
 
 .ds-topbar__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tv-space-2);
   font-family: var(--tv-font-display);
   font-size: var(--tv-text-lg);
   font-weight: var(--tv-weight-bold);
   letter-spacing: -0.04em;
+  text-transform: lowercase;
+  color: var(--tv-color-text);
+  text-decoration: none;
 }
 
 .ds-topbar__divider {

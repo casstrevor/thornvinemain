@@ -18,7 +18,7 @@
 }
 
 .portal-brand {
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.04em;
@@ -84,7 +84,7 @@
 
 .portal-hero h1 {
   margin: 0.35rem 0 0.75rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   letter-spacing: -0.035em;
 }
@@ -111,7 +111,7 @@
 
 .portal-section-head h2 {
   margin: 0 0 1.15rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.25rem;
   letter-spacing: -0.02em;
 }
@@ -170,7 +170,7 @@
 
 .admin-card h3 {
   margin: 0;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.05rem;
 }
 
@@ -252,7 +252,7 @@
 
 .project-tile h3 {
   margin: 0.7rem 0 0.4rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.1rem;
 }
 
@@ -320,7 +320,7 @@
 
 .update-item h3 {
   margin: 0 0 0.4rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.05rem;
 }
 

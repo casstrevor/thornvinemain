@@ -1,8 +1,8 @@
 # Portal scope and operations
 
-- **App section:** portal (`/login`, `/clientportal`)
+- **App section:** portal (`/login`, `/account`, `/clientportal`)
 - **Notion:** TV-D004 on https://app.notion.com/p/3eb9d50600688137ba3df67969ed4ef1
-- **Updated:** 2026-10-06
+- **Updated:** 2026-10-20 (`/account` on `sidebar-menu`; not on `main`)
 
 ## Product boundary
 
@@ -21,11 +21,12 @@ Routes (`apps/web/src/routes.tsx`):
 | Path | Behavior |
 |------|----------|
 | `/login` | Email + password sign-in (`supabase.auth.signInWithPassword`). Honors `?next=` (defaults to `/clientportal`). "No public signup — access is invite-only." |
+| `/account` | Wrapped in `RequireAuth` on `sidebar-menu` (uncommitted). Signed-in profile: name, email, role, workspace, and Sign out. The sidebar identity strip links here. Not on `main`. |
 | `/clientportal` | Wrapped in `RequireAuth`. Not signed in → redirect to `/login?next=…`. Signed in with no membership → "Access pending" screen with sign-out. Otherwise shows the portal. |
 | `/portal` | Redirects to `/clientportal`. |
 | any other path | Redirects to `/`. |
 
-The landing page footer links to "Client portal".
+The landing header no longer links to the client portal (Trevor, 2026-10-20). `/login` and `/clientportal` remain reachable by URL.
 
 Portal page (`apps/web/src/pages/ClientPortalPage.tsx`):
 - Header: email, an "Admin" tag for `thornvine_admin`, sign-out.
@@ -42,7 +43,7 @@ Data model, roles, and RLS: see [Supabase backend](../platform/supabase.md).
 
 - Admin UI for creating clients, projects, and updates is started on branch `new-client-system-v1` (see [new client system v1](new-client-system-v1.md)). It is not on `main` and not in production. Inviting users is still SQL plus the Supabase dashboard.
 - File uploads (`project_files` has no Storage bucket).
-- Password reset / magic link / account settings.
+- Password reset / magic link / editable account settings. A read-only `/account` page (profile + Sign out) exists on `sidebar-menu` and is not on `main`.
 - Email notifications for new updates.
 
 ## Operations
@@ -55,3 +56,4 @@ Data model, roles, and RLS: see [Supabase backend](../platform/supabase.md).
 
 - 2026-10-02: `/login` rendered in a browser on production (form, heading, invite-only note). Sign-in itself was not exercised by Cursor (no credentials used).
 - 2026-10-02: admin check `is_thornvine_admin()` returned true for `casstrevor@gmail.com` when simulated as that user in SQL.
+- 2026-10-20: local `/account` on `sidebar-menu` showed email, Admin, workspace Thornvine, and Sign out for the signed-in admin. The sidebar identity strip marked `aria-current="page"`. Not live.

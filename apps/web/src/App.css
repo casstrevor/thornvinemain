@@ -12,8 +12,8 @@
   --gold-soft: #c4a56a;
   --white: #f8f6f1;
   --radius-pill: 999px;
-  --font-display: "Sora", ui-sans-serif, sans-serif;
-  --font-body: "DM Sans", ui-sans-serif, sans-serif;
+  --font-display: var(--tv-font-display, "Poppins", ui-sans-serif, sans-serif);
+  --font-body: var(--tv-font-body, "Poppins", ui-sans-serif, sans-serif);
   --shadow-soft: 0 18px 50px rgba(20, 35, 29, 0.18);
   color: var(--ink);
   background: var(--cream);
@@ -87,43 +87,29 @@ a:focus-visible,
   right: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1.5rem;
   width: min(100% - 3rem, 1180px);
   margin: 0 auto;
   padding: 1.35rem 0;
 }
 
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  text-transform: lowercase;
-  color: var(--ink);
-}
-
-.brand-mark {
-  width: 1.55rem;
-  height: 1.55rem;
-  color: var(--forest);
-}
-
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--ink);
+  gap: var(--tv-space-8);
+  padding: var(--tv-space-2) var(--tv-space-5);
+  border-radius: var(--tv-radius-pill);
+  background: var(--tv-color-surface-nav);
+  font-size: var(--tv-text-sm);
+  font-weight: var(--tv-weight-medium);
+  color: var(--tv-color-text-on-nav);
 }
 
 .site-nav a {
   position: relative;
-  transition: color 180ms ease;
+  color: inherit;
+  transition: color var(--tv-duration-fast) var(--tv-ease-standard);
 }
 
 .site-nav a::after {
@@ -136,7 +122,7 @@ a:focus-visible,
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 220ms ease;
+  transition: transform var(--tv-duration-base) var(--tv-ease-standard);
 }
 
 .site-nav a:hover::after {
@@ -174,6 +160,24 @@ a:focus-visible,
 
 .btn--primary:hover {
   background: var(--burgundy-hover);
+}
+
+.btn.btn--glass {
+  color: var(--tv-color-text-inverse);
+  background: var(--tv-color-glass-primary);
+  border: var(--tv-border-width) solid var(--tv-color-glass-edge);
+  box-shadow: var(--tv-shadow-glass);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+}
+
+.btn.btn--glass:hover {
+  background: var(--tv-color-glass-primary-hover);
+}
+
+.btn.btn--glass:active {
+  background: var(--tv-color-action-primary-active);
+  transform: none;
 }
 
 .icon-arrow {
@@ -227,12 +231,15 @@ a:focus-visible,
 
 .hero-bg {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  /* Zoom into the upper-right canopy: rocky base stays half off-frame,
+     bright sky in the top-right is covered by foliage. */
+  left: -22%;
+  top: -12%;
+  width: 148%;
+  max-width: none;
+  height: 160%;
   object-fit: cover;
-  object-position: 55% center;
-  transform: scale(1.02);
+  object-position: 100% 18%;
   animation: hero-drift 28s ease-in-out infinite alternate;
 }
 
@@ -293,13 +300,30 @@ a:focus-visible,
 .hero-copy {
   width: min(100% - 3rem, 1180px);
   margin: 0 auto;
-  max-width: 34rem;
-  justify-self: start;
+  max-width: 36rem;
+  justify-self: center;
+  text-align: center;
   animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.hero-copy .eyebrow,
+.hero-copy h1,
+.hero-copy .hero-lede,
+.hero-copy .hero-actions,
+.hero-copy .hero-note {
+  width: fit-content;
+  margin-inline: auto;
+  border: var(--tv-border-width) solid var(--tv-color-border);
+  background: var(--tv-color-glass-copy);
+  box-shadow: var(--tv-shadow-glass-surface);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+}
+
 .eyebrow {
-  margin: 0 0 1.1rem;
+  margin: 0 auto 1.1rem;
+  padding: var(--tv-space-1) var(--tv-space-4);
+  border-radius: var(--tv-radius-pill);
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 700;
@@ -308,7 +332,9 @@ a:focus-visible,
 }
 
 .hero h1 {
-  margin: 0;
+  margin: 0 auto;
+  padding: var(--tv-space-3) var(--tv-space-4);
+  border-radius: var(--tv-radius-xl);
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 5.4vw, 4.15rem);
   font-weight: 700;
@@ -319,7 +345,9 @@ a:focus-visible,
 
 .hero-lede {
   max-width: 28rem;
-  margin: 1.35rem 0 0;
+  margin: 1.35rem auto 0;
+  padding: var(--tv-space-3) var(--tv-space-5);
+  border-radius: var(--tv-radius-xl);
   color: var(--muted);
   font-size: clamp(1.02rem, 1.4vw, 1.15rem);
   line-height: 1.6;
@@ -329,12 +357,17 @@ a:focus-visible,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 1.25rem 1.6rem;
-  margin-top: 1.85rem;
+  margin: 1.85rem auto 0;
+  padding: var(--tv-space-2) var(--tv-space-3);
+  border-radius: var(--tv-radius-pill);
 }
 
 .hero-note {
-  margin: 1.1rem 0 0;
+  margin: 1.1rem auto 0;
+  padding: var(--tv-space-1) var(--tv-space-4);
+  border-radius: var(--tv-radius-pill);
   color: var(--muted);
   font-size: 0.84rem;
 }
@@ -365,12 +398,43 @@ a:focus-visible,
 }
 
 /* —— Services —— */
+/* ::after is the sage → forest blend into .work (no hard edge). */
 .services {
-  padding: 5rem 0 5.5rem;
+  position: relative;
+  padding: 5rem 0 0;
   background:
-    radial-gradient(ellipse at 20% 0%, rgba(214, 224, 208, 0.9), transparent 55%),
-    radial-gradient(ellipse at 80% 100%, rgba(214, 224, 208, 0.75), transparent 50%),
-    var(--sage);
+    radial-gradient(
+      ellipse at 20% 0%,
+      color-mix(in srgb, var(--tv-sage-200) 90%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 80% 100%,
+      color-mix(in srgb, var(--tv-sage-200) 75%, transparent),
+      transparent 50%
+    ),
+    var(--tv-color-surface-muted);
+}
+
+.services::after {
+  content: "";
+  display: block;
+  height: clamp(14rem, 36vw, 22rem);
+  margin-top: var(--tv-space-8);
+  background: linear-gradient(
+    180deg,
+    var(--tv-color-surface-muted) 0%,
+    var(--tv-color-surface-muted) 8%,
+    var(--tv-sage-200) 22%,
+    color-mix(in srgb, var(--tv-sage-200) 70%, var(--tv-forest-300) 30%) 36%,
+    var(--tv-forest-300) 48%,
+    color-mix(in srgb, var(--tv-forest-300) 55%, var(--tv-forest-500) 45%) 58%,
+    var(--tv-forest-500) 68%,
+    var(--tv-forest-700) 82%,
+    color-mix(in srgb, var(--tv-forest-700) 45%, var(--tv-color-surface-inverse) 55%) 92%,
+    var(--tv-color-surface-inverse) 100%
+  );
+  pointer-events: none;
 }
 
 .services h2 {
@@ -447,9 +511,9 @@ a:focus-visible,
 
 /* —— Work —— */
 .work {
-  padding: 4.75rem 0 5rem;
-  background: var(--forest);
-  color: var(--white);
+  padding: 3.25rem 0 5rem;
+  background: var(--tv-color-surface-inverse);
+  color: var(--tv-color-text-inverse);
 }
 
 .work-head {
@@ -714,29 +778,6 @@ a:focus-visible,
   font-size: 0.82rem;
 }
 
-.portal-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: rgba(248, 246, 241, 0.85);
-  font-size: 0.86rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  transition: color 180ms ease;
-}
-
-.portal-link:hover {
-  color: var(--white);
-}
-
-.portal-link span {
-  transition: transform 180ms ease;
-}
-
-.portal-link:hover span {
-  transform: translateX(3px);
-}
-
 /* —— Motion —— */
 @keyframes rise-in {
   from {
@@ -761,10 +802,10 @@ a:focus-visible,
 
 @keyframes hero-drift {
   from {
-    transform: scale(1.02) translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: scale(1.06) translate3d(-1.2%, 1%, 0);
+    transform: translate3d(-1.4%, -0.8%, 0);
   }
 }
 
@@ -820,7 +861,7 @@ a:focus-visible,
 
   .hero-actions {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .experience-bar::before,
@@ -829,7 +870,12 @@ a:focus-visible,
   }
 
   .services {
-    padding: 3.5rem 0 4rem;
+    padding: 3.5rem 0 0;
+  }
+
+  .services::after {
+    height: clamp(11rem, 42vw, 16rem);
+    margin-top: var(--tv-space-6);
   }
 
   .services-grid {
@@ -853,9 +899,6 @@ a:focus-visible,
   }
 
   .closing-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
     margin-top: 2.75rem;
   }
 }

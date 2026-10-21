@@ -49,9 +49,9 @@ export function LoginPage() {
         <Link to="/" className="auth-brand">
           thornvine
         </Link>
-        <h1>Client portal</h1>
+        <h1>Sign in</h1>
         <p className="auth-lede">
-          Sign in with the invite credentials from your Thornvine contact.
+          Sign in with the invite credentials from your thornvine contact.
         </p>
 
         <form className="auth-form" onSubmit={onSubmit}>
