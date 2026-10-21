@@ -78,7 +78,7 @@ export function LoginPage() {
             />
           </label>
           {error ? <p className="auth-error" role="alert">{error}</p> : null}
-          <button className="btn btn--primary" type="submit" disabled={submitting}>
+          <button className="btn btn--primary thornvine-glass-effect" type="submit" disabled={submitting}>
             {submitting ? 'Signing in…' : 'Sign in'}
           </button>
         </form>

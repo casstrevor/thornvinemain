@@ -7,7 +7,7 @@
   padding: var(--tv-space-6) var(--tv-space-4);
   overflow-y: auto;
   background: var(--tv-color-glass-surface);
-  border-right: var(--tv-border-width) solid var(--tv-color-border);
+  border-right: var(--tv-border-width) solid var(--tv-color-glass-edge);
   box-shadow: var(--tv-shadow-glass-surface);
   -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
@@ -19,9 +19,14 @@
   width: auto;
   height: auto;
   gap: 0;
-  border-right: var(--tv-border-width) solid var(--tv-color-border);
-  border-bottom: var(--tv-border-width) solid var(--tv-color-border);
+  padding: 0;
+  background: var(--tv-color-glass-brand);
+  border-right-color: var(--tv-color-glass-edge);
+  border-bottom: var(--tv-border-width) solid var(--tv-color-glass-edge);
   border-bottom-right-radius: var(--tv-radius-lg);
+  box-shadow: var(--tv-shadow-glass-panel);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .app-shell--sidebar-expanded > .app-sidebar {
@@ -34,6 +39,7 @@
 }
 
 .app-sidebar__brand {
+  box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -52,8 +58,19 @@
   cursor: pointer;
 }
 
+.app-sidebar--collapsed .app-sidebar__brand {
+  width: 100%;
+  padding: var(--tv-space-6) calc(var(--tv-space-4) + var(--tv-space-3));
+  border-radius: 0 0 var(--tv-radius-lg) 0;
+}
+
 .app-sidebar__brand .tv-logo-mark {
   width: calc(1.85rem * 3);
+  filter: drop-shadow(var(--tv-shadow-brand-mark));
+}
+
+.app-sidebar__brand > span {
+  text-shadow: var(--tv-shadow-brand-name);
 }
 
 .app-sidebar__nav {
@@ -79,6 +96,8 @@
   font-weight: var(--tv-weight-medium);
   color: var(--tv-color-text-muted);
   text-decoration: none;
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   transition:
     background-color var(--tv-duration-fast) var(--tv-ease-standard),
     color var(--tv-duration-fast) var(--tv-ease-standard);
@@ -86,6 +105,7 @@
 
 .app-sidebar__link:hover {
   background: var(--tv-color-action-secondary-hover);
+  box-shadow: var(--tv-shadow-glass-surface);
   color: var(--tv-color-text);
 }
 
@@ -98,6 +118,7 @@
 .app-sidebar__link--active {
   background: var(--tv-color-accent-soft);
   border-left-color: var(--tv-color-accent);
+  box-shadow: var(--tv-shadow-glass-surface);
   color: var(--tv-color-text);
   font-weight: var(--tv-weight-semibold);
 }
@@ -118,9 +139,12 @@
   gap: var(--tv-space-2);
   width: 100%;
   padding: var(--tv-space-3);
-  border: var(--tv-border-width) solid var(--tv-color-border);
+  border: var(--tv-border-width) solid var(--tv-color-glass-edge);
   border-radius: var(--tv-radius-md);
   background: var(--tv-color-surface);
+  box-shadow: var(--tv-shadow-glass-surface);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   color: inherit;
   text-decoration: none;
   cursor: pointer;

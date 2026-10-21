@@ -5,6 +5,7 @@
  */
 :root {
   /* —— Color primitives —— */
+  --tv-forest-950: #0b2900;
   --tv-forest-900: #14231d;
   --tv-forest-ink: #163b32;
   --tv-forest-800: #1a2e26;
@@ -15,6 +16,7 @@
   --tv-sage-200: #d7e0d4;
   --tv-sage-150: #e9ede1;
   --tv-sage-100: #e6ebe1;
+  --tv-sage-25: #fafff7;
   --tv-line-200: #d9ded4;
 
   --tv-ivory-50: #f7f5ef;
@@ -26,6 +28,7 @@
   --tv-burgundy-600: #7a1e28;
   --tv-wine-700: #641f37;
   --tv-wine-600: #7c2945;
+  --tv-plum-950: #1e0029;
   --tv-plum-600: #7e6377;
   --tv-burgundy-500: #922633;
   --tv-burgundy-100: #f3e3e3;
@@ -52,14 +55,15 @@
   --tv-color-surface-raised: var(--tv-cream-50);
   --tv-color-surface-inverse: var(--tv-forest-800);
   --tv-color-surface-wash: color-mix(in srgb, var(--tv-color-surface-raised) 58%, transparent);
-  --tv-color-surface-nav: color-mix(in srgb, var(--tv-plum-600) 75%, transparent);
+  --tv-color-surface-nav: color-mix(in srgb, var(--tv-sage-25) 75%, transparent);
   --tv-color-scrim: rgba(20, 35, 29, 0.42);
 
   --tv-color-text: var(--tv-forest-900);
   --tv-color-text-muted: var(--tv-slate-600);
   --tv-color-text-subtle: var(--tv-slate-400);
   --tv-color-text-inverse: var(--tv-cream-50);
-  --tv-color-text-on-nav: var(--tv-white);
+  --tv-color-text-on-nav: var(--tv-forest-950);
+  --tv-color-text-on-glass-primary: var(--tv-sage-25);
 
   --tv-color-border: rgba(26, 46, 38, 0.12);
   --tv-color-border-strong: rgba(26, 46, 38, 0.28);
@@ -68,12 +72,14 @@
   --tv-color-action-primary: var(--tv-burgundy-600);
   --tv-color-action-primary-hover: var(--tv-burgundy-500);
   --tv-color-action-primary-active: var(--tv-burgundy-700);
-  --tv-color-glass-primary: color-mix(in srgb, var(--tv-burgundy-700) 68%, transparent);
+  --tv-color-glass-primary: color-mix(in srgb, var(--tv-plum-950) 75%, transparent);
   --tv-color-glass-primary-hover: color-mix(in srgb, var(--tv-burgundy-600) 58%, transparent);
   --tv-color-glass-edge: color-mix(in srgb, var(--tv-white) 72%, transparent);
   --tv-color-glass-highlight: color-mix(in srgb, var(--tv-white) 36%, transparent);
   --tv-color-glass-surface: color-mix(in srgb, var(--tv-color-surface-raised) 62%, transparent);
+  --tv-color-glass-brand: transparent;
   --tv-color-glass-copy: color-mix(in srgb, var(--tv-color-surface-raised) 78%, transparent);
+  --tv-color-glass-note: color-mix(in srgb, var(--tv-color-surface-raised) 50%, transparent);
   --tv-color-action-secondary: var(--tv-forest-800);
   --tv-color-action-secondary-hover: rgba(26, 46, 38, 0.06);
 
@@ -155,9 +161,23 @@
   --tv-shadow-md: 0 10px 28px rgba(20, 35, 29, 0.08);
   --tv-shadow-lg: 0 18px 50px rgba(20, 35, 29, 0.18);
   --tv-shadow-primary: 0 10px 24px rgba(122, 30, 40, 0.22);
-  --tv-shadow-glass: var(--tv-shadow-primary), inset 0 1px 0 var(--tv-color-glass-highlight);
-  --tv-shadow-glass-surface: var(--tv-shadow-sm), inset 0 1px 0 var(--tv-color-glass-highlight);
-  --tv-shadow-glass-panel: var(--tv-shadow-lg), inset 0 1px 0 var(--tv-color-glass-highlight);
+  --tv-shadow-brand-mark: 0 2px 3px rgba(20, 35, 29, 0.2);
+  --tv-shadow-brand-name: 0 1px 2px rgba(20, 35, 29, 0.18);
+  --tv-shadow-glass:
+    0 12px 30px rgba(20, 35, 29, 0.16),
+    0 2px 8px rgba(20, 35, 29, 0.1),
+    inset 0 1px 0 var(--tv-color-glass-highlight),
+    inset 0 -1px 0 rgba(20, 35, 29, 0.08);
+  --tv-shadow-glass-surface:
+    0 8px 24px rgba(20, 35, 29, 0.12),
+    0 1px 4px rgba(20, 35, 29, 0.08),
+    inset 0 1px 0 var(--tv-color-glass-highlight),
+    inset 0 -1px 0 rgba(20, 35, 29, 0.06);
+  --tv-shadow-glass-panel:
+    0 20px 54px rgba(20, 35, 29, 0.2),
+    0 3px 10px rgba(20, 35, 29, 0.1),
+    inset 0 1px 0 var(--tv-color-glass-highlight),
+    inset 0 -1px 0 rgba(20, 35, 29, 0.08);
   --tv-blur-glass: 0.875rem;
   --tv-glass-saturate: 1.35;
   --tv-focus-ring: 0 0 0 3px rgba(166, 133, 74, 0.45);

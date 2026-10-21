@@ -99,8 +99,12 @@ a:focus-visible,
   align-items: center;
   gap: var(--tv-space-8);
   padding: var(--tv-space-2) var(--tv-space-5);
+  border: var(--tv-border-width) solid var(--tv-color-glass-edge);
   border-radius: var(--tv-radius-pill);
   background: var(--tv-color-surface-nav);
+  box-shadow: var(--tv-shadow-glass-surface);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   font-size: var(--tv-text-sm);
   font-weight: var(--tv-weight-medium);
   color: var(--tv-color-text-on-nav);
@@ -137,11 +141,14 @@ a:focus-visible,
   gap: 0.65rem;
   min-height: 2.85rem;
   padding: 0.7rem 1.35rem;
+  border: var(--tv-border-width) solid transparent;
   border-radius: var(--radius-pill);
   font-family: var(--font-body);
   font-size: 0.92rem;
   font-weight: 600;
   line-height: 1;
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   transition:
     transform 200ms ease,
     background 200ms ease,
@@ -155,7 +162,8 @@ a:focus-visible,
 .btn--primary {
   color: var(--white);
   background: var(--burgundy);
-  box-shadow: 0 10px 24px rgba(122, 30, 40, 0.22);
+  border-color: var(--tv-color-glass-edge);
+  box-shadow: var(--tv-shadow-glass);
 }
 
 .btn--primary:hover {
@@ -163,7 +171,7 @@ a:focus-visible,
 }
 
 .btn.btn--glass {
-  color: var(--tv-color-text-inverse);
+  color: var(--tv-color-text-on-glass-primary);
   background: var(--tv-color-glass-primary);
   border: var(--tv-border-width) solid var(--tv-color-glass-edge);
   box-shadow: var(--tv-shadow-glass);
@@ -313,11 +321,8 @@ a:focus-visible,
 .hero-copy .hero-note {
   width: fit-content;
   margin-inline: auto;
-  border: var(--tv-border-width) solid var(--tv-color-border);
+  border: var(--tv-border-width) solid var(--tv-color-glass-edge);
   background: var(--tv-color-glass-copy);
-  box-shadow: var(--tv-shadow-glass-surface);
-  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
-  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
 }
 
 .eyebrow {
@@ -364,11 +369,14 @@ a:focus-visible,
   border-radius: var(--tv-radius-pill);
 }
 
-.hero-note {
+.hero-copy .hero-note {
   margin: 1.1rem auto 0;
   padding: var(--tv-space-1) var(--tv-space-4);
   border-radius: var(--tv-radius-pill);
-  color: var(--muted);
+  background: var(--tv-color-glass-note);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: var(--tv-color-text);
   font-size: 0.84rem;
 }
 

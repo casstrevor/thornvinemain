@@ -2,7 +2,7 @@
 
 - **App section:** site (public landing page)
 - **Notion:** none (repo only; compares the code to the brand brief)
-- **Updated:** 2026-10-20 (account strip → `/account` on `sidebar-menu`; not on `main`)
+- **Updated:** 2026-10-21 (landing header nav colors updated in working tree)
 - **Code:** `apps/web/src/App.tsx`, `apps/web/src/App.css`, `apps/web/index.html`, `apps/web/public/images/`
 - **Live:** https://www.thornvine.com (`main` `f609433`)
 
@@ -12,11 +12,15 @@ The [brand brief](brand.md) and [launch scope](launch.md) describe what the site
 
 | # | Section | Anchor | Content |
 |---|---------|--------|---------|
-| — | Header | — | Nav "What we do" / "Our work" / "Our people" in a plum pill (`#7E6377` at 75% opacity, `--tv-color-surface-nav`) with white link text (`--tv-color-text-on-nav`; Trevor, 2026-10-20). The "Client portal" header link was removed the same day. The TV monogram + "thornvine" is a collapsed brand chip on public pages (homepage, sign-in, new-client). On authenticated pages (`/account`, `/clientportal`, `/design-system`, `/newclient/review`) it lives in the navigation: a docked side nav on wide screens, and the top bar on narrow screens (Trevor, 2026-10-20, `sidebar-menu`, uncommitted). Signed-in email and Admin sit in a boxed account strip above the logo and open `/account`. Signed-out Sign in sits at the bottom of that menu. Client portal is not in the sidebar. |
-| 1 | Hero | — | Eyebrow "Human ideas. Digital possibilities."; H1 "Your imagination. Let's make it real."; body "We design and build custom apps, digital tools, and experiences for people with ideas."; buttons "Tell us your idea" (frosted burgundy glass, → `/newclient` on `sidebar-menu`, uncommitted; production is still a solid button → `#contact`) and "Explore our work" (→ `#work`); note "Free consultation. Real collaboration." These lines are centered on the same axis as the header options, and each sits on its own frosted bar (Trevor, 2026-10-20). Tree + landscape art; a strip "30+ years of combined experience in design, technology & learning" |
+| — | Header | — | Nav "What we do" / "Our work" / "Our people" uses a pale sage pill (`#FAFFF7` at 75% opacity, `--tv-color-surface-nav`) with dark green link text (`#0B2900`, `--tv-color-text-on-nav`; Trevor, 2026-10-21, working tree). The "Client portal" header link was removed on 2026-10-20. The TV monogram + "thornvine" is a collapsed brand chip on public pages (homepage, sign-in, new-client). On authenticated pages (`/account`, `/clientportal`, `/design-system`, `/newclient/review`) it lives in the navigation: a docked side nav on wide screens, and the top bar on narrow screens (Trevor, 2026-10-20, `sidebar-menu`, uncommitted). Signed-in email and Admin sit in a boxed account strip above the logo and open `/account`. Signed-out Sign in sits at the bottom of that menu. Client portal is not in the sidebar. |
+| 1 | Hero | — | Eyebrow "Human ideas. Digital possibilities."; H1 "Your imagination. Let's make it real."; body "We design and build custom apps, digital tools, and experiences for people with ideas."; buttons "Tell us your idea" (deep plum `#1E0029` at 75% opacity with `#FAFFF7` text, → `/newclient` in the working tree; Trevor, 2026-10-21; production is still a solid button → `#contact`) and "Explore our work" (→ `#work`); note "Free consultation. Real collaboration." uses a 50%-opacity panel treatment and the same dark text color as the collapsed brand tile/logo. The primary nav and every hero copy/action bar use the named `thornvine-glass-effect` treatment and share the same center axis (Trevor, 2026-10-21). Tree + landscape art; a strip "30+ years of combined experience in design, technology & learning" |
 | 2 | Services | `#what-we-do` | "What can we create together?" — Digital products / Design & strategy / AI & automation / Learning & creative. Bottom fades into the work section (sage → forest gradient, 2026-10-17). |
 | 3 | Work | `#work` | "Ideas taking shape." — OVRmaps card (phone mock, "Pine Ridge Trail" sample) and Wyldtracks card ("Project preview coming soon"). Continues the forest color from the services fade. |
-| 4 | Closing | `#contact` | "Good things grow together." / "Curious minds. Thoughtful makers. Humans who care." / button "Tell us your idea" is frosted burgundy glass → `/newclient` on `sidebar-menu` (uncommitted; production is still a solid button → `mailto:hello@thornvine.com`); footer © year. |
+| 4 | Closing | `#contact` | "Good things grow together." / "Curious minds. Thoughtful makers. Humans who care." / button "Tell us your idea" uses the same deep plum frosted-glass treatment as the hero → `/newclient` in the working tree (production is still a solid button → `mailto:hello@thornvine.com`); footer © year. |
+
+### Thornvine Glass Effect (working tree, 2026-10-21)
+
+Filled interactive controls and navigation surfaces use the named `thornvine-glass-effect`: a crisp translucent edge, layered neutral shadow, inset highlight, and backdrop blur/saturation. It does not assign fill or text colors, so each pre-auth and post-auth control keeps its existing palette. The collapsed app-sidebar brand tile is fully transparent with no backdrop filter; its shape comes only from the glass edge, inset highlight, and panel shadow. Its logo mark and name have separate subtle depth shadows. Filled links, selections, and pagers use the surface variant. Authorized by Trevor on 2026-10-21; implemented in the working tree and not yet verified in production.
 
 ## Gaps against the brief (2026-10-02)
 

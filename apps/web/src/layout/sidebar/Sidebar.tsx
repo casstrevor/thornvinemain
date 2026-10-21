@@ -33,7 +33,7 @@ export function Sidebar({ id, open, expanded, onExpand, onNavigate }: SidebarPro
   return (
     <aside
       id={id}
-      className={['app-sidebar', open && 'app-sidebar--open', collapsed && 'app-sidebar--collapsed']
+      className={['app-sidebar', 'thornvine-glass-effect', 'thornvine-glass-effect--panel', open && 'app-sidebar--open', collapsed && 'app-sidebar--collapsed']
         .filter(Boolean)
         .join(' ')}
       onPointerDown={(event) => event.stopPropagation()}

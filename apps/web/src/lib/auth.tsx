@@ -227,7 +227,7 @@ export function RequireRole({ roles, children }: { roles: PortalRole[]; children
         <div className="auth-card">
           <h1>Not available</h1>
           <p>This area is limited to Thornvine staff with the right role.</p>
-          <Link to="/clientportal" className="btn btn--primary">
+          <Link to="/clientportal" className="btn btn--primary thornvine-glass-effect">
             Back to portal
           </Link>
         </div>
@@ -241,7 +241,7 @@ export function RequireRole({ roles, children }: { roles: PortalRole[]; children
 function SignOutButton() {
   const { signOut } = useAuth()
   return (
-    <button type="button" className="btn btn--primary" onClick={() => void signOut()}>
+    <button type="button" className="btn btn--primary thornvine-glass-effect" onClick={() => void signOut()}>
       Sign out
     </button>
   )

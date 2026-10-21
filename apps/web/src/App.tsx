@@ -76,7 +76,7 @@ function App() {
   return (
     <div className="site">
       <header className="site-header">
-        <nav className="site-nav" aria-label="Primary">
+        <nav className="site-nav thornvine-glass-effect thornvine-glass-effect--surface" aria-label="Primary">
           <a href="#what-we-do">What we do</a>
           <a href="#work">Our work</a>
           <a href="#people">Our people</a>
@@ -100,18 +100,20 @@ function App() {
           </div>
 
           <div className="hero-copy">
-            <p className="eyebrow">Human ideas. Digital possibilities.</p>
-            <h1 id="hero-heading">
+            <p className="eyebrow thornvine-glass-effect thornvine-glass-effect--surface">
+              Human ideas. Digital possibilities.
+            </p>
+            <h1 id="hero-heading" className="thornvine-glass-effect thornvine-glass-effect--surface">
               Your imagination.
               <br />
               Let&apos;s make it real.
             </h1>
-            <p className="hero-lede">
+            <p className="hero-lede thornvine-glass-effect thornvine-glass-effect--surface">
               We design and build custom apps, digital tools, and experiences
               for people with ideas.
             </p>
-            <div className="hero-actions">
-              <Link className="btn btn--primary btn--glass" to="/newclient">
+            <div className="hero-actions thornvine-glass-effect thornvine-glass-effect--surface">
+              <Link className="btn btn--primary btn--glass thornvine-glass-effect" to="/newclient">
                 Tell us your idea
                 <ArrowRight />
               </Link>
@@ -120,7 +122,9 @@ function App() {
                 <ArrowOut />
               </a>
             </div>
-            <p className="hero-note">Free consultation. Real collaboration.</p>
+            <p className="hero-note thornvine-glass-effect thornvine-glass-effect--panel">
+              Free consultation. Real collaboration.
+            </p>
           </div>
         </section>
 
@@ -241,7 +245,7 @@ function App() {
           <div className="closing-copy">
             <h2 id="closing-heading">Good things grow together.</h2>
             <p>Curious minds. Thoughtful makers. Humans who care.</p>
-            <Link className="btn btn--primary btn--glass" to="/newclient">
+            <Link className="btn btn--primary btn--glass thornvine-glass-effect" to="/newclient">
               Tell us your idea
               <ArrowRight />
             </Link>

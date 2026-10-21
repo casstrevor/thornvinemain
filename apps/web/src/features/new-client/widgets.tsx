@@ -101,7 +101,7 @@ function Choices({
               key={option.id}
               variant="secondary"
               aria-pressed={selected}
-              className={selected ? 'nc-choice nc-choice--on' : 'nc-choice'}
+              className={selected ? 'nc-choice nc-choice--on thornvine-glass-effect thornvine-glass-effect--surface' : 'nc-choice thornvine-glass-effect thornvine-glass-effect--surface'}
               disabled={disabled}
               iconStart={<Icon name={selected ? 'check' : optionIcon(option.id)} />}
               onClick={() => toggle(option.id)}
@@ -164,7 +164,7 @@ function Investment({
             key={id}
             variant="secondary"
             aria-pressed={choice === id}
-            className={choice === id ? 'nc-choice nc-choice--on' : 'nc-choice'}
+            className={choice === id ? 'nc-choice nc-choice--on thornvine-glass-effect thornvine-glass-effect--surface' : 'nc-choice thornvine-glass-effect thornvine-glass-effect--surface'}
             disabled={disabled}
             iconStart={<Icon name={choice === id ? 'check' : id === 'help' ? 'info' : 'leaf'} />}
             onClick={() => setChoice(id)}
@@ -225,7 +225,7 @@ function Timing({
             key={id}
             variant="secondary"
             aria-pressed={choice === id}
-            className={choice === id ? 'nc-choice nc-choice--on' : 'nc-choice'}
+            className={choice === id ? 'nc-choice nc-choice--on thornvine-glass-effect thornvine-glass-effect--surface' : 'nc-choice thornvine-glass-effect thornvine-glass-effect--surface'}
             disabled={disabled}
             iconStart={<Icon name={choice === id ? 'check' : 'leaf'} />}
             onClick={() => setChoice(id)}

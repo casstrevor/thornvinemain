@@ -91,7 +91,7 @@
 .auth-form .btn {
   width: 100%;
   margin-top: 0.35rem;
-  border: 0;
+  border-color: var(--tv-color-glass-edge);
   cursor: pointer;
 }
 
@@ -107,6 +107,6 @@
 
 .auth-card > .btn {
   margin-top: 1rem;
-  border: 0;
+  border-color: var(--tv-color-glass-edge);
   cursor: pointer;
 }

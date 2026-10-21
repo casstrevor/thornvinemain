@@ -141,7 +141,7 @@ function ClientForm({
         </select>
       </label>
       <FormFeedback error={error} notice={notice} />
-      <button className="btn btn--primary" type="submit" disabled={saving}>
+      <button className="btn btn--primary thornvine-glass-effect" type="submit" disabled={saving}>
         {saving ? 'Saving…' : 'Save client'}
       </button>
       {clients.length > 0 ? (
@@ -251,7 +251,7 @@ function ProjectForm({
         </select>
       </label>
       <FormFeedback error={error} notice={notice} />
-      <button className="btn btn--primary" type="submit" disabled={saving || blocked}>
+      <button className="btn btn--primary thornvine-glass-effect" type="submit" disabled={saving || blocked}>
         {saving ? 'Saving…' : 'Save project'}
       </button>
     </form>
@@ -344,7 +344,7 @@ function UpdateForm({
         />
       </label>
       <FormFeedback error={error} notice={notice} />
-      <button className="btn btn--primary" type="submit" disabled={saving || blocked}>
+      <button className="btn btn--primary thornvine-glass-effect" type="submit" disabled={saving || blocked}>
         {saving ? 'Publishing…' : 'Publish update'}
       </button>
     </form>
