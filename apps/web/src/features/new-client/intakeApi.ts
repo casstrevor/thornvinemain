@@ -103,6 +103,16 @@ export async function startIntake() {
   return asState(data)
 }
 
+export async function resumeIntake() {
+  const { data, error } = await supabase.rpc('intake_resume')
+  if (error) {
+    if (/intake_resume|does not exist|PGRST202/i.test(error.message)) return null
+    throw new Error(error.message)
+  }
+  if (!data) return null
+  return asState(data)
+}
+
 export async function loadIntake(intakeId: string) {
   const { data, error } = await supabase.rpc('intake_state', { p_intake_id: intakeId })
   if (error) throw new Error(error.message)
@@ -113,6 +123,14 @@ export async function listIntakes() {
   const { data, error } = await supabase.rpc('intake_list')
   if (error) throw new Error(error.message)
   return (data ?? []) as IntakeListItem[]
+}
+
+let skipRemoteModel = false
+
+function shouldCallModel(widgetValue?: FieldValue | null) {
+  if (skipRemoteModel) return false
+  if (!widgetValue) return true
+  return typeof widgetValue.corrections === 'string' && Boolean(widgetValue.corrections.trim())
 }
 
 export async function sendTurn(input: {
@@ -130,22 +148,27 @@ export async function sendTurn(input: {
     focus: input.focus,
   })
   let demo = true
-  try {
-    const remote = await supabase.functions.invoke('intake-turn', {
-      body: {
-        fields: input.fields,
-        clientText: input.body,
-        widgetValue: input.widgetValue ?? null,
-        focus: input.focus,
-      },
-    })
-    const payload = remote.data as { mode?: string; proposal?: Proposal } | null
-    if (!remote.error && payload?.mode === 'model' && payload.proposal && !validateProposal(payload.proposal)) {
-      proposal = { ...payload.proposal, mode: 'model' }
-      demo = false
+  if (shouldCallModel(input.widgetValue)) {
+    try {
+      const remote = await supabase.functions.invoke('intake-turn', {
+        body: {
+          fields: input.fields,
+          clientText: input.body,
+          widgetValue: input.widgetValue ?? null,
+          focus: input.focus,
+        },
+      })
+      const payload = remote.data as { mode?: string; proposal?: Proposal } | null
+      if (!remote.error && payload?.mode === 'model' && payload.proposal && !validateProposal(payload.proposal)) {
+        proposal = { ...payload.proposal, mode: 'model' }
+        demo = false
+      } else {
+        skipRemoteModel = true
+      }
+    } catch {
+      skipRemoteModel = true
+      demo = true
     }
-  } catch {
-    demo = true
   }
   const invalid = validateProposal(proposal)
   if (invalid) throw new Error(invalid)

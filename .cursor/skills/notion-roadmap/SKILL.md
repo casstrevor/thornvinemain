@@ -3,7 +3,8 @@ name: notion-roadmap
 description: >-
   Update the Thornvine Notion roadmap after each prompt. Use at the end of
   every user prompt that changes planned, implemented, or verified work, and
-  create the roadmap page when it is missing.
+  create the roadmap page when it is missing. When a Notion project page
+  update refers to code, include the GitHub URL.
 ---
 
 # Notion roadmap after each prompt
@@ -21,10 +22,19 @@ After each prompt, update the Notion roadmap. Create it if it does not exist.
 1. Fetch the Roadmap before editing. If that page is missing, create a child page titled `Roadmap` under the hub, then link it from the hub.
 2. Update the Roadmap in place when the prompt changes planned work, implementation, or verification. Skip the edit only when nothing in those three states changed.
 3. Keep **Planned**, **Implemented**, and **Verified** separate. Verified requires a named check and result. A passing build does not verify launch or a public URL.
-4. Name the repo, branch, and commit. Say when work is only in the working tree.
-5. Do not paste secrets, tokens, or `.env` values. Environment notes use variable names only.
+4. Name the repo, branch, and commit. Say when work is only in the working tree. Include the GitHub URL when the update refers to code, as in [GitHub links](#github-links).
+5. Do not paste secrets, tokens, or `.env` values. Environment notes use variable names only. GitHub links are public URLs, not secrets.
 6. Do not mark a TV task complete unless its acceptance on the delivery plan is met. Append a short dated handoff there when status moves.
 7. Preserve unrelated hub and delivery-plan text. Do not replace a whole page when a targeted edit is enough.
+
+## GitHub links
+
+When updating a Notion project page (roadmap, delivery plan, hub, or a board such as the homepage roadmap), include the GitHub URL when the note refers to code.
+
+- Link the commit, pull request, issue, or Actions run when that object exists.
+- Link the repository https://github.com/casstrevor/thornvinemain when the note is about the repo and no tighter link exists.
+- Say when the work is only in the working tree, and do not invent a commit URL.
+- Skip the GitHub URL when the note has no code artifact, such as a founder decision or an open question with nothing in git.
 
 ## Status words
 

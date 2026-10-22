@@ -2,7 +2,7 @@
 
 - **App section:** platform (database, auth, RLS)
 - **Notion:** none (repo only)
-- **Updated:** 2026-10-02
+- **Updated:** 2026-10-22 (intake resume/list guard applied and verified)
 - **Code:** `supabase/migrations/`, `supabase/seed.sql`, `supabase/config.toml`, `apps/web/src/lib/supabase.ts`, `apps/web/src/lib/database.types.ts`
 
 All Supabase work in this repo goes through the Supabase MCP (see `.cursor/skills/supabase-mcp/SKILL.md`). The web client only ever sees `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
@@ -20,6 +20,16 @@ All Supabase work in this repo goes through the Supabase MCP (see `.cursor/skill
 | Storage buckets | none |
 
 Admins as of 2026-10-02: Luke (added 2026-09-30) and Trevor (`casstrevor@gmail.com`, added 2026-10-02 via MCP).
+
+## Hosted intake state (2026-10-22)
+
+Supabase MCP connected to Thornvine `dzywymkjvfxsbimyxmhu` and applied `20261022160000_intake_resume_and_list_guard.sql`. The earlier null-widget function change was already present.
+
+- `intake_resume()` resumes the signed-in user's latest introduction without creating a blank row.
+- `intake_list()` requires `is_thornvine_admin()` and excludes draft rows with neither idea text nor a non-empty client message.
+- `anon` cannot execute either function; `authenticated` can execute both.
+- Verification found 18 draft intakes, 9 of which matched the blank-draft exclusion criteria.
+- Generated hosted types include `intake_resume`; the checked-in type already models its nullable JSON result.
 
 ## Schema (`portal_core`)
 

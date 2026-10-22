@@ -32,17 +32,6 @@
   min-width: 0;
 }
 
-.ds-topbar__logo {
-  font-family: var(--tv-font-display);
-  font-size: var(--tv-text-lg);
-  font-weight: var(--tv-weight-bold);
-  letter-spacing: -0.04em;
-}
-
-.ds-topbar__divider {
-  color: var(--tv-color-text-subtle);
-}
-
 .ds-topbar__title {
   font-size: var(--tv-text-sm);
   font-weight: var(--tv-weight-semibold);
@@ -178,6 +167,8 @@
   font-weight: var(--tv-weight-bold);
   text-align: left;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
 }
 
 .ds-nav__group--depth-0 > .ds-nav__group-toggle {
@@ -189,6 +180,7 @@
 
 .ds-nav__group-toggle:hover {
   background: var(--tv-color-action-secondary-hover);
+  box-shadow: var(--tv-shadow-glass-surface);
 }
 
 .ds-nav__group-toggle:focus-visible,
@@ -213,6 +205,8 @@
   border-radius: var(--tv-radius-sm);
   color: var(--tv-color-text-muted);
   font-size: var(--tv-text-sm);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   transition:
     background-color var(--tv-duration-instant) var(--tv-ease-standard),
     color var(--tv-duration-instant) var(--tv-ease-standard);
@@ -221,11 +215,13 @@
 .ds-nav__link:hover {
   color: var(--tv-color-text);
   background: var(--tv-color-action-secondary-hover);
+  box-shadow: var(--tv-shadow-glass-surface);
 }
 
 .ds-nav__link.is-active {
   color: var(--tv-color-text-inverse);
   background: var(--tv-color-surface-inverse);
+  box-shadow: var(--tv-shadow-glass-surface);
   font-weight: var(--tv-weight-semibold);
 }
 
@@ -973,6 +969,9 @@
   border: 1px solid var(--tv-color-border);
   border-radius: var(--tv-radius-md);
   background: var(--tv-color-surface);
+  box-shadow: var(--tv-shadow-glass-surface);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   transition: border-color var(--tv-duration-fast) var(--tv-ease-standard);
 }
 
@@ -1048,10 +1047,5 @@
   .ds-main__inner {
     width: min(100% - 2rem, 960px);
     padding-top: var(--tv-space-6);
-  }
-
-  .ds-topbar__divider,
-  .ds-topbar__title {
-    display: none;
   }
 }

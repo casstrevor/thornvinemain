@@ -44,6 +44,30 @@ export const iconPaths = {
     </>
   ),
   menu: <path d="M3 6h14M3 10h14M3 14h14" />,
+  grid: (
+    <>
+      <rect x="3" y="3" width="5.5" height="5.5" rx="1" />
+      <rect x="11.5" y="3" width="5.5" height="5.5" rx="1" />
+      <rect x="3" y="11.5" width="5.5" height="5.5" rx="1" />
+      <rect x="11.5" y="11.5" width="5.5" height="5.5" rx="1" />
+    </>
+  ),
+  clipboard: (
+    <>
+      <rect x="4.5" y="4" width="11" height="13.5" rx="1.5" />
+      <path d="M8 4V3h4v1M7.5 9h5M7.5 12.5h5" />
+    </>
+  ),
+  swatch: (
+    <>
+      <circle cx="10" cy="10" r="7" />
+      <circle cx="7.5" cy="8" r="1" />
+      <circle cx="12.5" cy="8" r="1" />
+      <path d="M10 17a2 2 0 0 1 0-4h1.5" />
+    </>
+  ),
+  'sign-out': <path d="M8 4H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3M12 6.5 15.5 10 12 13.5M15.5 10H8" />,
+  'sign-in': <path d="M12 4h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-3M7.5 6.5 11 10l-3.5 3.5M11 10H3.5" />,
   paperclip: <path d="M8.2 10.4l3.8-3.8a2.1 2.1 0 0 1 3 3l-5.7 5.7a3 3 0 0 1-4.2-4.2l5.2-5.2" />,
 } as const
 

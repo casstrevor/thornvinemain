@@ -30,7 +30,7 @@
 .auth-brand {
   display: inline-block;
   margin-bottom: 1.5rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: -0.04em;
@@ -38,7 +38,7 @@
 
 .auth-card h1 {
   margin: 0;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.85rem;
   letter-spacing: -0.03em;
 }
@@ -91,7 +91,7 @@
 .auth-form .btn {
   width: 100%;
   margin-top: 0.35rem;
-  border: 0;
+  border-color: var(--tv-color-glass-edge);
   cursor: pointer;
 }
 
@@ -107,6 +107,12 @@
 
 .auth-card > .btn {
   margin-top: 1rem;
-  border: 0;
+  border-color: var(--tv-color-glass-edge);
   cursor: pointer;
+}
+
+@media (max-width: 56rem) {
+  .auth-brand {
+    display: none;
+  }
 }

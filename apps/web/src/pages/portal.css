@@ -18,7 +18,7 @@
 }
 
 .portal-brand {
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.04em;
@@ -57,11 +57,14 @@
   color: var(--forest, #1a2e26);
   font-size: 0.82rem;
   font-weight: 600;
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   transition: background 180ms ease;
 }
 
 .portal-admin-link:hover {
   background: rgba(26, 46, 38, 0.06);
+  box-shadow: var(--tv-shadow-glass-surface);
 }
 
 .portal-signout {
@@ -84,7 +87,7 @@
 
 .portal-hero h1 {
   margin: 0.35rem 0 0.75rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   letter-spacing: -0.035em;
 }
@@ -111,7 +114,7 @@
 
 .portal-section-head h2 {
   margin: 0 0 1.15rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.25rem;
   letter-spacing: -0.02em;
 }
@@ -170,7 +173,7 @@
 
 .admin-card h3 {
   margin: 0;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.05rem;
 }
 
@@ -207,7 +210,7 @@
 
 .admin-form .btn {
   justify-self: start;
-  border: 0;
+  border-color: var(--tv-color-glass-edge);
   cursor: pointer;
 }
 
@@ -252,7 +255,7 @@
 
 .project-tile h3 {
   margin: 0.7rem 0 0.4rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.1rem;
 }
 
@@ -320,7 +323,7 @@
 
 .update-item h3 {
   margin: 0 0 0.4rem;
-  font-family: var(--font-display, "Sora", sans-serif);
+  font-family: var(--font-display, "Poppins", sans-serif);
   font-size: 1.05rem;
 }
 
@@ -328,6 +331,12 @@
   margin: 0;
   color: var(--muted, #5a6b62);
   line-height: 1.5;
+}
+
+@media (max-width: 56rem) {
+  .portal-brand {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {

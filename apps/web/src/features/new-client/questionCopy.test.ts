@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { presentQuestion } from './questionCopy.ts'
+import { briefField, presentQuestion } from './questionCopy.ts'
 
 const audience = presentQuestion('audience', '')
 const purpose = presentQuestion('purpose', '')
@@ -12,5 +12,9 @@ assert.equal(presentQuestion('idea', '').eyebrow, 'Your idea')
 assert.equal(presentQuestion('motivation', '').support, 'Choose any that fit. More than one is welcome.')
 assert.equal(presentQuestion('requested_help', '').support, 'Choose any that fit. More than one is welcome.')
 assert.equal(presentQuestion('involvement', '').support, 'Choose the one that fits.')
+assert.equal(briefField({ key: 'idea', status: 'client_stated', value: { text: 'A trail guide' } }), 'A trail guide')
+assert.equal(briefField({ key: 'motivation', status: 'client_stated', value: { ids: ['better-way'] } }), '')
+assert.equal(briefField({ key: 'audience', status: 'not_discussed', value: {} }), '')
+assert.equal(briefField({ key: 'boundaries', status: 'unknown', value: { none: true } }), 'Nothing comes to mind')
 
 console.log('question copy tests passed')

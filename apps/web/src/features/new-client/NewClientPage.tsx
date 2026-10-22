@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Alert, Button, Icon, IconButton, Spinner, TextArea, TextField } from '../../design-system'
-import { activeWidget, canSubmit, previousAnswer, questionWidget, widgetFocus, type FieldKey, type FieldValue } from './orchestrator'
+import { activeWidget, blankFields, canSubmit, previousAnswer, questionWidget, widgetFocus, type FieldKey, type FieldValue } from './orchestrator'
 import {
   addReference,
   ensureIntakeSession,
   mergeFields,
   removeReference,
+  resumeIntake,
   sendTurn,
   startIntake,
   submitIntake,
@@ -48,6 +49,7 @@ export function NewClientPage() {
   const [revisionDraft, setRevisionDraft] = useState('')
   const [nextBlocked, setNextBlocked] = useState(true)
   const nextRun = useRef<(() => void) | null>(null)
+  const startLock = useRef<Promise<IntakeState> | null>(null)
   const turnKey = useRef<string | null>(null)
   const composer = useRef<HTMLTextAreaElement>(null)
   const heading = useRef<HTMLHeadingElement>(null)
@@ -62,11 +64,13 @@ export function NewClientPage() {
         const session = await ensureIntakeSession()
         if (!active) return
         setUserId(session.user.id)
-        const next = await startIntake()
+        const next = await resumeIntake()
         if (!active) return
-        setState(next)
-        const saved = sessionStorage.getItem(draftKey(next.intake.id))
-        if (saved) setDraft(saved)
+        if (next) {
+          setState(next)
+          const saved = sessionStorage.getItem(draftKey(next.intake.id))
+          if (saved) setDraft(saved)
+        }
       } catch (cause) {
         if (active) setError(cause instanceof Error ? cause.message : 'Could not start')
       } finally {
@@ -78,12 +82,14 @@ export function NewClientPage() {
     }
   }, [])
 
-  const fields = state ? mergeFields(state.fields) : []
+  const fields = state ? mergeFields(state.fields) : blankFields()
   const ready = canSubmit(fields)
-  const open = state?.intake.status === 'draft' || state?.intake.status === 'clarification'
+  const closed = Boolean(state && state.intake.status !== 'draft' && state.intake.status !== 'clarification')
+  const open = !booting && Boolean(userId) && !closed
+  const fresh = open && !state
   const lastAssistant = [...(state?.messages ?? [])].reverse().find((message) => message.role === 'assistant')
   const focus: FieldKey | null =
-    state && state.messages.filter((message) => message.role === 'client').length === 0
+    fresh || (state && state.messages.filter((message) => message.role === 'client').length === 0)
       ? 'idea'
       : widgetFocus(lastAssistant?.widget ?? null)
   const widget = open && !revising ? activeWidget(lastAssistant?.widget ?? null) : revising ? questionWidget(revising) : null
@@ -140,8 +146,21 @@ export function NewClientPage() {
     element.style.height = `${Math.min(element.scrollHeight, limit)}px`
   }
 
+  async function ensureStarted() {
+    if (state) return state
+    if (!startLock.current) {
+      startLock.current = startIntake().catch((cause) => {
+        startLock.current = null
+        throw cause
+      })
+    }
+    const next = await startLock.current
+    setState((current) => current ?? next)
+    return next
+  }
+
   async function commit(text: string, widgetValue?: FieldValue | null) {
-    if (!state || !open || busy) return
+    if (!open || busy) return
     const body = text.trim()
     if (!body) return
     const key = turnKey.current ?? crypto.randomUUID()
@@ -149,8 +168,9 @@ export function NewClientPage() {
     setBusy(true)
     setError(null)
     try {
+      const current = await ensureStarted()
       const result = await sendTurn({
-        intakeId: state.intake.id,
+        intakeId: current.intake.id,
         turnKey: key,
         body,
         fields,
@@ -246,11 +266,12 @@ export function NewClientPage() {
   }
 
   async function saveReference(item: PendingReference) {
-    if (!state || !userId) return
+    if (!userId) return
     setPending((current) => current.map((row) => (row.localId === item.localId ? { ...row, status: 'uploading', error: undefined } : row)))
     try {
+      const current = await ensureStarted()
       const next = await addReference({
-        intakeId: state.intake.id,
+        intakeId: current.intake.id,
         userId,
         kind: item.kind,
         label: item.label,
@@ -451,7 +472,7 @@ export function NewClientPage() {
       </header>
       <main className="nc-main">
         {booting ? <Spinner label="Opening your introduction" /> : null}
-        {!booting && !state && error ? (
+        {!booting && !userId && error ? (
           <Alert tone="danger" title="We couldn’t open this introduction">
             {error}
           </Alert>
@@ -481,7 +502,7 @@ export function NewClientPage() {
             {state.intake.client_message ? <p className="nc-note">{state.intake.client_message}</p> : null}
           </section>
         ) : null}
-        {state && open ? (
+        {open ? (
           <section className="nc-focus" aria-busy={busy}>
             <div className="nc-question">
               <p className="nc-eyebrow">{copy.eyebrow}</p>
@@ -494,10 +515,10 @@ export function NewClientPage() {
                 <p className="nc-support">{copy.support}</p>
               ) : null}
             </div>
-            {state.intake.client_message ? <p className="nc-note">{state.intake.client_message}</p> : null}
+            {state?.intake.client_message ? <p className="nc-note">{state.intake.client_message}</p> : null}
             {busy ? <Spinner size="sm" label="" /> : null}
             {showSummary ? (
-              <Summary key={state.messages.length} fields={fields} disabled={busy} onReview={(correction) => void sendForReview(correction)} />
+              <Summary key={state?.messages.length ?? 0} fields={fields} disabled={busy} onReview={(correction) => void sendForReview(correction)} />
             ) : null}
             {showChoices && widget ? (
               <IntakeWidget

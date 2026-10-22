@@ -1,0 +1,19 @@
+/*
+ * Thornvine Glass Effect
+ * Adds a crisp edge, layered depth, and backdrop clarity without assigning
+ * a fill or text color. Pair it with an existing color-bearing style.
+ */
+.thornvine-glass-effect {
+  border-color: var(--tv-color-glass-edge);
+  box-shadow: var(--tv-shadow-glass);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+}
+
+.thornvine-glass-effect--surface {
+  box-shadow: var(--tv-shadow-glass-surface);
+}
+
+.thornvine-glass-effect--panel {
+  box-shadow: var(--tv-shadow-glass-panel);
+}

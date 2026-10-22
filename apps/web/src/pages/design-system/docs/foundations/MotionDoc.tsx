@@ -33,7 +33,7 @@ export default function MotionDoc() {
       >
         <ul className="ds-bullets">
           <li>Entrances ease out (emphasized); exits are quicker and ease in.</li>
-          <li>Ambient botanical motion loops slowly and stays behind content.</li>
+          <li>Ambient botanical motion, when used, loops slowly and stays behind content.</li>
           <li>
             Every animation honors <code>prefers-reduced-motion</code>; the composed still state must work on its own.
           </li>
@@ -118,7 +118,7 @@ export default function MotionDoc() {
           dos={[
             'Animate transform and opacity; they stay smooth on low-end devices.',
             'Use Fast for hover/press and Slow for dialogs and drawers.',
-            'Stagger list entrances by 40–60ms, capped at ~6 items.',
+            'Stagger list entrances with --tv-duration-stagger, capped at about six items.',
           ]}
           donts={[
             'Animate layout properties (width, top, margin) in loops.',

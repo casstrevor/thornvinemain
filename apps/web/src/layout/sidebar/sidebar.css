@@ -1,0 +1,263 @@
+.app-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tv-space-6);
+  width: var(--tv-layout-sidebar-width);
+  height: 100dvh;
+  padding: var(--tv-space-6) var(--tv-space-4);
+  overflow-y: auto;
+  background: var(--tv-color-glass-surface);
+  border-right: var(--tv-border-width) solid var(--tv-color-glass-edge);
+  box-shadow: var(--tv-shadow-glass-surface);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  font-family: var(--tv-font-body);
+  color: var(--tv-color-text);
+}
+
+.app-sidebar--collapsed {
+  width: auto;
+  height: auto;
+  gap: 0;
+  padding: 0;
+  background: var(--tv-color-glass-brand);
+  border-right-color: var(--tv-color-glass-edge);
+  border-bottom: var(--tv-border-width) solid var(--tv-color-glass-edge);
+  border-bottom-right-radius: var(--tv-radius-lg);
+  box-shadow: var(--tv-shadow-glass-panel);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.app-shell--sidebar-expanded > .app-sidebar {
+  box-shadow: var(--tv-shadow-glass-panel);
+}
+
+.app-sidebar--collapsed .app-sidebar__nav,
+.app-sidebar--collapsed .app-sidebar__account {
+  display: none;
+}
+
+.app-shell--overlay-chip > .app-sidebar {
+  overflow: hidden;
+  transform-origin: top left;
+  transition:
+    width var(--tv-duration-slow) var(--tv-ease-emphasized),
+    height var(--tv-duration-slow) var(--tv-ease-emphasized),
+    gap var(--tv-duration-slow) var(--tv-ease-emphasized),
+    border-bottom-right-radius var(--tv-duration-slow) var(--tv-ease-emphasized),
+    box-shadow var(--tv-duration-slow) var(--tv-ease-emphasized);
+}
+
+.app-shell--sidebar-expanded.app-shell--overlay-chip > .app-sidebar {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.app-shell--overlay-chip > .app-sidebar--collapsed {
+  width: var(--tv-layout-brand-chip-size);
+  height: var(--tv-layout-brand-chip-size);
+  transition-duration: var(--tv-duration-base);
+  transition-timing-function: var(--tv-ease-exit);
+}
+
+.app-shell--overlay-chip > .app-sidebar .app-sidebar__nav,
+.app-shell--overlay-chip > .app-sidebar .app-sidebar__account {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity var(--tv-duration-slow) var(--tv-ease-emphasized) var(--tv-duration-stagger),
+    transform var(--tv-duration-slow) var(--tv-ease-emphasized) var(--tv-duration-stagger),
+    visibility 0s linear var(--tv-duration-stagger);
+}
+
+.app-shell--overlay-chip > .app-sidebar--collapsed .app-sidebar__nav,
+.app-shell--overlay-chip > .app-sidebar--collapsed .app-sidebar__account {
+  display: grid;
+  opacity: 0;
+  transform: translateY(var(--tv-space-3));
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    opacity var(--tv-duration-fast) var(--tv-ease-exit),
+    transform var(--tv-duration-fast) var(--tv-ease-exit),
+    visibility 0s linear var(--tv-duration-fast);
+}
+
+.app-sidebar__brand {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--tv-space-2);
+  margin: 0;
+  padding: 0 var(--tv-space-3);
+  border: 0;
+  background: none;
+  font-family: var(--tv-font-display);
+  font-size: var(--tv-text-xl);
+  font-weight: var(--tv-weight-semibold);
+  letter-spacing: var(--tv-tracking-tight);
+  color: var(--tv-color-text);
+  text-decoration: none;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+.app-sidebar--collapsed .app-sidebar__brand {
+  width: 100%;
+  padding: var(--tv-space-6) calc(var(--tv-space-4) + var(--tv-space-3));
+  border-radius: 0 0 var(--tv-radius-lg) 0;
+}
+
+.app-sidebar__brand .tv-logo-mark {
+  width: calc(1.85rem * 3);
+  filter: drop-shadow(var(--tv-shadow-brand-mark));
+}
+
+.app-sidebar__brand > span {
+  text-shadow: var(--tv-shadow-brand-name);
+}
+
+.app-sidebar__nav {
+  flex: 1;
+}
+
+.app-sidebar__list {
+  display: grid;
+  gap: var(--tv-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--tv-space-3);
+  padding: var(--tv-space-2) var(--tv-space-3);
+  border-radius: var(--tv-radius-md);
+  font-size: var(--tv-text-sm);
+  font-weight: var(--tv-weight-medium);
+  color: var(--tv-color-text-muted);
+  text-decoration: none;
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  transition:
+    background-color var(--tv-duration-fast) var(--tv-ease-standard),
+    color var(--tv-duration-fast) var(--tv-ease-standard);
+}
+
+.app-sidebar__link:hover {
+  background: var(--tv-color-action-secondary-hover);
+  box-shadow: var(--tv-shadow-glass-surface);
+  color: var(--tv-color-text);
+}
+
+.app-sidebar__link:focus-visible,
+.app-sidebar__brand:focus-visible {
+  outline: none;
+  box-shadow: var(--tv-focus-ring);
+}
+
+.app-sidebar__link--active {
+  background: var(--tv-color-accent-soft);
+  box-shadow: var(--tv-shadow-glass-surface);
+  color: var(--tv-color-accent);
+  font-weight: var(--tv-weight-semibold);
+}
+
+.app-sidebar__account {
+  display: grid;
+  justify-items: stretch;
+  width: 100%;
+}
+
+.app-sidebar__account:not(.app-sidebar__account--identity) {
+  margin-top: auto;
+}
+
+.app-sidebar__account--identity {
+  box-sizing: border-box;
+  justify-items: start;
+  gap: var(--tv-space-2);
+  width: 100%;
+  padding: var(--tv-space-3);
+  border: var(--tv-border-width) solid var(--tv-color-glass-edge);
+  border-radius: var(--tv-radius-md);
+  background: var(--tv-color-surface);
+  box-shadow: var(--tv-shadow-glass-surface);
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--tv-duration-fast) var(--tv-ease-standard),
+    box-shadow var(--tv-duration-fast) var(--tv-ease-standard);
+}
+
+.app-sidebar__account--identity:hover {
+  background: var(--tv-color-action-secondary-hover);
+}
+
+.app-sidebar__account--identity:focus-visible {
+  outline: none;
+  box-shadow: var(--tv-focus-ring);
+}
+
+.app-sidebar__account--current {
+  background: var(--tv-color-accent-soft);
+  border-color: var(--tv-color-accent);
+}
+
+.app-sidebar__email {
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--tv-text-sm);
+  color: var(--tv-color-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 56rem) {
+  .app-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: var(--tv-z-modal);
+    width: var(--tv-layout-sidebar-width);
+    height: 100dvh;
+    box-shadow: var(--tv-shadow-glass-panel);
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition:
+      transform var(--tv-duration-slow) var(--tv-ease-emphasized),
+      visibility 0s linear var(--tv-duration-slow);
+  }
+
+  .app-sidebar__brand {
+    display: none;
+  }
+
+  .app-sidebar--open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform var(--tv-duration-slow) var(--tv-ease-emphasized);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-sidebar,
+  .app-sidebar--open,
+  .app-sidebar__link,
+  .app-shell--overlay-chip > .app-sidebar,
+  .app-shell--overlay-chip > .app-sidebar--collapsed,
+  .app-shell--overlay-chip > .app-sidebar .app-sidebar__nav,
+  .app-shell--overlay-chip > .app-sidebar .app-sidebar__account,
+  .app-shell--overlay-chip > .app-sidebar--collapsed .app-sidebar__nav,
+  .app-shell--overlay-chip > .app-sidebar--collapsed .app-sidebar__account {
+    transition: none;
+  }
+}

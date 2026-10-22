@@ -31,7 +31,7 @@ Working rules for product UI live in `apps/web/src/design-system/voice.md` (Trev
 
 - Warm ivory hero; bold left-aligned copy; sculptural tree on the right.
 - Forest green, moss, warm cream, restrained burgundy; bright leaf green used sparingly for interaction.
-- Bold Poppins headings and comfortable body type. Exact tokens remain to be defined.
+- Poppins for headings and body (TV-D013, Trevor, 2026-10-17). Self-hosted under `apps/web/public/fonts/poppins/`; tokens `--tv-font-display` and `--tv-font-body` both resolve to Poppins.
 - Glossy leaves, natural bark, subtle translucent surfaces; fine botanical lines and occasional art-deco framing.
 - Scroll progression: cream, pale sage, forest green, deep woodland. The services section must blend continuously into the dark selected-work section through a broad gradient, without a hard border or abrupt color switch (Luke's refinement, 2026-09-29).
 - Leaves gently tilt or drift with the pointer; the tree responds subtly. Never obstruct content, controls, or reading.
@@ -64,4 +64,4 @@ Proposals should define deliverables, ownership/account access, anticipated runn
 
 Source: Luke's supplied brand direction, 2026-09-29 America/Chicago. It includes proposed copy and examples; those remain drafts until reviewed.
 
-Reference images are described in the supplied brief but have not been attached to this project. Final logo, images/3D assets, licenses, founder photos, and portfolio material remain pending.
+Official logo (TV-D012, Trevor; updated 2026-10-20): the mirrored-thorn TV monogram Trevor supplied. Assets: `apps/web/public/images/logo.png` (black on transparent) and `logo-inverse.png` (white on transparent). Rendered through `apps/web/src/brand/LogoMark.tsx`. The tab icon is `apps/web/public/favicon.png`, that mark on a cream square. Source archive: `logo-source.png`. Other final images/3D assets, licenses, founder photos, and portfolio material remain pending.

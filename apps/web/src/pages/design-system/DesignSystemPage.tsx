@@ -54,12 +54,6 @@ export function DesignSystemPage() {
             aria-controls="ds-sidebar"
             onClick={() => setNavOpen((open) => !open)}
           />
-          <Link to="/" className="ds-topbar__logo">
-            thornvine
-          </Link>
-          <span className="ds-topbar__divider" aria-hidden="true">
-            /
-          </span>
           <span className="ds-topbar__title">Design system</span>
         </div>
         <div className="ds-topbar__actions">

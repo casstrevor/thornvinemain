@@ -1,0 +1,8 @@
+.tv-logo-mark {
+  flex: none;
+  display: block;
+  width: 1.85rem;
+  height: auto;
+  aspect-ratio: 195 / 150;
+  object-fit: contain;
+}

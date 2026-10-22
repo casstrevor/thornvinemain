@@ -45,7 +45,7 @@ Client accounts, client portal, billing, CMS, CRM, blog, and bespoke AI agent fu
 Boxes above stay unchecked until verified with evidence. Current state:
 
 - Offering clarity: hero and services are live; founder review pending.
-- Six sections: 4 of 6 live (missing "Meet the humans", "How it happens").
+- Six sections: 4 of 6 live on `main` (missing "Meet the humans", "How it happens"). On `hero-glass-and-auth-nav` working tree (2026-10-21): 5 of 6; "Meet the humans" is present without founder photos.
 - CTAs → brief: **No.** All CTAs open `mailto:hello@thornvine.com`; the domain has no MX, so mail bounces.
 - Submission behavior, end-to-end test, server-side validation: not started (no intake).
 - Accessibility, no-WebGL/reduced-motion, performance: not checked. Images 3.8 MB; JS 492 KB.

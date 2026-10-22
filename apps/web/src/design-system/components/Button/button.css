@@ -19,6 +19,8 @@
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
+  backdrop-filter: blur(var(--tv-blur-glass)) saturate(var(--tv-glass-saturate));
   transition:
     transform var(--tv-duration-fast) var(--tv-ease-standard),
     background-color var(--tv-duration-fast) var(--tv-ease-standard),
@@ -60,7 +62,8 @@
 .tv-btn--primary {
   color: var(--tv-color-text-inverse);
   background: var(--tv-color-action-primary);
-  box-shadow: var(--tv-shadow-primary);
+  border-color: var(--tv-color-glass-edge);
+  box-shadow: var(--tv-shadow-glass);
 }
 
 .tv-btn--primary:hover:not(:disabled) {
@@ -83,6 +86,7 @@
 .tv-btn--secondary:hover:not(:disabled) {
   background: var(--tv-color-action-secondary-hover);
   border-color: var(--tv-color-action-secondary);
+  box-shadow: var(--tv-shadow-glass-surface);
 }
 
 .tv-btn--secondary:active:not(:disabled) {
@@ -113,6 +117,7 @@
 .tv-btn--tertiary:hover:not(:disabled) {
   text-decoration-color: transparent;
   background: var(--tv-color-action-secondary-hover);
+  box-shadow: var(--tv-shadow-glass-surface);
 }
 
 .tv-btn--tertiary.tv-btn--inverse {

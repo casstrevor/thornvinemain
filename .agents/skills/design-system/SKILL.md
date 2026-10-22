@@ -30,7 +30,7 @@ every component we make must comply with our design system
    - Switch the registry entry from `planned()` to `built()`
 5. **Motion.** Use shared keyframes (`tv-fade-in`, `tv-rise-in`, `tv-scale-in`, `tv-leaf-sway`, `tv-pulse`, `tv-spin`) with duration/easing tokens; animate only transform/opacity; always provide a `prefers-reduced-motion` fallback.
 6. **Imagery.** Render photos through `Media` (required `alt`, ratio, overlay); assets live in `apps/web/public/images/` and load via `publicUrl()`.
-7. **Brand rules.** One burgundy primary action per view; leaf green only for selection/progress accents; Sora for headings, DM Sans for body.
+7. **Brand rules.** One burgundy primary action per view; leaf green only for selection/progress accents; Poppins for headings and body.
 8. **Voice.** Follow `voice.md`. Eyebrow, title, and support stay in that shape. Paired questions share a pattern ("Who it's for" / "What it's for", "Who's this for?" / "What's this for?"). "Not sure yet" is the only unsure option. No client-facing "Stage 2."
 9. **Accessibility.** Visible labels on inputs, `label` on icon-only buttons, focus via `--tv-color-focus`, AA contrast, never color alone for status.
 

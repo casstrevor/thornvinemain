@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import './App.css'
+import { Card } from './design-system'
 import { publicUrl } from './lib/publicUrl'
 
 const ArrowRight = () => (
@@ -11,21 +12,6 @@ const ArrowRight = () => (
 const ArrowOut = () => (
   <svg aria-hidden="true" viewBox="0 0 20 20" className="icon-arrow">
     <path d="M5 15L15 5M8 5h7v7" />
-  </svg>
-)
-
-const LogoMark = () => (
-  <svg aria-hidden="true" className="brand-mark" viewBox="0 0 32 32" fill="none">
-    <path
-      d="M16 28C16 28 7 20.5 6 12.5C5.2 6.2 10.5 3 16 2.2C21.5 3 26.8 6.2 26 12.5C25 20.5 16 28 16 28Z"
-      fill="currentColor"
-    />
-    <path
-      d="M16 26V6M16 14C12.5 12 10 9 9 6M16 18C19.5 16 22 13 23 9"
-      stroke="#f3efe6"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-    />
   </svg>
 )
 
@@ -87,16 +73,16 @@ const services = [
   },
 ] as const
 
+const founders = [
+  { name: 'Luke' },
+  { name: 'Trevor' },
+] as const
+
 function App() {
   return (
     <div className="site">
       <header className="site-header">
-        <Link className="brand" to="/" aria-label="Thornvine home">
-          <LogoMark />
-          <span>thornvine</span>
-        </Link>
-
-        <nav className="site-nav" aria-label="Primary">
+        <nav className="site-nav thornvine-glass-effect thornvine-glass-effect--surface" aria-label="Primary">
           <a href="#what-we-do">What we do</a>
           <a href="#work">Our work</a>
           <a href="#people">Our people</a>
@@ -113,34 +99,34 @@ function App() {
               fetchPriority="high"
             />
             <div className="hero-wash" />
-            <img className="float-leaf float-leaf--1" src={publicUrl('images/leaf.svg')} alt="" />
-            <img className="float-leaf float-leaf--2" src={publicUrl('images/leaf-gold.svg')} alt="" />
-            <img className="float-leaf float-leaf--3" src={publicUrl('images/leaf.svg')} alt="" />
-            <img className="float-leaf float-leaf--4" src={publicUrl('images/leaf-gold.svg')} alt="" />
           </div>
 
           <div className="hero-copy">
-            <p className="eyebrow">Human ideas. Digital possibilities.</p>
-            <h1 id="hero-heading">
+            <p className="eyebrow thornvine-glass-effect thornvine-glass-effect--surface">
+              Human ideas. Digital possibilities.
+            </p>
+            <h1 id="hero-heading" className="thornvine-glass-effect thornvine-glass-effect--surface">
               Your imagination.
               <br />
               Let&apos;s make it real.
             </h1>
-            <p className="hero-lede">
+            <p className="hero-lede thornvine-glass-effect thornvine-glass-effect--surface">
               We design and build custom apps, digital tools, and experiences
               for people with ideas.
             </p>
-            <div className="hero-actions">
-              <a className="btn btn--primary" href="#contact">
+            <div className="hero-actions thornvine-glass-effect thornvine-glass-effect--surface">
+              <Link className="btn btn--primary btn--glass thornvine-glass-effect" to="/newclient">
                 Tell us your idea
                 <ArrowRight />
-              </a>
+              </Link>
               <a className="text-link" href="#work">
                 Explore our work
                 <ArrowOut />
               </a>
             </div>
-            <p className="hero-note">Free consultation. Real collaboration.</p>
+            <p className="hero-note thornvine-glass-effect thornvine-glass-effect--panel">
+              Free consultation. Real collaboration.
+            </p>
           </div>
         </section>
 
@@ -254,6 +240,26 @@ function App() {
           </div>
         </section>
 
+        <section className="people" id="people" aria-labelledby="people-heading">
+          <div className="people__intro">
+            <p className="people__eyebrow">Our people</p>
+            <h2 id="people-heading">Meet the humans</h2>
+            <p className="people__support">
+              Luke and Trevor started Thornvine together. Equal co-founders. Combined, more than
+              thirty years in design, technology, and learning.
+            </p>
+          </div>
+          <ul className="people__founders">
+            {founders.map(({ name }) => (
+              <li key={name}>
+                <Card className="people__card" eyebrow="Co-founder" title={name}>
+                  Equal partner in the work.
+                </Card>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section className="closing" id="contact" aria-labelledby="closing-heading">
           <div className="closing-frame" aria-hidden="true">
             <img src={publicUrl('images/footer-frame.jpg')} alt="" />
@@ -261,21 +267,16 @@ function App() {
           <div className="closing-copy">
             <h2 id="closing-heading">Good things grow together.</h2>
             <p>Curious minds. Thoughtful makers. Humans who care.</p>
-            <a className="btn btn--primary" href="mailto:hello@thornvine.com">
+            <Link className="btn btn--primary btn--glass thornvine-glass-effect" to="/newclient">
               Tell us your idea
               <ArrowRight />
-            </a>
+            </Link>
           </div>
           <div className="closing-bar">
             <p className="copyright">
               © {new Date().getFullYear()} Thornvine. All rights reserved.
             </p>
-            <Link className="portal-link" to="/clientportal">
-              Client portal
-              <span aria-hidden="true">→</span>
-            </Link>
           </div>
-          <div id="people" hidden />
         </section>
       </main>
     </div>

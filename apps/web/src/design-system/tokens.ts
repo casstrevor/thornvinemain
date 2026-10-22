@@ -19,6 +19,7 @@ export const colorPrimitives: TokenGroup[] = [
     title: 'Forest',
     description: 'Brand anchor. Text, dark surfaces, and secondary actions.',
     tokens: [
+      { token: '--tv-forest-950', label: 'Forest 950', usage: 'Landing header nav links' },
       { token: '--tv-forest-900', label: 'Forest 900' },
       { token: '--tv-forest-ink', label: 'Forest ink', usage: 'Introduction question ink' },
       { token: '--tv-forest-800', label: 'Forest 800' },
@@ -37,6 +38,7 @@ export const colorPrimitives: TokenGroup[] = [
       { token: '--tv-sage-100', label: 'Sage 100' },
       { token: '--tv-sage-150', label: 'Sage 150', usage: 'Composer and selected answers' },
       { token: '--tv-sage-200', label: 'Sage 200' },
+      { token: '--tv-sage-25', label: 'Sage 25', usage: 'Landing header nav pill' },
       { token: '--tv-line-200', label: 'Line 200', usage: 'Quiet borders' },
       { token: '--tv-white', label: 'White' },
     ],
@@ -49,6 +51,8 @@ export const colorPrimitives: TokenGroup[] = [
       { token: '--tv-burgundy-600', label: 'Burgundy 600' },
       { token: '--tv-wine-700', label: 'Wine 700' },
       { token: '--tv-wine-600', label: 'Wine 600', usage: 'Introduction primary action' },
+      { token: '--tv-plum-950', label: 'Plum 950', usage: 'Frosted primary action' },
+      { token: '--tv-plum-600', label: 'Plum 600', usage: 'Landing header nav pill' },
       { token: '--tv-burgundy-500', label: 'Burgundy 500' },
       { token: '--tv-burgundy-100', label: 'Burgundy 100' },
     ],
@@ -87,6 +91,9 @@ export const semanticColors: TokenGroup[] = [
       { token: '--tv-color-surface-muted', label: 'Surface muted', usage: 'Section bands, wells' },
       { token: '--tv-color-surface-raised', label: 'Surface raised', usage: 'Popovers, sidebars' },
       { token: '--tv-color-surface-inverse', label: 'Surface inverse', usage: 'Dark woodland sections' },
+      { token: '--tv-color-surface-wash', label: 'Surface wash', usage: 'Semi-transparent panel behind text on photos' },
+      { token: '--tv-color-surface-nav', label: 'Surface nav', usage: 'Landing header nav pill at 90% opacity' },
+      { token: '--tv-color-scrim', label: 'Scrim', usage: 'Backdrop behind drawers and dialogs' },
     ],
   },
   {
@@ -96,6 +103,8 @@ export const semanticColors: TokenGroup[] = [
       { token: '--tv-color-text-muted', label: 'Text muted', usage: 'Supporting copy' },
       { token: '--tv-color-text-subtle', label: 'Text subtle', usage: 'Placeholders, disabled' },
       { token: '--tv-color-text-inverse', label: 'Text inverse', usage: 'Text on dark surfaces' },
+      { token: '--tv-color-text-on-nav', label: 'Text on nav', usage: 'Landing header nav links' },
+      { token: '--tv-color-text-on-glass-primary', label: 'Text on glass primary', usage: 'Frosted primary action text' },
     ],
   },
   {
@@ -103,6 +112,14 @@ export const semanticColors: TokenGroup[] = [
     tokens: [
       { token: '--tv-color-action-primary', label: 'Action primary', usage: 'Primary button fill' },
       { token: '--tv-color-action-primary-hover', label: 'Action primary hover' },
+      { token: '--tv-color-glass-primary', label: 'Glass primary', usage: 'Frosted primary button on photography' },
+      { token: '--tv-color-glass-primary-hover', label: 'Glass primary hover' },
+      { token: '--tv-color-glass-edge', label: 'Glass edge', usage: 'Light rim on frosted glass' },
+      { token: '--tv-color-glass-highlight', label: 'Glass highlight', usage: 'Top sheen on frosted glass' },
+      { token: '--tv-color-glass-surface', label: 'Glass surface', usage: 'Frosted sidebar and panels over photography' },
+      { token: '--tv-color-glass-brand', label: 'Glass brand', usage: 'Transparent collapsed brand tile' },
+      { token: '--tv-color-glass-copy', label: 'Glass copy', usage: 'Frosted bars behind hero lines' },
+      { token: '--tv-color-glass-note', label: 'Glass note', usage: 'Hero consultation note at 50% opacity' },
       { token: '--tv-color-action-secondary', label: 'Action secondary', usage: 'Secondary button ink' },
       { token: '--tv-color-accent', label: 'Accent', usage: 'Selection, progress, highlights' },
       { token: '--tv-color-focus', label: 'Focus', usage: 'Keyboard focus outline' },
@@ -168,11 +185,23 @@ export const radiusScale: TokenSpec[] = [
   { token: '--tv-radius-pill', label: 'Pill', usage: 'Buttons, badges' },
 ]
 
+export const layoutScale: TokenSpec[] = [
+  { token: '--tv-layout-sidebar-width', label: 'Sidebar width', usage: 'App shell navigation column' },
+  { token: '--tv-layout-brand-chip-size', label: 'Brand chip', usage: 'Collapsed overlay chip and the page space it needs' },
+]
+
 export const shadowScale: TokenSpec[] = [
   { token: '--tv-shadow-sm', label: 'Small', usage: 'Resting controls' },
   { token: '--tv-shadow-md', label: 'Medium', usage: 'Cards, tiles' },
   { token: '--tv-shadow-lg', label: 'Large', usage: 'Dialogs, floating panels' },
   { token: '--tv-shadow-primary', label: 'Primary glow', usage: 'Primary button only' },
+  { token: '--tv-shadow-brand-mark', label: 'Brand mark', usage: 'Subtle logo depth' },
+  { token: '--tv-shadow-brand-name', label: 'Brand name', usage: 'Subtle wordmark depth' },
+  { token: '--tv-shadow-glass', label: 'Thornvine Glass Effect', usage: 'Filled interactive controls' },
+  { token: '--tv-shadow-glass-surface', label: 'Thornvine Glass Effect — surface', usage: 'Filled links and selections' },
+  { token: '--tv-shadow-glass-panel', label: 'Thornvine Glass Effect — panel', usage: 'Frosted navigation panels' },
+  { token: '--tv-blur-glass', label: 'Glass blur', usage: 'Backdrop blur for frosted panels' },
+  { token: '--tv-glass-saturate', label: 'Glass saturate', usage: 'Color boost under frosted glass' },
   { token: '--tv-focus-ring', label: 'Focus ring', usage: 'Keyboard focus on controls' },
 ]
 
@@ -180,13 +209,14 @@ export const durations: TokenSpec[] = [
   { token: '--tv-duration-instant', label: 'Instant', usage: 'Color and opacity feedback' },
   { token: '--tv-duration-fast', label: 'Fast', usage: 'Hover, press, small toggles' },
   { token: '--tv-duration-base', label: 'Base', usage: 'Menus, tooltips, accordions' },
-  { token: '--tv-duration-slow', label: 'Slow', usage: 'Dialogs, drawers, page transitions' },
-  { token: '--tv-duration-gentle', label: 'Gentle', usage: 'Hero entrances, storytelling' },
+  { token: '--tv-duration-slow', label: 'Slow', usage: 'Dialogs, drawers, overlay morphs' },
+  { token: '--tv-duration-gentle', label: 'Gentle', usage: 'Hero and section storytelling' },
+  { token: '--tv-duration-stagger', label: 'Stagger', usage: 'Gap between cascading hero and list entrances' },
 ]
 
 export const easings: TokenSpec[] = [
   { token: '--tv-ease-standard', label: 'Standard', usage: 'Most UI transitions' },
-  { token: '--tv-ease-emphasized', label: 'Emphasized', usage: 'Entrances that should feel alive' },
+  { token: '--tv-ease-emphasized', label: 'Emphasized', usage: 'Entrances that settle instead of snap' },
   { token: '--tv-ease-exit', label: 'Exit', usage: 'Elements leaving the screen' },
   { token: '--tv-ease-organic', label: 'Organic', usage: 'Looping botanical motion' },
 ]

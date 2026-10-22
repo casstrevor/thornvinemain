@@ -33,14 +33,14 @@ export default function TypographyDoc() {
     <>
       <DocSection
         title="Typefaces"
-        description="Sora carries headlines with confident geometry. DM Sans keeps body copy warm and readable."
+        description="Poppins is the single typeface for display and body — bold for headlines, regular through semibold for UI and copy."
       >
         <div className="ds-font-pair">
           <div className="ds-font-card">
             <span className="ds-font-card__glyph" style={{ fontFamily: 'var(--tv-font-display)' }}>
               Aa
             </span>
-            <strong>Sora</strong>
+            <strong>Poppins</strong>
             <TokenName>--tv-font-display</TokenName>
             <span className="ds-muted">Headings, numerals, brand moments · 500–800</span>
           </div>
@@ -48,14 +48,14 @@ export default function TypographyDoc() {
             <span className="ds-font-card__glyph" style={{ fontFamily: 'var(--tv-font-body)' }}>
               Aa
             </span>
-            <strong>DM Sans</strong>
+            <strong>Poppins</strong>
             <TokenName>--tv-font-body</TokenName>
             <span className="ds-muted">Body, UI controls, forms · 400–700</span>
           </div>
         </div>
       </DocSection>
 
-      <DocSection title="Type scale" description="Headings use Sora bold with tight tracking; Lead and below use DM Sans.">
+      <DocSection title="Type scale" description="Headings use Poppins bold with tight tracking; Lead and below use Poppins regular.">
         <ul className="ds-type-list">
           {typeScale.map((spec, index) => (
             <TypeRow key={spec.token} {...spec} display={index < 4} />

@@ -22,6 +22,7 @@ export function buttonClassName({
     'tv-btn',
     `tv-btn--${variant}`,
     `tv-btn--${size}`,
+    variant === 'primary' && 'thornvine-glass-effect',
     tone === 'inverse' && 'tv-btn--inverse',
     fullWidth && 'tv-btn--full',
     className,
