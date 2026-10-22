@@ -155,6 +155,7 @@
 
   /* —— Layout —— */
   --tv-layout-sidebar-width: 16rem;
+  --tv-layout-brand-chip-size: 10rem;
 
   /* —— Elevation —— */
   --tv-shadow-sm: 0 2px 6px rgba(20, 35, 29, 0.06);
@@ -188,11 +189,12 @@
   --tv-duration-instant: 100ms;
   --tv-duration-fast: 180ms;
   --tv-duration-base: 240ms;
-  --tv-duration-slow: 400ms;
-  --tv-duration-gentle: 900ms;
+  --tv-duration-slow: 600ms;
+  --tv-duration-gentle: 1400ms;
+  --tv-duration-stagger: 160ms;
 
   --tv-ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --tv-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
+  --tv-ease-emphasized: cubic-bezier(0.33, 0.04, 0.18, 1);
   --tv-ease-exit: cubic-bezier(0.4, 0, 1, 1);
   --tv-ease-organic: cubic-bezier(0.45, 0.05, 0.55, 0.95);
 
@@ -217,7 +219,7 @@
 @keyframes tv-rise-in {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(1.5rem);
   }
   to {
     opacity: 1;

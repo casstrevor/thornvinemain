@@ -1,4 +1,4 @@
-import { spaceScale } from '../../../../design-system/tokens'
+import { layoutScale, spaceScale } from '../../../../design-system/tokens'
 import { DocSection, TokenName } from '../../doc-kit/DocKit'
 import { readToken } from '../../doc-kit/tokenValue'
 
@@ -26,6 +26,20 @@ export default function SpacingDoc() {
         <ul className="ds-space-list">
           {spaceScale.map((spec) => (
             <SpaceRow key={spec.token} {...spec} />
+          ))}
+        </ul>
+      </DocSection>
+
+      <DocSection
+        title="Layout sizes"
+        description="Page chrome. Use these instead of measuring the overlay chip or the side nav by hand."
+      >
+        <ul className="ds-bullets">
+          {layoutScale.map((spec) => (
+            <li key={spec.token}>
+              <TokenName>{spec.token}</TokenName>
+              {spec.usage ? ` — ${spec.usage}` : ''}
+            </li>
           ))}
         </ul>
       </DocSection>

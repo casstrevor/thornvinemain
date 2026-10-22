@@ -92,7 +92,7 @@ export const semanticColors: TokenGroup[] = [
       { token: '--tv-color-surface-raised', label: 'Surface raised', usage: 'Popovers, sidebars' },
       { token: '--tv-color-surface-inverse', label: 'Surface inverse', usage: 'Dark woodland sections' },
       { token: '--tv-color-surface-wash', label: 'Surface wash', usage: 'Semi-transparent panel behind text on photos' },
-      { token: '--tv-color-surface-nav', label: 'Surface nav', usage: 'Landing header nav pill at 75% opacity' },
+      { token: '--tv-color-surface-nav', label: 'Surface nav', usage: 'Landing header nav pill at 90% opacity' },
       { token: '--tv-color-scrim', label: 'Scrim', usage: 'Backdrop behind drawers and dialogs' },
     ],
   },
@@ -187,6 +187,7 @@ export const radiusScale: TokenSpec[] = [
 
 export const layoutScale: TokenSpec[] = [
   { token: '--tv-layout-sidebar-width', label: 'Sidebar width', usage: 'App shell navigation column' },
+  { token: '--tv-layout-brand-chip-size', label: 'Brand chip', usage: 'Collapsed overlay chip and the page space it needs' },
 ]
 
 export const shadowScale: TokenSpec[] = [
@@ -208,13 +209,14 @@ export const durations: TokenSpec[] = [
   { token: '--tv-duration-instant', label: 'Instant', usage: 'Color and opacity feedback' },
   { token: '--tv-duration-fast', label: 'Fast', usage: 'Hover, press, small toggles' },
   { token: '--tv-duration-base', label: 'Base', usage: 'Menus, tooltips, accordions' },
-  { token: '--tv-duration-slow', label: 'Slow', usage: 'Dialogs, drawers, page transitions' },
-  { token: '--tv-duration-gentle', label: 'Gentle', usage: 'Hero entrances, storytelling' },
+  { token: '--tv-duration-slow', label: 'Slow', usage: 'Dialogs, drawers, overlay morphs' },
+  { token: '--tv-duration-gentle', label: 'Gentle', usage: 'Hero and section storytelling' },
+  { token: '--tv-duration-stagger', label: 'Stagger', usage: 'Gap between cascading hero and list entrances' },
 ]
 
 export const easings: TokenSpec[] = [
   { token: '--tv-ease-standard', label: 'Standard', usage: 'Most UI transitions' },
-  { token: '--tv-ease-emphasized', label: 'Emphasized', usage: 'Entrances that should feel alive' },
+  { token: '--tv-ease-emphasized', label: 'Emphasized', usage: 'Entrances that settle instead of snap' },
   { token: '--tv-ease-exit', label: 'Exit', usage: 'Elements leaving the screen' },
   { token: '--tv-ease-organic', label: 'Organic', usage: 'Looping botanical motion' },
 ]

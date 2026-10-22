@@ -58,6 +58,7 @@
 
 .account-page__facts dd {
   margin: 0;
+  color: var(--tv-color-text);
   font-size: var(--tv-text-md);
 }
 
@@ -65,4 +66,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--tv-space-2);
+}
+
+.account-page__form {
+  display: grid;
+  gap: var(--tv-space-4);
+}
+
+.account-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tv-space-3);
+}
+
+.account-page .tv-alert {
+  width: 100%;
 }

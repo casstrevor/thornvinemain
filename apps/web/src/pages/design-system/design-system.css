@@ -32,23 +32,6 @@
   min-width: 0;
 }
 
-.ds-topbar__logo {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--tv-space-2);
-  font-family: var(--tv-font-display);
-  font-size: var(--tv-text-lg);
-  font-weight: var(--tv-weight-bold);
-  letter-spacing: -0.04em;
-  text-transform: lowercase;
-  color: var(--tv-color-text);
-  text-decoration: none;
-}
-
-.ds-topbar__divider {
-  color: var(--tv-color-text-subtle);
-}
-
 .ds-topbar__title {
   font-size: var(--tv-text-sm);
   font-weight: var(--tv-weight-semibold);
@@ -1064,10 +1047,5 @@
   .ds-main__inner {
     width: min(100% - 2rem, 960px);
     padding-top: var(--tv-space-6);
-  }
-
-  .ds-topbar__divider,
-  .ds-topbar__title {
-    display: none;
   }
 }

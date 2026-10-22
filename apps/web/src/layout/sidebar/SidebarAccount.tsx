@@ -7,7 +7,7 @@ export function SidebarAccount({
   place,
 }: {
   onNavigate?: () => void
-  /** Signed-in identity stays at the top. Sign in sits at the bottom of the menu. */
+  /** Signed-in identity sits under the brand. Sign in sits at the bottom of the menu. */
   place: 'start' | 'end'
 }) {
   const { session, profile, isAdmin, loading } = useAuth()
@@ -51,7 +51,9 @@ export function SidebarAccount({
       aria-label="Your account"
       aria-current={onAccount ? 'page' : undefined}
     >
-      <span className="app-sidebar__email">{profile?.email ?? session.user.email}</span>
+      <span className="app-sidebar__email">
+        {profile?.full_name?.trim() || profile?.email || session.user.email}
+      </span>
       {isAdmin ? <Badge tone="accent">Admin</Badge> : null}
     </Link>
   )

@@ -245,6 +245,7 @@ export type Database = {
       is_design_system_viewer: { Args: never; Returns: boolean }
       is_thornvine_admin: { Args: never; Returns: boolean }
       intake_start: { Args: never; Returns: Json }
+      intake_resume: { Args: never; Returns: Json | null }
       intake_state: { Args: { p_intake_id: string }; Returns: Json }
       intake_apply_turn: {
         Args: { p_intake_id: string; p_turn_key: string; p_body: string; p_proposal: Json }

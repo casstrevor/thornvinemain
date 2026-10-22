@@ -6,6 +6,7 @@ Changelog-style notes for every push. See `.cursor/skills/dev-notes/SKILL.md`.
 
 | Date | Note |
 |------|------|
+| 2026-10-22 | [Review desk, blank guardrails, and landing polish](./2026-10-22-review-desk-and-landing.md) |
 | 2026-10-07 | [Stage 1 introduction](./2026-10-07-stage-1-introduction.md) |
 | 2026-09-23 | [GitHub Project board for development tracking](./2026-09-23-github-project-board.md) |
 | 2026-09-23 | [Monorepo scaffold + Supabase MCP](./2026-09-23-monorepo-supabase-mcp.md) |

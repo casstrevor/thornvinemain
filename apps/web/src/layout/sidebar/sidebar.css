@@ -38,6 +38,53 @@
   display: none;
 }
 
+.app-shell--overlay-chip > .app-sidebar {
+  overflow: hidden;
+  transform-origin: top left;
+  transition:
+    width var(--tv-duration-slow) var(--tv-ease-emphasized),
+    height var(--tv-duration-slow) var(--tv-ease-emphasized),
+    gap var(--tv-duration-slow) var(--tv-ease-emphasized),
+    border-bottom-right-radius var(--tv-duration-slow) var(--tv-ease-emphasized),
+    box-shadow var(--tv-duration-slow) var(--tv-ease-emphasized);
+}
+
+.app-shell--sidebar-expanded.app-shell--overlay-chip > .app-sidebar {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.app-shell--overlay-chip > .app-sidebar--collapsed {
+  width: var(--tv-layout-brand-chip-size);
+  height: var(--tv-layout-brand-chip-size);
+  transition-duration: var(--tv-duration-base);
+  transition-timing-function: var(--tv-ease-exit);
+}
+
+.app-shell--overlay-chip > .app-sidebar .app-sidebar__nav,
+.app-shell--overlay-chip > .app-sidebar .app-sidebar__account {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity var(--tv-duration-slow) var(--tv-ease-emphasized) var(--tv-duration-stagger),
+    transform var(--tv-duration-slow) var(--tv-ease-emphasized) var(--tv-duration-stagger),
+    visibility 0s linear var(--tv-duration-stagger);
+}
+
+.app-shell--overlay-chip > .app-sidebar--collapsed .app-sidebar__nav,
+.app-shell--overlay-chip > .app-sidebar--collapsed .app-sidebar__account {
+  display: grid;
+  opacity: 0;
+  transform: translateY(var(--tv-space-3));
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    opacity var(--tv-duration-fast) var(--tv-ease-exit),
+    transform var(--tv-duration-fast) var(--tv-ease-exit),
+    visibility 0s linear var(--tv-duration-fast);
+}
+
 .app-sidebar__brand {
   box-sizing: border-box;
   display: inline-flex;
@@ -91,7 +138,6 @@
   gap: var(--tv-space-3);
   padding: var(--tv-space-2) var(--tv-space-3);
   border-radius: var(--tv-radius-md);
-  border-left: var(--tv-border-width-strong) solid transparent;
   font-size: var(--tv-text-sm);
   font-weight: var(--tv-weight-medium);
   color: var(--tv-color-text-muted);
@@ -117,9 +163,8 @@
 
 .app-sidebar__link--active {
   background: var(--tv-color-accent-soft);
-  border-left-color: var(--tv-color-accent);
   box-shadow: var(--tv-shadow-glass-surface);
-  color: var(--tv-color-text);
+  color: var(--tv-color-accent);
   font-weight: var(--tv-weight-semibold);
 }
 
@@ -192,6 +237,10 @@
       visibility 0s linear var(--tv-duration-slow);
   }
 
+  .app-sidebar__brand {
+    display: none;
+  }
+
   .app-sidebar--open {
     transform: translateX(0);
     visibility: visible;
@@ -202,7 +251,13 @@
 @media (prefers-reduced-motion: reduce) {
   .app-sidebar,
   .app-sidebar--open,
-  .app-sidebar__link {
+  .app-sidebar__link,
+  .app-shell--overlay-chip > .app-sidebar,
+  .app-shell--overlay-chip > .app-sidebar--collapsed,
+  .app-shell--overlay-chip > .app-sidebar .app-sidebar__nav,
+  .app-shell--overlay-chip > .app-sidebar .app-sidebar__account,
+  .app-shell--overlay-chip > .app-sidebar--collapsed .app-sidebar__nav,
+  .app-shell--overlay-chip > .app-sidebar--collapsed .app-sidebar__account {
     transition: none;
   }
 }

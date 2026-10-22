@@ -333,6 +333,12 @@
   line-height: 1.5;
 }
 
+@media (max-width: 56rem) {
+  .portal-brand {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   .portal-top-actions {
     flex-direction: column;

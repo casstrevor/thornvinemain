@@ -8,6 +8,7 @@ import './app-shell.css'
 
 const sidebarId = 'app-sidebar'
 const narrowQuery = '(max-width: 56rem)'
+const fineHoverQuery = '(hover: hover) and (pointer: fine)'
 
 /** Signed-in app pages dock the brand in the navigation so it does not cover the page. */
 function isAuthenticatedAppPath(pathname: string) {
@@ -22,8 +23,11 @@ function isAuthenticatedAppPath(pathname: string) {
 export function AppShell() {
   const { pathname } = useLocation()
   const narrow = useMediaQuery(narrowQuery)
+  const fineHover = useMediaQuery(fineHoverQuery)
   const authenticated = isAuthenticatedAppPath(pathname)
   const docked = authenticated && !narrow
+  const overlayChip = !authenticated && !narrow
+  const hoverExpand = overlayChip && fineHover
   // Keyed to the path so the mobile drawer closes on its own after any navigation.
   const [openOn, setOpenOn] = useState<string | null>(null)
   const [expanded, setExpanded] = useState(false)
@@ -69,7 +73,12 @@ export function AppShell() {
 
   return (
     <div
-      className={['app-shell', docked && 'app-shell--docked', expanded && 'app-shell--sidebar-expanded']
+      className={[
+        'app-shell',
+        docked && 'app-shell--docked',
+        overlayChip && 'app-shell--overlay-chip',
+        expanded && 'app-shell--sidebar-expanded',
+      ]
         .filter(Boolean)
         .join(' ')}
     >
@@ -91,7 +100,9 @@ export function AppShell() {
         id={sidebarId}
         open={open}
         expanded={docked || narrow || expanded}
+        hoverExpand={hoverExpand}
         onExpand={expand}
+        onCollapse={collapse}
         onNavigate={onNavigate}
       />
       {open ? <div className="app-shell__scrim" aria-hidden="true" onClick={close} /> : null}

@@ -35,6 +35,7 @@ type AuthContextValue = {
   signIn: (email: string, password: string) => Promise<{ error: string | null }>
   signOut: () => Promise<void>
   refreshPortal: () => Promise<void>
+  updateProfile: (input: { full_name: string }) => Promise<{ error: string | null }>
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
@@ -132,6 +133,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut()
   }, [])
 
+  const updateProfile = useCallback(
+    async (input: { full_name: string }) => {
+      const {
+        data: { session: current },
+      } = await supabase.auth.getSession()
+      const userId = current?.user.id
+      if (!userId) return { error: 'Sign in to update your profile.' }
+
+      const full_name = input.full_name.trim()
+      if (!full_name) return { error: 'Enter the name you want people to use.' }
+      if (full_name.length > 80) return { error: 'Keep your name under 80 characters.' }
+
+      const { error } = await supabase.from('profiles').update({ full_name }).eq('id', userId)
+      if (error) return { error: error.message }
+
+      await supabase.auth.updateUser({ data: { full_name } })
+      await refreshPortal()
+      return { error: null }
+    },
+    [refreshPortal],
+  )
+
   const roles = useMemo(
     () => Array.from(new Set(memberships.map((m) => m.role))),
     [memberships],
@@ -156,6 +179,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signIn,
       signOut,
       refreshPortal,
+      updateProfile,
     }),
     [
       session,
@@ -168,6 +192,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signIn,
       signOut,
       refreshPortal,
+      updateProfile,
     ],
   )
 

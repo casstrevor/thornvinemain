@@ -1,4 +1,4 @@
-import type { FieldKey } from './orchestrator'
+import type { FieldKey, FieldRecord } from './orchestrator'
 
 export type QuestionCopy = {
   eyebrow: string
@@ -124,6 +124,23 @@ export const FIELD_LABEL: Record<FieldKey, string> = {
   boundaries: 'Boundaries',
   contact: 'Contact',
   summary: 'Summary',
+}
+
+export function briefField(field: FieldRecord): string {
+  const value = field.value
+  if (typeof value.text === 'string' && value.text.trim() && value.text !== 'confirmed') return value.text.trim()
+  if (typeof value.name === 'string' && value.name.trim()) {
+    const email = typeof value.email === 'string' ? value.email : ''
+    const company = typeof value.company === 'string' ? value.company : ''
+    return [value.name, company, email].filter((part) => typeof part === 'string' && part.trim()).join(' · ')
+  }
+  if (typeof value.choice === 'string' && value.choice === 'help') return 'Not sure yet'
+  if (typeof value.choice === 'string' && value.choice === 'discuss') return "Let's discuss it"
+  if (value.choice === 'range' && value.min && value.max) {
+    return `${value.min}–${value.max} ${typeof value.currency === 'string' ? value.currency : ''}`.trim()
+  }
+  if (value.none === true) return 'Nothing comes to mind'
+  return ''
 }
 
 function plain(value: string) {

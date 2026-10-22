@@ -10,7 +10,7 @@ export type NavItem = {
 }
 
 export const navItems: NavItem[] = [
-  { to: '/newclient/review', label: 'New-client review', icon: 'clipboard', roles: ['thornvine_admin'] },
+  { to: '/newclient/review', label: 'Review desk', icon: 'clipboard', roles: ['thornvine_admin'] },
   { to: '/design-system', label: 'Design system', icon: 'swatch', roles: DESIGN_SYSTEM_ROLES },
 ]
 

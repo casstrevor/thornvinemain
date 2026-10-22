@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 import { Button, Icon, TextArea, TextField, type IconName } from '../../design-system'
-import { FIELD_LABEL } from './questionCopy'
+import { briefField, FIELD_LABEL } from './questionCopy'
 import type { FieldKey, FieldRecord, FieldValue, Widget } from './orchestrator'
 
 export type NextBinder = (action: (() => void) | null, disabled: boolean) => void
@@ -315,12 +315,12 @@ export function Summary({
 }) {
   const rows = fields.filter((field) => field.key !== 'summary' && field.status !== 'not_discussed')
   const [edits, setEdits] = useState<Record<string, string>>(() =>
-    Object.fromEntries(rows.map((field) => [field.key, summarize(field)])),
+    Object.fromEntries(rows.map((field) => [field.key, briefField(field)])),
   )
   const correction = rows
     .map((field) => {
       const next = (edits[field.key] ?? '').trim()
-      const original = summarize(field).trim()
+      const original = briefField(field).trim()
       if (next === original) return null
       return `${FIELD_LABEL[field.key]}: ${next || 'Cleared'}`
     })
@@ -344,24 +344,4 @@ export function Summary({
       </Button>
     </div>
   )
-}
-
-function summarize(field: FieldRecord): string {
-  const value = field.value
-  if (typeof value.text === 'string' && value.text && value.text !== 'confirmed') return value.text
-  if (typeof value.name === 'string' && value.name) {
-    const email = typeof value.email === 'string' ? value.email : ''
-    const company = typeof value.company === 'string' ? value.company : ''
-    return [value.name, company, email].filter(Boolean).join(' · ')
-  }
-  if (Array.isArray(value.ids) && value.ids.length) return value.ids.join(', ')
-  if (typeof value.choice === 'string' && value.choice) {
-    if (value.choice === 'help') return 'Not sure yet'
-    if (value.choice === 'range' && value.min && value.max) return `${value.min}–${value.max} ${value.currency ?? ''}`.trim()
-    return value.choice
-  }
-  if (typeof value.id === 'string' && value.id) return value.id
-  if (value.none === true) return 'Nothing comes to mind'
-  if (field.status === 'not_discussed') return 'Not discussed'
-  return field.status.replaceAll('_', ' ')
 }

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import './App.css'
+import { Card } from './design-system'
 import { publicUrl } from './lib/publicUrl'
 
 const ArrowRight = () => (
@@ -72,6 +73,11 @@ const services = [
   },
 ] as const
 
+const founders = [
+  { name: 'Luke' },
+  { name: 'Trevor' },
+] as const
+
 function App() {
   return (
     <div className="site">
@@ -93,10 +99,6 @@ function App() {
               fetchPriority="high"
             />
             <div className="hero-wash" />
-            <img className="float-leaf float-leaf--1" src={publicUrl('images/leaf.svg')} alt="" />
-            <img className="float-leaf float-leaf--2" src={publicUrl('images/leaf-gold.svg')} alt="" />
-            <img className="float-leaf float-leaf--3" src={publicUrl('images/leaf.svg')} alt="" />
-            <img className="float-leaf float-leaf--4" src={publicUrl('images/leaf-gold.svg')} alt="" />
           </div>
 
           <div className="hero-copy">
@@ -238,6 +240,26 @@ function App() {
           </div>
         </section>
 
+        <section className="people" id="people" aria-labelledby="people-heading">
+          <div className="people__intro">
+            <p className="people__eyebrow">Our people</p>
+            <h2 id="people-heading">Meet the humans</h2>
+            <p className="people__support">
+              Luke and Trevor started Thornvine together. Equal co-founders. Combined, more than
+              thirty years in design, technology, and learning.
+            </p>
+          </div>
+          <ul className="people__founders">
+            {founders.map(({ name }) => (
+              <li key={name}>
+                <Card className="people__card" eyebrow="Co-founder" title={name}>
+                  Equal partner in the work.
+                </Card>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section className="closing" id="contact" aria-labelledby="closing-heading">
           <div className="closing-frame" aria-hidden="true">
             <img src={publicUrl('images/footer-frame.jpg')} alt="" />
@@ -255,7 +277,6 @@ function App() {
               © {new Date().getFullYear()} Thornvine. All rights reserved.
             </p>
           </div>
-          <div id="people" hidden />
         </section>
       </main>
     </div>

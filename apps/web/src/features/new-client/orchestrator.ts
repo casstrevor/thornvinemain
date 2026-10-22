@@ -465,8 +465,8 @@ export function openingMessage(): string {
 
 export function advisoryFit(fields: FieldRecord[]): string {
   const idea = fields.find((field) => field.key === 'idea')
-  const text = String(idea?.value.text ?? 'This opportunity')
-  return `Advisory only: Stage 1 has a first picture of “${text.slice(0, 140)}”. It is not a fit decision, an estimate, or an acceptance to build.`
+  const text = String(idea?.value.text ?? 'this introduction').trim() || 'this introduction'
+  return `This is a first picture of “${text.slice(0, 140)}”. It is not a fit decision, an estimate, or an acceptance to build.`
 }
 
 export function clientSnapshot(fields: FieldRecord[], contact: { name: string; email: string; company: string }) {

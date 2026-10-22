@@ -2,7 +2,7 @@
 
 - **App section:** planning
 - **Notion:** https://app.notion.com/p/3eb9d50600688137ba3df67969ed4ef1
-- **Synced:** 2026-10-20 (TV-D011 collapse note; Notion unsynced)
+- **Synced:** 2026-10-21 (nav pill darkened)
 
 ## Recorded direction
 
@@ -90,15 +90,21 @@ App area: portal. See [new client system v1](../portal/new-client-system-v1.md).
 
 Status: Direction for branch `new-client-system-v1`. Source: Trevor, 2026-10-13 ("Add a sidebar menu on the lefthand side"; chose every page, role-gated links).
 
-Every route renders inside an app shell with a left sidebar. Everyone sees Client portal. Signed-out visitors see Sign in in the sidebar. Admins also see New-client review and Design system. Below 56rem the sidebar becomes a drawer behind a menu button.
+Every route renders inside an app shell with a left sidebar. Everyone sees Client portal. Signed-out visitors see Sign in in the sidebar. Admins also see Review desk and Design system. Below 56rem the sidebar becomes a drawer behind a menu button.
 
 Implementation note, 2026-10-20 (Trevor: hide the sidebar when not selected; minimized state shows only the logo and name): on wide screens the menu starts collapsed to a brand chip. Click the chip to overlay the full menu; click outside, press Escape, or follow a link to hide it again. The `/design-system` route is on `sidebar-menu` after the main merge.
+
+Implementation note, 2026-10-21 (Trevor: create an Our people page): landing `#people` is "Meet the humans" with Luke and Trevor as equal co-founder cards. No founder photos and no individual bios until TV-Q004. Local check on http://127.0.0.1:5173/: Our people scrolls to the heading; cards match in width. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (Trevor: the design-system topbar brand is redundant with the left panel): `/design-system` no longer shows the Thornvine mark or wordmark in its page header. The app sidebar is the brand. The header still names the Design system. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
 
 Implementation note, 2026-10-20 (Trevor: remove the sidebar Sign out button): signed-in account in the sidebar is email and Admin badge only. Sign out remains on the portal and design-system headers.
 
 Implementation note, 2026-10-20 (Trevor: make email and Admin a container above the logo): signed-in identity sits in a boxed account strip at the top of the expanded sidebar, above the brand. It stays hidden when the sidebar is collapsed. Open follow-ups: whether the public landing page and `/newclient` should keep the sidebar for launch, and whether those page-level Sign out controls should stay.
 
-Implementation note, 2026-10-20 (Trevor: selecting the account strip should open our own account/profile): the strip is a link to `/account` (`RequireAuth`). That page shows name, email, role, and workspace, with Sign out. Password reset and editable profile settings are still not built.
+Implementation note, 2026-10-20 (Trevor: selecting the account strip should open our own account/profile): the strip is a link to `/account` (`RequireAuth`). That page shows name, email, role, and workspace, with Sign out.
+
+Implementation note, 2026-10-21 (Trevor: make `/account` proper profile information with an edit option): Name is editable via existing `profiles.full_name` and `profiles_update_own`. Email, role, and workspace stay read-only. Password reset is still not built. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
 
 Implementation note, 2026-10-20 (Trevor: move Sign in to the bottom of the menu; remove Client portal from the sidebar and from the landing header): signed-out Sign in sits at the bottom of the expanded sidebar. The signed-in account strip stays above the logo. Client portal is not a sidebar link and not a header pill link. `/login` and `/clientportal` stay reachable by URL. The login heading is "Sign in", and the lede says "thornvine" in lowercase.
 
@@ -109,6 +115,28 @@ Implementation note, 2026-10-20 (Trevor: glassmorphism on the selected Tell us y
 Implementation note, 2026-10-20 (Trevor: same glass on the brand chip and the full side menu): the collapsed brand chip and the expanded sidebar use a frosted cream surface, the same blur, and a light rim. Local check on http://localhost:5173/: collapsed chip is frosted over the hero; the open menu (account, New-client review, Design system) uses the same glass. Not on `main`. Not live.
 
 Implementation note, 2026-10-20 (Trevor: put the brand back on public pages the way it was): `/`, `/login`, and `/newclient` show the collapsed brand chip again. Authenticated pages still keep the mark in the navigation so it does not cover the page: a docked side column on wide screens, and the top bar on narrow screens. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (narrow landing chrome): under `56rem` the shell top bar is pinned above the page and the plum section pill stays visible. Page-level wordmarks on `/login`, `/newclient`, and `/clientportal` hide at that width. Local check on http://127.0.0.1:5173/ at 390px, 768px, and 1280px. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (open the brand chip on hover): on wide public pages, hovering the collapsed TV chip opens the overlay menu; leaving it closes it. Click, Escape, and click-outside still work. Touch, docked signed-in nav, and the narrow drawer are unchanged. Local check on http://127.0.0.1:5173/ at 1280×800. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (sleek chip open motion): the overlay chip grows into the menu with `--tv-duration-slow` and `--tv-ease-emphasized`, and eases back with `--tv-duration-base` and `--tv-ease-exit`. Sign in fades up after `--tv-duration-stagger`. Reduced-motion shows the still states. Local check on http://127.0.0.1:5173/ at 1280×800 and 390×844. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (chip must not cover the new-client header): on wide `/newclient`, the intake header keeps a chip-sized inset so Save and exit, Introduction, and Saved sit beside the overlay chip instead of under it. The in-page “thornvine” wordmark hides whenever that chip is showing. Local check on http://127.0.0.1:5173/newclient at 1464px, 1280px, and 390px. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (darker landing nav pill): `--tv-color-surface-nav` is plum `#7E6377` at 90% opacity (was 75%). Local check on http://127.0.0.1:5173/: computed background alpha 0.9, white link text. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (hero copy on-load motion): the five frosted hero bars rise in on load with `tv-rise-in`, `--tv-duration-gentle`, and `--tv-duration-stagger`. Reduced-motion skips the entrance. Local check on http://127.0.0.1:5173/ at 1280×800 and 390×844. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (Trevor: slow the animations; they should feel more motion-graphic): `--tv-duration-gentle` is 1400ms, `--tv-duration-stagger` is 160ms, `--tv-duration-slow` is 600ms, and `--tv-ease-emphasized` settles (`cubic-bezier(0.33, 0.04, 0.18, 1)`). Hero, services, and closing share `tv-rise-in`. Overlay chip morph uses the longer slow token. Local check on http://127.0.0.1:5173/ at 1280×800 and 390×844. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (landing canvas motion layer / TV-Q005 recommendation): one Canvas 2D overlay on `/`, existing leaf SVGs, ≤24 leaves desktop and ≤8 under `56rem`, no 3D and no extra libraries. Pointer drift, scroll tint, subtle tree shift, reduced-motion still scene. Local check on http://127.0.0.1:5173/ at 1280×800 and 390×844. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (Trevor: remove the animated leaf layer): the Canvas 2D overlay, scene tokens, and hero-tree pointer shift are gone. Hero copy still uses the staggered `tv-rise-in` entrance. The looping `<img>` leaves that existed before the canvas are not restored. TV-Q005 stays open. Local check on http://127.0.0.1:5173/ at 1280×800: no canvas, nav still clickable. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-21 (Trevor: account strip below thornvine): signed-in email and Admin sit under the brand and above the sidebar buttons. The logo is no longer pushed down the docked column. Sign in stays at the bottom when signed out. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
+
+Implementation note, 2026-10-22 (Luke: redesign the review desk, stop blank drafts, use AI only when necessary, no JSON on the intake views): `/newclient/review` is a dashboard with Waiting / Still writing / Decided. Empty unwritten drafts are hidden. The client canvas does not insert a row until the first answer or reference. `intake-turn` is only for free-text turns. Staff and client views use labeled copy, not JSON. The selected sidebar item is a filled accent pill with no left bar. Authorized by Luke. Working tree on `hero-glass-and-auth-nav`. Not on `main`. Not live.
 
 Implementation note, 2026-10-20 (Trevor: center the hero copy with the top options): the eyebrow, heading, lede, both actions, and the consultation note are center-aligned on the same axis as What we do / Our work / Our people. Local check on http://localhost:5173/: those lines and the nav share one center. On a 390px-wide viewport the same lines stay centered and the actions stack. Not on `main`. Not live.
 
@@ -140,7 +168,7 @@ App area: site, brand.
 - TV-Q002 — Where do project briefs go, who receives them, and what retention/response process applies? Owner: Luke and Trevor with Cursor recommendation. Blocks TV-006 delivery integration. App area: site.
 - TV-Q003 — Email and booking destination? Domain and host are decided in TV-D006. Owner: Luke and Trevor. Blocks launch/contact completion. App area: site.
 - TV-Q004 — Founder identities/bios/photos, approved experience wording, portfolio roles/URLs, logo and visual assets? Owner: Luke and Trevor. Blocks final public content. App area: site.
-- TV-Q005 — Scene implementation and asset/performance budget? Owner: Cursor recommendation after baseline, Luke and Trevor visual review. App area: site.
+- TV-Q005 — Scene implementation and asset/performance budget? Cursor recommendation (2026-10-21): Canvas 2D, existing leaf SVGs, ≤24 / ≤8 leaves, no 3D. That overlay was removed the same day at Trevor’s request. Owner: Luke and Trevor. App area: site.
 - TV-Q006 — The client portal is live in production (2026-10-02). Is it in launch scope, and if so what is its acceptance (admin UI, file uploads, password reset)? If not, should `/login` stay public? Owner: Luke and Trevor. App area: portal.
 - TV-Q007 — Hero copy only (typography decided in TV-D013 as Poppins): the built site eyebrow is "Human ideas. Digital possibilities."; the brief says "Creative product agency". Which is intended? Owner: Luke and Trevor. App area: site.
 - TV-Q008 — Urgent: `hello@thornvine.com` is the live site's only contact, and the domain has no MX records, so mail bounces. Which email provider, and until then should the CTA point somewhere that works? Owner: Luke and Trevor. Part of TV-Q003. App area: site, platform.

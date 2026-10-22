@@ -4,6 +4,10 @@
 - **Notion:** https://app.notion.com/p/3eb9d506006881c388c3d5c7d4433656
 - **Synced:** 2026-10-07
 
+## Handoff 2026-10-22
+
+Review desk, blank-draft guardrails, and human intake are on `hero-glass-and-auth-nav` working tree (no commit). `/newclient` resumes without inserting; first Next creates the row. Staff desk defaults to Waiting, hides empty drafts, and shows a labeled brief. `intake-turn` runs only for free text. Sidebar selected state is a filled pill. `oxlint`, `tsc -b`, and orchestrator/question-copy tests passed. Headless Edge checked `/newclient` and unsigned `/newclient/review`. Migration `20261022160000_intake_resume_and_list_guard.sql` is in the repo and not applied on hosted Thornvine (MCP session is a different project). No TV task status changed.
+
 ## Handoff 2026-10-07 audit
 
 Stage 1 is on branch `new-client-system-v1` with `/newclient` and `/newclient/review`. Both intake migrations were applied to hosted Thornvine earlier that day. Orchestrator tests, question-copy tests, `tsc -b`, and `oxlint` passed. A fresh headless profile exercised Next and Back. No TV task status changed. Not merged to `main`.
@@ -68,7 +72,9 @@ Status: In progress. Priority: P1. Owner: Cursor. Dependencies: TV-002 working c
 
 Acceptance: six responsive sections, shared components, consistent brief CTA, keyboard navigation; incomplete assets clearly tracked and not misrepresented as final.
 
-Evidence so far: landing v2 is live on `main` `f609433` at https://www.thornvine.com. Four of six sections exist; "Meet the humans" and "How it happens" are missing; CTAs end at a bouncing `mailto:`; keyboard navigation not checked. Gap list: [site as built](../site/implementation.md). Not complete.
+Evidence so far: landing v2 is live on `main` `f609433` at https://www.thornvine.com. On `hero-glass-and-auth-nav` (working tree, 2026-10-21) "Meet the humans" exists at `#people` (Luke and Trevor, equal cards, no photos). "How it happens" is still missing; production CTAs still bounce; keyboard navigation not checked. Gap list: [site as built](../site/implementation.md). Not complete.
+
+Handoff 2026-10-21: Trevor asked for an Our people page. Built as a landing section so the existing `#people` nav works. TV-004 not complete.
 
 App area: site.
 

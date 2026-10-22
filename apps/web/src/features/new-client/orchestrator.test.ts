@@ -142,6 +142,7 @@ assert.equal(
 
 const snap = clientSnapshot(confirmed, { name: 'Ada', email: 'ada@example.com', company: '' })
 assert.equal('internalNotes' in snap, false)
-assert.match(advisoryFit(confirmed), /Advisory only/)
+assert.match(advisoryFit(confirmed), /first picture/)
+assert.doesNotMatch(advisoryFit(confirmed), /Stage/)
 
 console.log('orchestrator tests passed')

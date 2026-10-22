@@ -110,3 +110,9 @@
   border-color: var(--tv-color-glass-edge);
   cursor: pointer;
 }
+
+@media (max-width: 56rem) {
+  .auth-brand {
+    display: none;
+  }
+}
