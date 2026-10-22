@@ -23,12 +23,13 @@ Luke asked to redesign New-client review into something purposeful, stop unwritt
 - Landing: darker nav pill, staggered hero rise-in, slower motion tokens, overlay chip morph, Meet the humans (Luke and Trevor, no photos). Canvas leaf layer was added then removed.
 - `/account` is a profile with editable name. Signed-in identity strip sits below the brand.
 - Design-system page no longer repeats the brand mark in its top bar.
-- Migrations: `20261022160000_intake_resume_and_list_guard.sql` (in repo; not applied on hosted Thornvine from this session). `20261008021500_intake_null_widget.sql` recorded in git.
+- Migrations: `20261022160000_intake_resume_and_list_guard.sql` applied through Supabase MCP to hosted Thornvine `dzywymkjvfxsbimyxmhu` on 2026-10-22. `20261008021500_intake_null_widget.sql` was already present.
 
 ## How to verify
 
 - `node --experimental-strip-types src/features/new-client/orchestrator.test.ts` and `questionCopy.test.ts` in `apps/web`
 - `tsc -b` and `oxlint` on the touched files
+- Hosted verification through Supabase MCP: `intake_resume` and filtered `intake_list` exist; `anon` cannot execute either; `authenticated` can execute both. Nine of 18 existing drafts met the blank-draft exclusion criteria.
 - http://127.0.0.1:5173/newclient first paint is the idea question; network is `intake_resume` until First Next
 - Chip Next does not call `intake-turn` again
 - Unsigned http://127.0.0.1:5173/newclient/review shows Review desk, no JSON
@@ -36,10 +37,9 @@ Luke asked to redesign New-client review into something purposeful, stop unwritt
 ## Risks / notes
 
 - Not on `main`. Not live.
-- Cursor’s Supabase MCP session was bound to a different project, so `intake_resume` / list-guard SQL was not applied to Thornvine `dzywymkjvfxsbimyxmhu`. Until it is, resume falls back to a local canvas; the desk still defaults to Waiting.
+- Hosted migration is applied. Security advisors still report pre-existing warnings, including executable `SECURITY DEFINER` helpers, anonymous-access policy warnings, mutable search paths, and leaked-password protection being disabled. See the Supabase advisor links in the release handoff.
 - Graphify output, `.preview-shots`, and `.codex` are left uncommitted.
 
 ## Follow-ups
 
-- Apply `20261022160000_intake_resume_and_list_guard.sql` on hosted Thornvine.
 - Merge and deploy before treating any of this as live.

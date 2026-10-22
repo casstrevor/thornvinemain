@@ -6,7 +6,7 @@
 
 ## Handoff 2026-10-22
 
-Review desk, blank-draft guardrails, and human intake are on `hero-glass-and-auth-nav` working tree (no commit). `/newclient` resumes without inserting; first Next creates the row. Staff desk defaults to Waiting, hides empty drafts, and shows a labeled brief. `intake-turn` runs only for free text. Sidebar selected state is a filled pill. `oxlint`, `tsc -b`, and orchestrator/question-copy tests passed. Headless Edge checked `/newclient` and unsigned `/newclient/review`. Migration `20261022160000_intake_resume_and_list_guard.sql` is in the repo and not applied on hosted Thornvine (MCP session is a different project). No TV task status changed.
+Review desk, blank-draft guardrails, and human intake are on `hero-glass-and-auth-nav` commit [`52e178c`](https://github.com/casstrevor/thornvinemain/commit/52e178c). `/newclient` resumes without inserting; first Next creates the row. Staff desk defaults to Waiting, hides empty drafts, and shows a labeled brief. `intake-turn` runs only for free text. Sidebar selected state is a filled pill. `oxlint`, `tsc -b`, and orchestrator/question-copy/range-scale tests passed. Headless Edge checked `/newclient` and unsigned `/newclient/review`. Supabase MCP applied `20261022160000_intake_resume_and_list_guard.sql` to hosted Thornvine `dzywymkjvfxsbimyxmhu` and verified function grants and blank-draft filtering. No TV task status changed.
 
 ## Handoff 2026-10-07 audit
 
